@@ -14,42 +14,42 @@ This repository includes the ON TO 2050 indicator data in CSV format. Each CSV i
 
 Folder | Indicator(s)
 ---|---
-[`access-to-parks`](access-to-parks) | -- Access to Parks<br />-- *Access to Parks in Economically Disconnected Areas*
-[`board-member-training`](board-member-training) | -- Local Governments That Train Appointed Board Members
-[`commute-time-race-ethnicity`](commute-time-race-ethnicity) | -- *Average Journey to Work Time by Race and Ethnicity*
-[`conserved-land-acres`](conserved-land-acres) | -- Acres of Conserved Land<br />-- *Protected Share of CMAP Conservation Areas Layer*
-[`educational-attainment`](educational-attainment) | -- Educational Attainment<br />-- *Educational Attainment by Race and Ethnicity*
-[`farmland-acres`](farmland-acres) | -- Acres of Farmland Used to Harvest Produce for Direct Human Consumption
-[`greenhouse-gas-emissions`](greenhouse-gas-emissions) | -- Greenhouse Gas Emissions
-[`highway-congestion-hours`](highway-congestion-hours) | -- Average Congested Hours of Weekday Travel for Limited Access Highways
-[`household-income-race-ethnicity`](household-income-race-ethnicity) | -- *Real Median Household Income by Race and Ethnicity*
-[`housing-transportation-percent-income`](housing-transportation-percent-income) | -- Percentage of Income Spent on Housing and Transportation by Moderate- and Low-Income Residents<br />-- *Percent of Income Spent on Housing and Transportation by Moderate- and Low-Income Households by Race and Ethnicity*
-[`impervious-area`](impervious-area) | -- Acres of Impervious Area
-[`income-inequality`](income-inequality) | -- *Gini Coefficient*
-[`infill-development`](infill-development) | -- Share of New Development Occurring in Highly and Partially Infill Supportive Areas<br />-- *Share of New Infill Development Occurring in Economically Disconnected Areas*
-[`manufacturing-exports`](manufacturing-exports) | -- *Manufacturing Exports*
-[`mean-household-income`](mean-household-income) | -- *Change in Mean Household Income Since 2006 by Quintile*
-[`nhs-bridges`](nhs-bridges) | -- Percentage of NHS Bridge Area in Poor Condition
-[`nhs-pavement`](nhs-pavement) | -- Percentage of NHS Pavement in Poor Condition
-[`non-residential-market-value`](non-residential-market-value) | -- *Change in Non-Residential Market Value in Disinvested and Economically Disconnected Areas*
-[`non-single-occupancy-modes`](non-single-occupancy-modes) | -- Percent of Trips to Work via Non-SOV Modes
-[`patenting-activity`](patenting-activity) | -- Patenting Activity
-[`population-jobs-transit-availability`](population-jobs-transit-availability) | -- Population and Jobs with at Least Moderately High Transit Availability
-[`preventable-hospitalizations-race-ethnicity`](preventable-hospitalizations-race-ethnicity) | -- *Preventable Hospitalizations by Race and Ethnicity*
-[`rail-crossing-delay`](rail-crossing-delay) | -- Motorist Delay at Highway-Rail Grade Crossings
-[`regional-trails`](regional-trails) | -- Percentage of Regional Greenways and Trails Plan Completed
-[`reliable-interstate-travel`](reliable-interstate-travel) | -- Percentage of Person-Miles Traveled on the Interstate System with Reliable Travel Time
-[`state-revenue-disbursement`](state-revenue-disbursement) | -- Municipalities with Per Capita State Revenue Disbursement Below 80 Percent of Regional Median
-[`stem-employment`](stem-employment) | -- Employment in STEM Occupations
-[`terminal-carload-transit`](terminal-carload-transit) | -- Chicago Terminal Carload Transit Time
-[`traffic-fatalities`](traffic-fatalities) | -- Number of Traffic Fatalities
-[`traffic-signals`](traffic-signals) | -- Number of Traffic Signals with Transit Priority and/or Queue Jumping
-[`transit-preference`](transit-preference) | -- Miles of Roadway with Transit Preference
-[`transit-repair`](transit-repair) | -- Transit Asset State of Good Repair
-[`unemployment-race-ethnicity`](unemployment-race-ethnicity) | -- *Unemployment by Race and Ethnicity*
-[`unlinked-transit-trips`](unlinked-transit-trips) | -- Annual Unlinked Transit Trips
-[`venture-capital-funding`](venture-capital-funding) | -- Venture Capital Funding
-[`walkable-areas`](walkable-areas) | -- Population and Jobs Located in Highly Walkable Areas
-[`water-demand`](water-demand) | -- Water Demand<br />-- *Lake Michigan Withdrawals*<br />-- *Deep Bedrock Aquifer Withdrawals*
-[`watersheds-low-imperviousness`](watersheds-low-imperviousness) | -- Regional Land in Watersheds Below 25 Percent Impervious Coverage
-[`workforce-participation`](workforce-participation) | -- Workforce Participation<br />-- *Workforce Participation by Race and Ethnicity*
+[`access-to-parks`](access-to-parks) | &bull; Access to Parks<br />&bull; *Access to Parks in Economically Disconnected Areas*
+[`board-member-training`](board-member-training) | &bull; Local Governments That Train Appointed Board Members
+[`commute-time-race-ethnicity`](commute-time-race-ethnicity) | &bull; *Average Journey to Work Time by Race and Ethnicity*
+[`conserved-land-acres`](conserved-land-acres) | &bull; Acres of Conserved Land<br />&bull; *Protected Share of CMAP Conservation Areas Layer*
+[`educational-attainment`](educational-attainment) | &bull; Educational Attainment<br />&bull; *Educational Attainment by Race and Ethnicity*
+[`farmland-acres`](farmland-acres) | &bull; Acres of Farmland Used to Harvest Produce for Direct Human Consumption
+[`greenhouse-gas-emissions`](greenhouse-gas-emissions) | &bull; Greenhouse Gas Emissions
+[`highway-congestion-hours`](highway-congestion-hours) | &bull; Average Congested Hours of Weekday Travel for Limited Access Highways
+[`household-income-race-ethnicity`](household-income-race-ethnicity) | &bull; *Real Median Household Income by Race and Ethnicity*
+[`housing-transportation-percent-income`](housing-transportation-percent-income) | &bull; Percentage of Income Spent on Housing and Transportation by Moderate- and Low-Income Residents<br />&bull; *Percent of Income Spent on Housing and Transportation by Moderate- and Low-Income Households by Race and Ethnicity*
+[`impervious-area`](impervious-area) | &bull; Acres of Impervious Area
+[`income-inequality`](income-inequality) | &bull; *Gini Coefficient*
+[`infill-development`](infill-development) | &bull; Share of New Development Occurring in Highly and Partially Infill Supportive Areas<br />&bull; *Share of New Infill Development Occurring in Economically Disconnected Areas*
+[`manufacturing-exports`](manufacturing-exports) | &bull; *Manufacturing Exports*
+[`mean-household-income`](mean-household-income) | &bull; *Change in Mean Household Income Since 2006 by Quintile*
+[`nhs-bridges`](nhs-bridges) | &bull; Percentage of NHS Bridge Area in Poor Condition
+[`nhs-pavement`](nhs-pavement) | &bull; Percentage of NHS Pavement in Poor Condition
+[`non-residential-market-value`](non-residential-market-value) | &bull; *Change in Non-Residential Market Value in Disinvested and Economically Disconnected Areas*
+[`non-single-occupancy-modes`](non-single-occupancy-modes) | &bull; Percent of Trips to Work via Non-SOV Modes
+[`patenting-activity`](patenting-activity) | &bull; Patenting Activity
+[`population-jobs-transit-availability`](population-jobs-transit-availability) | &bull; Population and Jobs with at Least Moderately High Transit Availability
+[`preventable-hospitalizations-race-ethnicity`](preventable-hospitalizations-race-ethnicity) | &bull; *Preventable Hospitalizations by Race and Ethnicity*
+[`rail-crossing-delay`](rail-crossing-delay) | &bull; Motorist Delay at Highway-Rail Grade Crossings
+[`regional-trails`](regional-trails) | &bull; Percentage of Regional Greenways and Trails Plan Completed
+[`reliable-interstate-travel`](reliable-interstate-travel) | &bull; Percentage of Person-Miles Traveled on the Interstate System with Reliable Travel Time
+[`state-revenue-disbursement`](state-revenue-disbursement) | &bull; Municipalities with Per Capita State Revenue Disbursement Below 80 Percent of Regional Median
+[`stem-employment`](stem-employment) | &bull; Employment in STEM Occupations
+[`terminal-carload-transit`](terminal-carload-transit) | &bull; Chicago Terminal Carload Transit Time
+[`traffic-fatalities`](traffic-fatalities) | &bull; Number of Traffic Fatalities
+[`traffic-signals`](traffic-signals) | &bull; Number of Traffic Signals with Transit Priority and/or Queue Jumping
+[`transit-preference`](transit-preference) | &bull; Miles of Roadway with Transit Preference
+[`transit-repair`](transit-repair) | &bull; Transit Asset State of Good Repair
+[`unemployment-race-ethnicity`](unemployment-race-ethnicity) | &bull; *Unemployment by Race and Ethnicity*
+[`unlinked-transit-trips`](unlinked-transit-trips) | &bull; Annual Unlinked Transit Trips
+[`venture-capital-funding`](venture-capital-funding) | &bull; Venture Capital Funding
+[`walkable-areas`](walkable-areas) | &bull; Population and Jobs Located in Highly Walkable Areas
+[`water-demand`](water-demand) | &bull; Water Demand<br />&bull; *Lake Michigan Withdrawals*<br />&bull; *Deep Bedrock Aquifer Withdrawals*
+[`watersheds-low-imperviousness`](watersheds-low-imperviousness) | &bull; Regional Land in Watersheds Below 25 Percent Impervious Coverage
+[`workforce-participation`](workforce-participation) | &bull; Workforce Participation<br />&bull; *Workforce Participation by Race and Ethnicity*
