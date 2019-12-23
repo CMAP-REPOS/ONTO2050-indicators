@@ -1,4 +1,4 @@
-# ONTO2050-indicators
+# ONTO2050 Indicators
 
 With its many partners and stakeholders, the Chicago Metropolitan Agency for Planning ([CMAP](http://www.cmap.illinois.gov/about)) began to develop the [ON TO 2050](https://www.cmap.illinois.gov/2050) comprehensive plan in 2015. The three-year process was highly transparent, featuring extensive research, analysis, and public engagement. The resulting plan was adopted on October 10, 2018, and builds on the agency’s first comprehensive regional plan, [GO TO 2040](http://www.cmap.illinois.gov/about/2040), which was released in 2010 and updated in 2014. Adoption of the plan guides transportation investments and frames regional priorities on development, the environment, the economy, and other issues affecting quality of life.
 
