@@ -53,3 +53,4 @@ Folder | Indicator(s)
 [`water-demand`](water-demand) | &bull; Water Demand<br />&bull; *Lake Michigan Withdrawals*<br />&bull; *Deep Bedrock Aquifer Withdrawals*
 [`watersheds-low-imperviousness`](watersheds-low-imperviousness) | &bull; Regional Land in Watersheds Below 25 Percent Impervious Coverage
 [`workforce-participation`](workforce-participation) | &bull; Workforce Participation<br />&bull; *Workforce Participation by Race and Ethnicity*
+[`docs`](docs) | **Not an indicator** -- code for the [indicator dashboard](https://cmap-repos.github.io/ONTO2050-indicators/)

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>ON TO 2050 Indicators Dashboard</title>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="./chart.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css" />
+    <style>
+        /* Set the CSS */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            font-family: 'Open Sans';
+        }
+        div {
+            margin: 0;
+            padding: 25px;
+            text-align: center;
+        }
+        p {
+            text-align: left;
+            width: 800px;
+            margin: auto;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #9daab3;
+            width: 800px;
+        }
+        a:link {
+            color: #67ac00;
+            text-decoration: none;
+        }
+        a:visited {
+            color: #548c00;
+            text-decoration: none;
+        }
+        a:hover, a:active {
+            text-decoration: underline;
+        }
+
+        /* Chart lines/points */
+        path {
+            stroke-width: 3px;
+            fill: none;
+        }
+        .axis path {
+            stroke: #000000;
+            stroke-width: 1px;
+            shape-rendering: crispEdges;
+        }
+        line.grid {
+            stroke: #e3e8eb;
+            stroke-width: 1px;
+            shape-rendering: crispEdges;
+        }
+
+        /* Chart text elements */
+        .main-title { font: 600 20px 'Open Sans'; }
+        .axis-title { font: 400 14px 'Open Sans'; }
+        .tick { font: 300 12px 'Open Sans'; }
+        .label { font: 400 12px 'Open Sans'; }
+    </style>
+</head>
+<body onload="createChart()">
+<div id="intro">
+    <h1>ON TO 2050 Indicators Dashboard</h1>
+    <p>This is a simple dashboard for displaying the latest available data from <a href="https://www.cmap.illinois.gov/">CMAP</a>'s <a href="https://www.cmap.illinois.gov/2050/indicators">ON TO 2050 indicators</a>. The source data, in CSV format, can be found <a href="https://github.com/CMAP-REPOS/ONTO2050-indicators">on GitHub</a>.</p>
+</div>
+<hr />
+<div id="chart"></div>
+</body>
+</html>
