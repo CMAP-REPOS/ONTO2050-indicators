@@ -1,22 +1,41 @@
-function createChart(chartName) {
-    console.log(chartName);
+function clearChart() {
+    // Clear any existing elements from the chart div
+    d3.selectAll('div#chart > *').remove();
+    return;
+}
 
+function createChart(chartSpec) {
+    //console.log(chartSpec);
     /*
     Read <http://bl.ocks.org/jhubley/17aa30fd98eb0cc7072f> for inspiration
     */
 
     // Set some chart-specific parameters
-    let mainTitle = 'Workforce participation rate';
-    let xTitle = 'Year';
-    let yTitle = 'Workforce participation rate';
-    let csvUrl = 'https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/workforce-participation/workforce-participation.csv';
-    let xVar = 'YEAR';
-    let yVar = 'WORKFORCE_PARTIC_RATE';
-    let actualColor = '#006b8c';
-    let targetColor = '#72cae5';
-    let yIsPercent = true;
-    let yFormat = '.0%';
-    let labFormat = '.1%';
+    let mainTitle = chartSpec.mainTitle,
+        xTitle = chartSpec.xTitle,
+        yTitle = chartSpec.yTitle,
+        csvUrl = chartSpec.csvUrl,
+        xVar = chartSpec.xVar,
+        yRangeManual = chartSpec.yRangeManual,
+        yIsPercent = chartSpec.yIsPercent,
+        yFormat = chartSpec.yFormat,
+        labFormat = chartSpec.labFormat,
+        yVars = [],
+        actualColors = [],
+        targetColors = [];
+
+    // DEV ONLY: just use first yVar
+    let yVar = chartSpec.yVars[0].yVar, // This only works for first yVar
+        actualColor = chartSpec.yVars[0].actualColor, // This only works for first yVar
+        targetColor = chartSpec.yVars[0].targetColor; // This only works for first yVar
+
+    chartSpec.yVars.forEach(d => {
+        yVars.push(d.yVar);
+        actualColors.push(d.actualColor);
+        targetColors.push(d.targetColor);
+    })
+    //console.log(yVars, actualColors, targetColors);
+
 
     // Set the dimensions of the canvas / graph
     let margin = {top: 50, right: 30, bottom: 50, left: 80},
@@ -45,7 +64,7 @@ function createChart(chartName) {
         .y(d => scY(d[yVar]));
 
     // Clear any existing elements from the chart div
-    d3.selectAll('div#chart > *').remove()
+    clearChart();
 
     // Add the svg canvas
     let svg = d3.select('div#chart')
@@ -74,15 +93,22 @@ function createChart(chartName) {
 
         // Scale the range of the data
         let xLims = d3.extent(data, d => d[xVar]);
-        let yLims = d3.extent(data, d => d[yVar]);
-        let yBuffer = Math.abs(yLims[1] - yLims[0]) * 0.2;
-        if (yIsPercent) {
-            yLims = [Math.max(yLims[0] - yBuffer, 0), Math.min(yLims[1] + yBuffer, 1)];
-        } else {
-            yLims = [yLims[0] - yBuffer, yLims[1] + yBuffer];
-        };
         scX.domain(xLims).nice();
-        scY.domain(yLims).nice();
+
+        let yLims;
+        if (yRangeManual) {
+            yLims = d3.extent(yRangeManual);
+            scY.domain(yLims);
+        } else {
+            yLims = d3.extent(data, d => d[yVar]);
+            let yBuffer = Math.abs(yLims[1] - yLims[0]) * 0.2;
+            if (yIsPercent) {
+                yLims = [Math.max(yLims[0] - yBuffer, 0), Math.min(yLims[1] + yBuffer, 1)];
+            } else {
+                yLims = [yLims[0] - yBuffer, yLims[1] + yBuffer];
+            };
+            scY.domain(yLims).nice();
+        };
         //console.log(yLims[0], yLims[1]);
 
         // Add the main title
@@ -151,7 +177,7 @@ function createChart(chartName) {
             .attr('cy', d => scY(d[yVar]));
 
         // Label the points
-        let labBuffer = yBuffer / 3
+        let labBuffer = Math.abs(yLims[1] - yLims[0]) * 0.05;
         svg.selectAll('text.label')
             .data(data.filter(d => d[xVar] >= lastActualYear))
             .enter()
