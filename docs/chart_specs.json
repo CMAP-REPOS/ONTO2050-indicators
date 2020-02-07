@@ -6,29 +6,72 @@
     "xVar": "YEAR",
     "yTitle": "Acres",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/impervious-area/impervious-area.csv",
-    "yVars": {
-        "IMPERVIOUS_ACRES": {
+    "yVars": [
+        {
+            "yVar": "IMPERVIOUS_ACRES",
             "actualColor": "#548c00",
             "targetColor": "#b7e572"
         }
-    },
+    ],
+    "yRangeManual": [0, 800000],
     "yIsPercent": false,
     "yFormat": ",.0f",
     "labFormat": ",.0f"
 },
 {
     "chartId": "workforce-participation",
-    "mainTitle": "Workforce participation rate",
+    "mainTitle": "Workforce participation",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Workforce participation rate",
+    "yTitle": "Workforce participation rate (ages 20-64)",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/workforce-participation/workforce-participation.csv",
-    "yVars": {
-        "WORKFORCE_PARTIC_RATE": {
+    "yVars": [
+        {
+            "yVar": "WORKFORCE_PARTIC_RATE",
             "actualColor": "#006b8c",
             "targetColor": "#72cae5"
         }
-    },
+    ],
+    "yRangeManual": null,
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "workforce-participation-race-ethnicity",
+    "mainTitle": "Workforce participation by race and ethnicity",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Workforce participation rate (ages 16+)",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/workforce-participation/workforce-participation-race-ethnicity.csv",
+    "yVars": [
+        {
+            "yVar": "WORKFORCE_PARTIC_RATE_ASIAN",
+            "actualColor": "#cc3000",
+            "targetColor": null
+        },
+        {
+            "yVar": "WORKFORCE_PARTIC_RATE_BLACK",
+            "actualColor": "#8de572",
+            "targetColor": null
+        },
+        {
+            "yVar": "WORKFORCE_PARTIC_RATE_HISPANIC",
+            "actualColor": "#cca700",
+            "targetColor": null
+        },
+        {
+            "yVar": "WORKFORCE_PARTIC_RATE_WHITE",
+            "actualColor": "#72a6e5",
+            "targetColor": null
+        },
+        {
+            "yVar": "WORKFORCE_PARTIC_RATE_ALL",
+            "actualColor": "#9daab3",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": null,
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%"
