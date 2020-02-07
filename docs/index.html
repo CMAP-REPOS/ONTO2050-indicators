@@ -16,18 +16,14 @@
         }
         div {
             margin: 0;
-            padding: 25px;
+            padding: 16px;
             text-align: center;
         }
         p {
-            text-align: left;
-            width: 800px;
             margin: auto;
-        }
-        hr {
-            border: none;
-            border-top: 1px solid #9daab3;
             width: 800px;
+            text-align: left;
+            font-size: 16px;
         }
         a:link {
             color: #67ac00;
@@ -64,12 +60,32 @@
         .label { font: 400 12px 'Open Sans'; }
     </style>
 </head>
-<body onload="createChart()">
+<body> <!-- onload="createChart('workforce-participation')">-->
 <div id="intro">
     <h1>ON TO 2050 Indicators Dashboard</h1>
     <p>This is a simple dashboard for displaying the latest available data from <a href="https://www.cmap.illinois.gov/">CMAP</a>'s <a href="https://www.cmap.illinois.gov/2050/indicators">ON TO 2050 indicators</a>. The source data, in CSV format, can be found <a href="https://github.com/CMAP-REPOS/ONTO2050-indicators">on GitHub</a>.</p>
+    <br />
+    <p>Select an indicator to display:
+    <select id="indicators">
+        <option value="impervious-area">Acres of impervious area</option>
+    	<option value="workforce-participation">Workforce participation rate</option>
+    </select>
+    </p>
 </div>
-<hr />
 <div id="chart"></div>
+<script type="text/javascript">
+//let sel;
+//let chartName;
+let sel = document.getElementById("indicators");
+let chartName = sel.options[sel.selectedIndex].value;
+createChart(chartName);
+
+d3.select('#indicators')
+    .on('change', function () {
+        sel = document.getElementById("indicators");
+        chartName = sel.options[sel.selectedIndex].value;
+        createChart(chartName);
+    });
+</script>
 </body>
 </html>

@@ -1,6 +1,11 @@
-function createChart() {
+function createChart(chartName) {
+    console.log(chartName);
+
+    /*
+    Read <http://bl.ocks.org/jhubley/17aa30fd98eb0cc7072f> for inspiration
+    */
+
     // Set some chart-specific parameters
-    let divId = '#chart'
     let mainTitle = 'Workforce participation rate';
     let xTitle = 'Year';
     let yTitle = 'Workforce participation rate';
@@ -12,7 +17,7 @@ function createChart() {
     let yIsPercent = true;
     let yFormat = '.0%';
     let labFormat = '.1%';
-    
+
     // Set the dimensions of the canvas / graph
     let margin = {top: 50, right: 30, bottom: 50, left: 80},
         width = 800 - margin.left - margin.right,
@@ -39,8 +44,11 @@ function createChart() {
         .x(d => scX(d[xVar]))
         .y(d => scY(d[yVar]));
 
+    // Clear any existing elements from the chart div
+    d3.selectAll('div#chart > *').remove()
+
     // Add the svg canvas
-    let svg = d3.select(`div${divId}`)
+    let svg = d3.select('div#chart')
         .append('svg')
             .attr('width', width + margin.left + margin.right)
             .attr('height', height + margin.top + margin.bottom)
@@ -113,15 +121,6 @@ function createChart() {
                 .attr('y1', d => scY(d))
                 .attr('y2', d => scY(d))
 
-        // Add the X axes
-        svg.append('g')
-            .attr('class', 'axis x-axis')
-            .attr('transform', `translate(0,${height})`)
-            .call(xAxis);
-        svg.append('g')
-            .attr('class', 'axis y-axis')
-            .call(yAxis);
-
         // Add the actual/target lines
         svg.append('path')
             .attr('style', `stroke: ${actualColor}`)
@@ -131,6 +130,15 @@ function createChart() {
                 .attr('style', `stroke: ${targetColor}; stroke-dasharray: 8,4;`)
                 .attr('d', plotLine(data.filter(d => d[xVar] >= lastActualYear)));
         };
+
+        // Add the X/Y axes
+        svg.append('g')
+            .attr('class', 'axis x-axis')
+            .attr('transform', `translate(0,${height})`)
+            .call(xAxis);
+        svg.append('g')
+            .attr('class', 'axis y-axis')
+            .call(yAxis);
 
         // Add points for the final actual value and any targets
         svg.selectAll('circle')
