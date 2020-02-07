@@ -1,0 +1,36 @@
+[
+{
+    "impervious-area": {
+        "mainTitle": "Acres of impervious area",
+        "xTitle": "Year",
+        "xVar": "YEAR",
+        "yTitle": "Acres",
+        "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/impervious-area/impervious-area.csv",
+        "yVars": {
+            "IMPERVIOUS_ACRES": {
+                "actualColor": "#548c00",
+                "targetColor": "#b7e572"
+            }
+        },
+        "yIsPercent": false,
+        "yFormat": ",.0f",
+        "labFormat": ",.0f"
+    },
+    "workforce-participation": {
+        "mainTitle": "Workforce participation rate",
+        "xTitle": "Year",
+        "xVar": "YEAR",
+        "yTitle": "Workforce participation rate",
+        "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/workforce-participation/workforce-participation.csv",
+        "yVars": {
+            "WORKFORCE_PARTIC_RATE": {
+                "actualColor": "#006b8c",
+                "targetColor": "#72cae5"
+            }
+        },
+        "yIsPercent": true,
+        "yFormat": ".0%",
+        "labFormat": ".1%"
+    }
+}
+]
