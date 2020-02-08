@@ -69,15 +69,20 @@ function createChart(chartSpec) {
         data.forEach(d => {
             d[xVar] = parseYear(d[xVar]);
             for (yVar of yVars) {
-                //console.log(v);
-                d[yVar] = +d[yVar];
-                if (yIsPercent) {
-                    d[yVar] = d[yVar] / 100;
-                };
-                allYVals.push(d[yVar]);
+                //console.log(yVar);
+                if (d[yVar] != '') {
+                    d[yVar] = +d[yVar];
+                    if (yIsPercent) {
+                        d[yVar] = d[yVar] / 100;
+                    };
+                    allYVals.push(d[yVar]);
+                } else {
+                    d[yVar] = null;
+                }
                 //console.log(`${formatYear(d[xVar])} (${d['ACTUAL_OR_TARGET']}): ${d[yVar]}`);
             };
         });
+        //console.log(data);
         //console.log(allYVals);
 
         let lastActualYear = d3.max(
@@ -88,7 +93,7 @@ function createChart(chartSpec) {
 
         // Scale the range of the data
         let xLims = d3.extent(data, d => d[xVar]);
-        scX.domain(xLims).nice();
+        scX.domain(xLims); //.nice();
 
         let yLims;
         if (yRangeManual) {
@@ -165,18 +170,18 @@ function createChart(chartSpec) {
             svg.select(`#${yVar}`)
                 .append('path')
                 .attr('style', `stroke: ${actualColor}`)
-                .attr('d', plotLine(data.filter(d => d[xVar] <= lastActualYear)));
+                .attr('d', plotLine(data.filter(d => d[xVar] <= lastActualYear && d[yVar] != null)));
             if (targetColor) {
                 svg.select(`#${yVar}`)
                     .append('path')
                     .attr('style', `stroke: ${targetColor}; stroke-dasharray: 8,4;`)
-                    .attr('d', plotLine(data.filter(d => d[xVar] >= lastActualYear)));
+                    .attr('d', plotLine(data.filter(d => d[xVar] >= lastActualYear && d[yVar] != null)));
             };
 
             // Add points for the final actual value and any targets
             svg.select(`#${yVar}`)
                 .selectAll(`circle`)
-                .data(data.filter(d => d[xVar] >= lastActualYear))
+                .data(data.filter(d => d[xVar] >= lastActualYear && d[yVar] != null))
                 .enter()
                 .append('circle')
                 .attr('style', (d => d[xVar] === lastActualYear ? `fill: ${actualColor}` : `fill: ${targetColor}`))
@@ -188,7 +193,7 @@ function createChart(chartSpec) {
             let labBuffer = Math.abs(yLims[1] - yLims[0]) * 0.05;
             svg.select(`#${yVar}`)
                 .selectAll(`text`)
-                .data(data.filter(d => d[xVar] >= lastActualYear))
+                .data(data.filter(d => d[xVar] >= lastActualYear && d[yVar] != null))
                 .enter()
                 .append('text')
                 .attr('class', 'label')
