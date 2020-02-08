@@ -20,7 +20,7 @@
 },
 {
     "chartId": "housing-transportation-percent-income",
-    "mainTitle": "Percentage of Income Spent on Housing and Transportation by Moderate- and Low-Income Residents",
+    "mainTitle": "Percentage of income spent on housing and transportation by moderate- and low-income residents",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "Percentage of income",
@@ -32,7 +32,7 @@
             "targetColor": null
         },
         {
-            "yVar": "PECT_INCOME_T",
+            "yVar": "PCT_INCOME_T",
             "actualColor": "#72a6e5",
             "targetColor": null
         },
