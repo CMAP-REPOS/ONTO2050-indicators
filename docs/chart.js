@@ -24,11 +24,6 @@ function createChart(chartSpec) {
         actualColors = [],
         targetColors = [];
 
-    // DEV ONLY: just use first yVar
-    let yVar = chartSpec.yVars[0].yVar, // This only works for first yVar
-        actualColor = chartSpec.yVars[0].actualColor, // This only works for first yVar
-        targetColor = chartSpec.yVars[0].targetColor; // This only works for first yVar
-
     chartSpec.yVars.forEach(d => {
         yVars.push(d.yVar);
         actualColors.push(d.actualColor);
@@ -57,12 +52,6 @@ function createChart(chartSpec) {
         .ticks(5)
         .tickFormat(d3.format(yFormat));
 
-    // Line-plotting function
-    let plotLine = d3.line()
-        .curve(d3.curveCardinal.tension(0.5))  // Heisenberg says "relax"
-        .x(d => scX(d[xVar]))
-        .y(d => scY(d[yVar]));
-
     // Clear any existing elements from the chart div
     clearChart();
 
@@ -75,15 +64,21 @@ function createChart(chartSpec) {
             .attr('transform', `translate(${margin.left},${margin.top})`);
 
     // Get the data
+    let allYVals = [];
     d3.csv(csvUrl).then(data => {
         data.forEach(d => {
             d[xVar] = parseYear(d[xVar]);
-            d[yVar] = +d[yVar];
-            if (yIsPercent) {
-                d[yVar] = d[yVar] / 100;
+            for (yVar of yVars) {
+                //console.log(v);
+                d[yVar] = +d[yVar];
+                if (yIsPercent) {
+                    d[yVar] = d[yVar] / 100;
+                };
+                allYVals.push(d[yVar]);
+                //console.log(`${formatYear(d[xVar])} (${d['ACTUAL_OR_TARGET']}): ${d[yVar]}`);
             };
-            //console.log(`${formatYear(d[xVar])} (${d['ACTUAL_OR_TARGET']}): ${d[yVar]}`);
         });
+        //console.log(allYVals);
 
         let lastActualYear = d3.max(
             data.filter(d => d['ACTUAL_OR_TARGET']==='Actual'),
@@ -100,7 +95,7 @@ function createChart(chartSpec) {
             yLims = d3.extent(yRangeManual);
             scY.domain(yLims);
         } else {
-            yLims = d3.extent(data, d => d[yVar]);
+            yLims = d3.extent(allYVals);
             let yBuffer = Math.abs(yLims[1] - yLims[0]) * 0.2;
             if (yIsPercent) {
                 yLims = [Math.max(yLims[0] - yBuffer, 0), Math.min(yLims[1] + yBuffer, 1)];
@@ -147,14 +142,53 @@ function createChart(chartSpec) {
                 .attr('y1', d => scY(d))
                 .attr('y2', d => scY(d))
 
-        // Add the actual/target lines
-        svg.append('path')
-            .attr('style', `stroke: ${actualColor}`)
-            .attr('d', plotLine(data.filter(d => d[xVar] <= lastActualYear)));
-        if (targetColor) {
+        let yVar,
+            actualColor,
+            targetColor;
+        for (i = 0; i < yVars.length; i++) {
+            yVar = yVars[i];
+            actualColor = actualColors[i];
+            targetColor = targetColors[i];
+
+            // Line-plotting function
+            let plotLine = d3.line()
+                .curve(d3.curveCardinal.tension(0.5))  // Heisenberg says "relax"
+                .x(d => scX(d[xVar]))
+                .y(d => scY(d[yVar]));
+
+            // Add the actual/target lines
             svg.append('path')
-                .attr('style', `stroke: ${targetColor}; stroke-dasharray: 8,4;`)
-                .attr('d', plotLine(data.filter(d => d[xVar] >= lastActualYear)));
+                .attr('style', `stroke: ${actualColor}`)
+                .attr('d', plotLine(data.filter(d => d[xVar] <= lastActualYear)));
+            if (targetColor) {
+                svg.append('path')
+                    .attr('style', `stroke: ${targetColor}; stroke-dasharray: 8,4;`)
+                    .attr('d', plotLine(data.filter(d => d[xVar] >= lastActualYear)));
+            };
+
+            // Add points for the final actual value and any targets
+            svg.selectAll(`circle#${yVar}`)
+                .data(data.filter(d => d[xVar] >= lastActualYear))
+                .enter()
+                .append('circle')
+                .attr('id', yVar)
+                .attr('style', (d => d[xVar] === lastActualYear ? `fill: ${actualColor}` : `fill: ${targetColor}`))
+                .attr('r', 5)
+                .attr('cx', d => scX(d[xVar]))
+                .attr('cy', d => scY(d[yVar]));
+
+            // Label the points
+            let labBuffer = Math.abs(yLims[1] - yLims[0]) * 0.05;
+            svg.selectAll(`text.label#${yVar}`)
+                .data(data.filter(d => d[xVar] >= lastActualYear))
+                .enter()
+                .append('text')
+                .attr('class', 'label')
+                .attr('id', yVar)
+                .attr('x', d => scX(d[xVar]))
+                .attr('y', d => scY(d[yVar] + labBuffer))
+                .attr('text-anchor', 'middle')
+                .text(d => d3.format(labFormat)(d[yVar]));
         };
 
         // Add the X/Y axes
@@ -165,27 +199,5 @@ function createChart(chartSpec) {
         svg.append('g')
             .attr('class', 'axis y-axis')
             .call(yAxis);
-
-        // Add points for the final actual value and any targets
-        svg.selectAll('circle')
-            .data(data.filter(d => d[xVar] >= lastActualYear))
-            .enter()
-            .append('circle')
-            .attr('style', (d => d[xVar] === lastActualYear ? `fill: ${actualColor}` : `fill: ${targetColor}`))
-            .attr('r', 5)
-            .attr('cx', d => scX(d[xVar]))
-            .attr('cy', d => scY(d[yVar]));
-
-        // Label the points
-        let labBuffer = Math.abs(yLims[1] - yLims[0]) * 0.05;
-        svg.selectAll('text.label')
-            .data(data.filter(d => d[xVar] >= lastActualYear))
-            .enter()
-            .append('text')
-            .attr('class', 'label')
-            .attr('x', d => scX(d[xVar]))
-            .attr('y', d => scY(d[yVar] + labBuffer))
-            .attr('text-anchor', 'middle')
-            .text(d => d3.format(labFormat)(d[yVar]));
     });
 };
