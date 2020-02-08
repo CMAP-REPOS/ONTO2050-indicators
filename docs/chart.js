@@ -132,7 +132,9 @@ function createChart(chartSpec) {
             .text(yTitle);
 
         // Add horizontal gridlines
-        svg.selectAll('line.grid')
+        svg.append('g')
+            .attr('id', 'grid')
+            .selectAll('line')
             .data(scY.ticks(5))
             .enter()
             .append('line')
@@ -156,22 +158,27 @@ function createChart(chartSpec) {
                 .x(d => scX(d[xVar]))
                 .y(d => scY(d[yVar]));
 
+            // Create a new group for each yVar's lines/points/labels
+            svg.append('g').attr('id', yVar)
+
             // Add the actual/target lines
-            svg.append('path')
+            svg.select(`#${yVar}`)
+                .append('path')
                 .attr('style', `stroke: ${actualColor}`)
                 .attr('d', plotLine(data.filter(d => d[xVar] <= lastActualYear)));
             if (targetColor) {
-                svg.append('path')
+                svg.select(`#${yVar}`)
+                    .append('path')
                     .attr('style', `stroke: ${targetColor}; stroke-dasharray: 8,4;`)
                     .attr('d', plotLine(data.filter(d => d[xVar] >= lastActualYear)));
             };
 
             // Add points for the final actual value and any targets
-            svg.selectAll(`circle#${yVar}`)
+            svg.select(`#${yVar}`)
+                .selectAll(`circle`)
                 .data(data.filter(d => d[xVar] >= lastActualYear))
                 .enter()
                 .append('circle')
-                .attr('id', yVar)
                 .attr('style', (d => d[xVar] === lastActualYear ? `fill: ${actualColor}` : `fill: ${targetColor}`))
                 .attr('r', 5)
                 .attr('cx', d => scX(d[xVar]))
@@ -179,12 +186,14 @@ function createChart(chartSpec) {
 
             // Label the points
             let labBuffer = Math.abs(yLims[1] - yLims[0]) * 0.05;
-            svg.selectAll(`text.label#${yVar}`)
+            svg.select(`#${yVar}`)
+                .selectAll(`text`)
                 .data(data.filter(d => d[xVar] >= lastActualYear))
                 .enter()
                 .append('text')
                 .attr('class', 'label')
                 .attr('id', yVar)
+                .attr('style', (d => d[xVar] === lastActualYear ? `fill: ${actualColor}` : `fill: ${targetColor}`))
                 .attr('x', d => scX(d[xVar]))
                 .attr('y', d => scY(d[yVar] + labBuffer))
                 .attr('text-anchor', 'middle')
@@ -193,11 +202,13 @@ function createChart(chartSpec) {
 
         // Add the X/Y axes
         svg.append('g')
-            .attr('class', 'axis x-axis')
+            .attr('class', 'axis')
+            .attr('id', 'x-axis')
             .attr('transform', `translate(0,${height})`)
             .call(xAxis);
         svg.append('g')
-            .attr('class', 'axis y-axis')
+            .attr('class', 'axis')
+            .attr('id', 'y-axis')
             .call(yAxis);
     });
 };
