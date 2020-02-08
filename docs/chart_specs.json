@@ -19,6 +19,35 @@
     "labFormat": ",.0f"
 },
 {
+    "chartId": "housing-transportation-percent-income",
+    "mainTitle": "Percentage of Income Spent on Housing and Transportation by Moderate- and Low-Income Residents",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage of income",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/housing-transportation-percent-income/housing-transportation-percent-income.csv",
+    "yVars": [
+        {
+            "yVar": "PCT_INCOME_H",
+            "actualColor": "#cca700",
+            "targetColor": null
+        },
+        {
+            "yVar": "PECT_INCOME_T",
+            "actualColor": "#72a6e5",
+            "targetColor": null
+        },
+        {
+            "yVar": "PCT_INCOME_HT",
+            "actualColor": "#548c00",
+            "targetColor": "#b7e572"
+        }
+    ],
+    "yRangeManual": null,
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
     "chartId": "workforce-participation",
     "mainTitle": "Workforce participation",
     "xTitle": "Year",
@@ -46,6 +75,11 @@
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/workforce-participation/workforce-participation-race-ethnicity.csv",
     "yVars": [
         {
+            "yVar": "WORKFORCE_PARTIC_RATE_ALL",
+            "actualColor": "#9daab3",
+            "targetColor": null
+        },
+        {
             "yVar": "WORKFORCE_PARTIC_RATE_ASIAN",
             "actualColor": "#cc3000",
             "targetColor": null
@@ -63,11 +97,6 @@
         {
             "yVar": "WORKFORCE_PARTIC_RATE_WHITE",
             "actualColor": "#72a6e5",
-            "targetColor": null
-        },
-        {
-            "yVar": "WORKFORCE_PARTIC_RATE_ALL",
-            "actualColor": "#9daab3",
             "targetColor": null
         }
     ],
