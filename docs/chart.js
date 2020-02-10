@@ -7,7 +7,9 @@ function clearChart() {
 function createChart(chartSpec) {
     //console.log(chartSpec);
     /*
-    Read <http://bl.ocks.org/jhubley/17aa30fd98eb0cc7072f> for inspiration
+    Inspiration:
+    - http://bl.ocks.org/jhubley/17aa30fd98eb0cc7072f
+    - https://observablehq.com/@d3/line-chart-with-tooltip
     */
 
     // Set some chart-specific parameters
