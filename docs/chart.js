@@ -31,7 +31,6 @@ function createChart(chartSpec) {
     })
     //console.log(yVars, actualColors, targetColors);
 
-
     // Set the dimensions of the canvas / graph
     let margin = {top: 50, right: 30, bottom: 50, left: 80},
         width = 800 - margin.left - margin.right,
@@ -68,18 +67,18 @@ function createChart(chartSpec) {
     d3.csv(csvUrl).then(data => {
         data.forEach(d => {
             d[xVar] = parseYear(d[xVar]);
-            for (yVar of yVars) {
-                //console.log(yVar);
-                if (d[yVar] != '') {
-                    d[yVar] = +d[yVar];
+            for (v of yVars) {
+                //console.log(v);
+                if (d[v] != '') {
+                    d[v] = +d[v];
                     if (yIsPercent) {
-                        d[yVar] = d[yVar] / 100;
+                        d[v] = d[v] / 100;
                     };
-                    allYVals.push(d[yVar]);
+                    allYVals.push(d[v]);
                 } else {
-                    d[yVar] = null;
+                    d[v] = null;
                 }
-                //console.log(`${formatYear(d[xVar])} (${d['ACTUAL_OR_TARGET']}): ${d[yVar]}`);
+                //console.log(`${formatYear(d[xVar])} (${d['ACTUAL_OR_TARGET']}): ${d[v]}`);
             };
         });
         //console.log(data);
