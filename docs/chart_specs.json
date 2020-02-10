@@ -8,6 +8,7 @@
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/impervious-area/impervious-area.csv",
     "yVars": [
         {
+            "name": null,
             "yVar": "IMPERVIOUS_ACRES",
             "actualColor": "#548c00",
             "targetColor": "#b7e572"
@@ -27,19 +28,22 @@
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/housing-transportation-percent-income/housing-transportation-percent-income.csv",
     "yVars": [
         {
+            "name": "Housing only",
             "yVar": "PCT_INCOME_H",
-            "actualColor": "#cca700",
+            "actualColor": "#e57272",
             "targetColor": null
         },
         {
+            "name": "Transportation only",
             "yVar": "PCT_INCOME_T",
-            "actualColor": "#72a6e5",
+            "actualColor": "#72cae5",
             "targetColor": null
         },
         {
+            "name": "Housing + transportation",
             "yVar": "PCT_INCOME_HT",
-            "actualColor": "#548c00",
-            "targetColor": "#b7e572"
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
         }
     ],
     "yRangeManual": null,
@@ -56,6 +60,7 @@
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/workforce-participation/workforce-participation.csv",
     "yVars": [
         {
+            "name": null,
             "yVar": "WORKFORCE_PARTIC_RATE",
             "actualColor": "#006b8c",
             "targetColor": "#72cae5"
@@ -75,26 +80,31 @@
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/workforce-participation/workforce-participation-race-ethnicity.csv",
     "yVars": [
         {
+            "name": "All races/ethnicities",
             "yVar": "WORKFORCE_PARTIC_RATE_ALL",
             "actualColor": "#9daab3",
             "targetColor": null
         },
         {
+            "name": "Asian",
             "yVar": "WORKFORCE_PARTIC_RATE_ASIAN",
             "actualColor": "#cc3000",
             "targetColor": null
         },
         {
+            "name": "Black",
             "yVar": "WORKFORCE_PARTIC_RATE_BLACK",
             "actualColor": "#8de572",
             "targetColor": null
         },
         {
+            "name": "Hispanic",
             "yVar": "WORKFORCE_PARTIC_RATE_HISPANIC",
             "actualColor": "#cca700",
             "targetColor": null
         },
         {
+            "name": "White (non-Hispanic)",
             "yVar": "WORKFORCE_PARTIC_RATE_WHITE",
             "actualColor": "#72a6e5",
             "targetColor": null
