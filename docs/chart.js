@@ -25,11 +25,13 @@ function createChart(chartSpec, chartWidth=800, chartHeight=450) {
         yFormat = chartSpec.yFormat,
         labFormat = chartSpec.labFormat,
         yVars = [],
+        yVarNames = [],
         actualColors = [],
         targetColors = [];
 
     chartSpec.yVars.forEach(d => {
         yVars.push(d.yVar);
+        yVarNames.push(d.name);
         actualColors.push(d.actualColor);
         targetColors.push(d.targetColor);
     })
@@ -153,11 +155,11 @@ function createChart(chartSpec, chartWidth=800, chartHeight=450) {
             .data(scY.ticks(5))
             .enter()
             .append('line')
-                .attr('class', 'grid')
-                .attr('x1', 0)
-                .attr('x2', width)
-                .attr('y1', d => scY(d))
-                .attr('y2', d => scY(d))
+            .attr('class', 'grid')
+            .attr('x1', 0)
+            .attr('x2', width)
+            .attr('y1', d => scY(d))
+            .attr('y2', d => scY(d))
 
         // Add the X/Y axes
         svg.append('g')
@@ -171,10 +173,12 @@ function createChart(chartSpec, chartWidth=800, chartHeight=450) {
             .call(yAxis);
 
         let yVar,
+            yVarName,
             actualColor,
             targetColor;
         for (i = 0; i < yVars.length; i++) {
             yVar = yVars[i];
+            yVarName = yVarNames[i];
             actualColor = actualColors[i];
             targetColor = targetColors[i];
 
@@ -185,7 +189,8 @@ function createChart(chartSpec, chartWidth=800, chartHeight=450) {
                 .y(d => scY(d[yVar]));
 
             // Create a new group for each yVar's lines/points/labels
-            svg.append('g').attr('id', yVar)
+            svg.append('g')
+                .attr('id', yVar)
 
             // Add the actual/target lines
             svg.select(`#${yVar}`)
@@ -210,12 +215,22 @@ function createChart(chartSpec, chartWidth=800, chartHeight=450) {
                 //.attr('r', 5)
                 .attr('r', '3px')
                 .attr('cx', d => scX(d[xVar]))
-                .attr('cy', d => scY(d[yVar]));
-                //.append('title')  // Very basic tooltips
-                //.text(d => `${yVar} (${formatYear(d[xVar])}): ${d3.format(labFormat)(d[yVar])}`);
+                .attr('cy', d => scY(d[yVar]))
+                .append('title')  // Very basic tooltips
+                .text(d => {
+                    let yearText = `${formatYear(d[xVar])}`;
+                    if (d[xVar] > lastActualYear) {
+                        yearText = yearText + ' target';
+                    };
+                    if (yVarName === null) {
+                        return `${yearText}: ${d3.format(labFormat)(d[yVar])}`;
+                    } else {
+                        return `${yVarName}, ${yearText}: ${d3.format(labFormat)(d[yVar])}`;
+                    };
+                });
 
             // Label the points
-            let labBuffer = Math.abs(yLims[1] - yLims[0]) * 0.05;
+            /*let labBuffer = Math.abs(yLims[1] - yLims[0]) * 0.05;
             svg.select(`#${yVar}`)
                 .selectAll(`text`)
                 .data(data.filter(d => d[xVar] >= lastActualYear && d[yVar] != null))
@@ -227,7 +242,7 @@ function createChart(chartSpec, chartWidth=800, chartHeight=450) {
                 .attr('x', d => scX(d[xVar]))
                 .attr('y', d => scY(d[yVar] + labBuffer))
                 .attr('text-anchor', 'middle')
-                .text(d => d3.format(labFormat)(d[yVar]));
+                .text(d => d3.format(labFormat)(d[yVar]));*/
         };
     });
 };
