@@ -211,6 +211,8 @@ function createChart(chartSpec, chartWidth=800, chartHeight=450) {
                 .attr('r', '3px')
                 .attr('cx', d => scX(d[xVar]))
                 .attr('cy', d => scY(d[yVar]));
+                //.append('title')  // Very basic tooltips
+                //.text(d => `${yVar} (${formatYear(d[xVar])}): ${d3.format(labFormat)(d[yVar])}`);
 
             // Label the points
             let labBuffer = Math.abs(yLims[1] - yLims[0]) * 0.05;
