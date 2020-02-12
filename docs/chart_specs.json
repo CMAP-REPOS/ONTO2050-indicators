@@ -24,7 +24,7 @@
     "mainTitle": "Percentage of income spent on housing and transportation by moderate- and low-income residents",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage of income",
+    "yTitle": "Percentage of household income",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/housing-transportation-percent-income/housing-transportation-percent-income.csv",
     "yVars": [
         {
