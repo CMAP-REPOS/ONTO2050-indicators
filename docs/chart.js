@@ -4,12 +4,14 @@ function clearChart() {
     return;
 }
 
-function createChart(chartSpec) {
+function createChart(chartSpec, chartWidth=800, chartHeight=450) {
     //console.log(chartSpec);
     /*
     Inspiration:
-    - http://bl.ocks.org/jhubley/17aa30fd98eb0cc7072f
-    - https://observablehq.com/@d3/line-chart-with-tooltip
+        - http://bl.ocks.org/jhubley/17aa30fd98eb0cc7072f
+        - https://observablehq.com/@d3/line-chart-with-tooltip
+        - https://bl.ocks.org/d3noob/a22c42db65eb00d4e369
+        - https://bl.ocks.org/larsenmtl/e3b8b7c2ca4787f77d78f58d41c3da91
     */
 
     // Set some chart-specific parameters
@@ -35,8 +37,8 @@ function createChart(chartSpec) {
 
     // Set the dimensions of the canvas / graph
     let margin = {top: 50, right: 30, bottom: 50, left: 80},
-        width = 800 - margin.left - margin.right,
-        height = 450 - margin.top - margin.bottom;
+        width = chartWidth - margin.left - margin.right,
+        height = chartHeight - margin.top - margin.bottom;
 
     // Time-handling functions
     let parseYear = d3.timeParse('%Y');
@@ -55,6 +57,13 @@ function createChart(chartSpec) {
 
     // Clear any existing elements from the chart div
     clearChart();
+
+    // Add the title
+    /*let chart = d3.select('div#chart');
+    chart.append('h2')
+        .attr('style', 'display: inline;')
+        .attr('id', 'mainTitle')
+        .text(mainTitle);*/
 
     // Add the svg canvas
     let svg = d3.select('div#chart')
@@ -150,6 +159,17 @@ function createChart(chartSpec) {
                 .attr('y1', d => scY(d))
                 .attr('y2', d => scY(d))
 
+        // Add the X/Y axes
+        svg.append('g')
+            .attr('class', 'axis')
+            .attr('id', 'x-axis')
+            .attr('transform', `translate(0,${height})`)
+            .call(xAxis);
+        svg.append('g')
+            .attr('class', 'axis')
+            .attr('id', 'y-axis')
+            .call(yAxis);
+
         let yVar,
             actualColor,
             targetColor;
@@ -182,11 +202,13 @@ function createChart(chartSpec) {
             // Add points for the final actual value and any targets
             svg.select(`#${yVar}`)
                 .selectAll(`circle`)
-                .data(data.filter(d => d[xVar] >= lastActualYear && d[yVar] != null))
+                //.data(data.filter(d => d[xVar] >= lastActualYear && d[yVar] != null))
+                .data(data.filter(d => d[yVar] != null))
                 .enter()
                 .append('circle')
-                .attr('style', (d => d[xVar] === lastActualYear ? `fill: ${actualColor}` : `fill: ${targetColor}`))
-                .attr('r', 5)
+                .attr('style', (d => d[xVar] <= lastActualYear ? `fill: ${actualColor}` : `fill: ${targetColor}`))
+                //.attr('r', 5)
+                .attr('r', '3px')
                 .attr('cx', d => scX(d[xVar]))
                 .attr('cy', d => scY(d[yVar]));
 
@@ -199,22 +221,11 @@ function createChart(chartSpec) {
                 .append('text')
                 .attr('class', 'label')
                 .attr('id', yVar)
-                .attr('style', (d => d[xVar] === lastActualYear ? `fill: ${actualColor}` : `fill: ${targetColor}`))
+                .attr('style', (d => d[xVar] <= lastActualYear ? `fill: ${actualColor}` : `fill: ${targetColor}`))
                 .attr('x', d => scX(d[xVar]))
                 .attr('y', d => scY(d[yVar] + labBuffer))
                 .attr('text-anchor', 'middle')
                 .text(d => d3.format(labFormat)(d[yVar]));
         };
-
-        // Add the X/Y axes
-        svg.append('g')
-            .attr('class', 'axis')
-            .attr('id', 'x-axis')
-            .attr('transform', `translate(0,${height})`)
-            .call(xAxis);
-        svg.append('g')
-            .attr('class', 'axis')
-            .attr('id', 'y-axis')
-            .call(yAxis);
     });
 };
