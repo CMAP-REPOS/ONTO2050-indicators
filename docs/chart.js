@@ -38,7 +38,7 @@ async function createChart(chartSpec, chartWidth=800, chartHeight=450) {
     //console.log(yVars, actualColors, targetColors);
 
     // Set the dimensions of the canvas / graph
-    let margin = {top: 20, //50,
+    let margin = {top: 20,
                   right: 30,
                   bottom: 50,
                   left: 80},
@@ -126,14 +126,6 @@ async function createChart(chartSpec, chartWidth=800, chartHeight=450) {
         };
         //console.log(yLims[0], yLims[1]);
 
-        // Add the main title
-        /*svg.append('text')
-            .attr('class', 'main-title')
-            .attr('text-anchor', 'middle')
-            .attr('x', (width / 2))  // Horizontal placement = center of plot
-            .attr('y', 0 - (margin.top / 2))
-            .text(mainTitle);*/
-
         // Add the axis titles
         svg.append('text')
             .attr('class', 'axis-title x-title')
@@ -207,15 +199,13 @@ async function createChart(chartSpec, chartWidth=800, chartHeight=450) {
                     .attr('d', plotLine(data.filter(d => d[xVar] >= lastActualYear && d[yVar] != null)));
             };
 
-            // Add points for the final actual value and any targets
+            // Add points for all observations (actual/target)
             svg.select(`#${yVar}`)
-                .selectAll(`circle`)
-                //.data(data.filter(d => d[xVar] >= lastActualYear && d[yVar] != null))
+                .selectAll('circle')
                 .data(data.filter(d => d[yVar] != null))
                 .enter()
                 .append('circle')
                 .attr('style', (d => d[xVar] <= lastActualYear ? `fill: ${actualColor}` : `fill: ${targetColor}`))
-                //.attr('r', 5)
                 .attr('r', '3px')
                 .attr('cx', d => scX(d[xVar]))
                 .attr('cy', d => scY(d[yVar]))
