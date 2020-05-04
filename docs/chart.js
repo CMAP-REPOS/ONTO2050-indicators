@@ -1,10 +1,10 @@
-function clearChart() {
+async function clearChart() {
     // Clear any existing elements from the chart div
     d3.selectAll('div#chart > *').remove();
     return;
 }
 
-function createChart(chartSpec, chartWidth=800, chartHeight=450) {
+async function createChart(chartSpec, chartWidth=800, chartHeight=450) {
     //console.log(chartSpec);
     /*
     Inspiration:
@@ -38,7 +38,10 @@ function createChart(chartSpec, chartWidth=800, chartHeight=450) {
     //console.log(yVars, actualColors, targetColors);
 
     // Set the dimensions of the canvas / graph
-    let margin = {top: 50, right: 30, bottom: 50, left: 80},
+    let margin = {top: 20, //50,
+                  right: 30,
+                  bottom: 50,
+                  left: 80},
         width = chartWidth - margin.left - margin.right,
         height = chartHeight - margin.top - margin.bottom;
 
@@ -61,11 +64,11 @@ function createChart(chartSpec, chartWidth=800, chartHeight=450) {
     clearChart();
 
     // Add the title
-    /*let chart = d3.select('div#chart');
+    let chart = d3.select('div#chart');
     chart.append('h2')
-        .attr('style', 'display: inline;')
-        .attr('id', 'mainTitle')
-        .text(mainTitle);*/
+        .attr('style', 'max-width: 90%;')
+        .attr('class', 'main-title')
+        .text(mainTitle);
 
     // Add the svg canvas
     let svg = d3.select('div#chart')
@@ -124,12 +127,12 @@ function createChart(chartSpec, chartWidth=800, chartHeight=450) {
         //console.log(yLims[0], yLims[1]);
 
         // Add the main title
-        svg.append('text')
+        /*svg.append('text')
             .attr('class', 'main-title')
             .attr('text-anchor', 'middle')
             .attr('x', (width / 2))  // Horizontal placement = center of plot
             .attr('y', 0 - (margin.top / 2))
-            .text(mainTitle);
+            .text(mainTitle);*/
 
         // Add the axis titles
         svg.append('text')
