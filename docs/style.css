@@ -1,0 +1,60 @@
+/* Structural elements  */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Open Sans';
+}
+div {
+    margin: 0 auto;
+    padding: 16px;
+    text-align: center;
+}
+div#intro, div#chart {
+    width: 800px;
+}
+h1, h2, h3, h4, h5, h6 {
+    width: 100%;
+    margin: auto;
+}
+p {
+    margin: 16px auto;
+    max-width: 100%;
+    text-align: left;
+    font-size: 16px;
+}
+
+/* Link styles */
+a:link {
+    color: #67ac00;
+    text-decoration: none;
+}
+a:visited {
+    color: #548c00;
+    text-decoration: none;
+}
+a:hover, a:active {
+    text-decoration: underline;
+}
+
+/* Chart graphic elements */
+path {
+    stroke-width: 2px;
+    fill: none;
+}
+.axis path {
+    stroke: #000000;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+}
+line.grid {
+    stroke: #e3e8eb;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+}
+
+/* Chart-specific text elements */
+.main-title { font: 600 20px 'Open Sans'; }
+.axis-title { font: 400 14px 'Open Sans'; }
+.tick { font: 300 12px 'Open Sans'; }
+.label { font: 400 12px 'Open Sans'; }
