@@ -1,6 +1,7 @@
 [
 {
     "chartId": "impervious-area",
+    "chapterId": "environment",
     "mainTitle": "Acres of impervious area",
     "xTitle": "Year",
     "xVar": "YEAR",
@@ -21,6 +22,7 @@
 },
 {
     "chartId": "housing-transportation-percent-income",
+    "chapterId": "community",
     "mainTitle": "Percentage of income spent on housing and transportation by moderate- and low-income residents",
     "xTitle": "Year",
     "xVar": "YEAR",
@@ -53,6 +55,7 @@
 },
 {
     "chartId": "workforce-participation",
+    "chapterId": "prosperity",
     "mainTitle": "Workforce participation",
     "xTitle": "Year",
     "xVar": "YEAR",
@@ -73,6 +76,7 @@
 },
 {
     "chartId": "workforce-participation-race-ethnicity",
+    "chapterId": "inclusive-growth",
     "mainTitle": "Workforce participation by race and ethnicity",
     "xTitle": "Year",
     "xVar": "YEAR",
