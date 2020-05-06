@@ -7,22 +7,36 @@ html, body {
 }
 div {
     margin: 0 auto;
-    padding: 16px;
     text-align: center;
 }
-div#intro, div#chart {
-    width: 800px;
+div#intro { width: 800px; }
+div#chart {
+    width: 776px;  /* 800-(2*padding) */
+    padding: 12px;
+}
+div#legend {
+    max-width: 90%;
+    padding: 12px;
+}
+div.legend-item {
+    height: 18px;
+    margin: 6px auto;
+    padding-left: 6px;
+    padding-right: 24px;
+    display: inline-block;
 }
 h1, h2, h3, h4, h5, h6 {
     width: 100%;
     margin: auto;
 }
+h1 { margin: 24px auto; }
 p {
     margin: 16px auto;
-    max-width: 100%;
+    width: 100%;
     text-align: left;
     font-size: 16px;
 }
+select { margin: 16px auto; }
 
 /* Link styles */
 a:link {
@@ -42,7 +56,7 @@ path {
     stroke-width: 2px;
     fill: none;
 }
-.axis path {
+.axis > path {
     stroke: #000000;
     stroke-width: 1px;
     shape-rendering: crispEdges;
@@ -54,7 +68,11 @@ line.grid {
 }
 
 /* Chart-specific text elements */
-.main-title { font: 600 20px 'Open Sans'; }
+#main-title {
+    font: 600 20px 'Open Sans';
+    max-width: 90%;
+}
+.legend-item { font: 300 12px 'Open Sans'; }
 .axis-title { font: 400 14px 'Open Sans'; }
 .tick { font: 300 12px 'Open Sans'; }
 .label { font: 400 12px 'Open Sans'; }

@@ -1,15 +1,17 @@
-async function clearChart() {
-    // Clear any existing elements from the chart div
+function clearChart() {
+    // Clear any existing elements from the #chart div
     d3.selectAll('div#chart > *').remove();
     return;
 }
 
-async function createChart(chartSpec, chartWidth=800, chartHeight=450) {
+function createChart(chartSpec, chartWidth=776, chartHeight=450) {
+    // Build a chart in the #chart div from the supplied JSON specification
     //console.log(chartSpec);
     /*
     Inspiration:
         - http://bl.ocks.org/jhubley/17aa30fd98eb0cc7072f
         - https://observablehq.com/@d3/line-chart-with-tooltip
+        - https://observablehq.com/@d3/learn-d3-interaction?collection=@d3/learn-d3
         - https://bl.ocks.org/d3noob/a22c42db65eb00d4e369
         - https://bl.ocks.org/larsenmtl/e3b8b7c2ca4787f77d78f58d41c3da91
     */
@@ -38,10 +40,7 @@ async function createChart(chartSpec, chartWidth=800, chartHeight=450) {
     //console.log(yVars, actualColors, targetColors);
 
     // Set the dimensions of the canvas / graph
-    let margin = {top: 20,
-                  right: 30,
-                  bottom: 50,
-                  left: 80},
+    let margin = {top: 10, right: 20, bottom: 50, left: 80},
         width = chartWidth - margin.left - margin.right,
         height = chartHeight - margin.top - margin.bottom;
 
@@ -65,14 +64,54 @@ async function createChart(chartSpec, chartWidth=800, chartHeight=450) {
 
     // Add the title
     let chart = d3.select('div#chart');
-    chart.append('h2')
-        .attr('style', 'max-width: 90%;')
-        .attr('class', 'main-title')
+    let title = chart.append('h2')
+        .attr('id', 'main-title')
         .text(mainTitle);
 
+    // Add legend
+    let legend = chart.append('div')
+        .attr('id', 'legend');
+    for (i = 0; i < yVars.length; i++) {
+        yVar = yVars[i];
+        yVarName = yVarNames[i];
+        actualColor = actualColors[i];
+        targetColor = targetColors[i];
+
+        if (targetColor) {
+            if (yVarName) {
+                legend.append('div')
+                    .attr('class', 'legend-item')
+                    .attr('id', `${yVar}`)
+                    .attr('style', `border-left: 18px solid ${actualColor}`)
+                    .text(`${yVarName} (actual)`);
+                legend.append('div')
+                    .attr('class', 'legend-item')
+                    .attr('id', `${yVar}`)
+                    .attr('style', `border-left: 18px solid ${targetColor}`)
+                    .text(`${yVarName} (target)`);
+            } else {
+                legend.append('div')
+                    .attr('class', 'legend-item')
+                    .attr('id', `${yVar}`)
+                    .attr('style', `border-left: 18px solid ${actualColor}`)
+                    .text('Actual');
+                legend.append('div')
+                    .attr('class', 'legend-item')
+                    .attr('id', `${yVar}`)
+                    .attr('style', `border-left: 18px solid ${targetColor}`)
+                    .text('Target');
+            };
+        } else {
+            legend.append('div')
+                .attr('class', 'legend-item')
+                .attr('id', `${yVar}`)
+                .attr('style', `border-left: 18px solid ${actualColor}`)
+                .text(`${yVarName}`);
+        };
+    };
+
     // Add the svg canvas
-    let svg = d3.select('div#chart')
-        .append('svg')
+    let svg = chart.append('svg')
             .attr('width', width + margin.left + margin.right)
             .attr('height', height + margin.top + margin.bottom)
         .append('g')
@@ -238,4 +277,31 @@ async function createChart(chartSpec, chartWidth=800, chartHeight=450) {
                 .text(d => d3.format(labFormat)(d[yVar]));*/
         };
     });
+};
+
+function filterChartSpecs(json, key, value) {
+    // Return subset of chart specifications where specified key has specified value
+    let result = [];
+    json.forEach(d => {
+        if(d[key] === value) {
+            result.push(d);
+        };
+    });
+    //console.log(result);
+    return result;
+};
+
+function getChapterIndicatorIds(json, chapterId) {
+    // Return a list of chart IDs for indicators with a specific chapter id
+    //console.log(chapterId);
+    let result = [];
+    filterChartSpecs(json, 'chapterId', chapterId).forEach(d => {
+        result.push(d.chartId);
+    });
+    return result;
+};
+
+function getChartSpecById(json, chartId) {
+    // Return the JSON chart specification for a specified chart ID
+    return filterChartSpecs(json, 'chartId', chartId)[0];
 };
