@@ -1,26 +1,5 @@
 [
 {
-    "chartId": "impervious-area",
-    "chapterId": "environment",
-    "mainTitle": "Acres of impervious area",
-    "xTitle": "Year",
-    "xVar": "YEAR",
-    "yTitle": "Acres",
-    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/impervious-area/impervious-area.csv",
-    "yVars": [
-        {
-            "name": null,
-            "yVar": "IMPERVIOUS_ACRES",
-            "actualColor": "#548c00",
-            "targetColor": "#b7e572"
-        }
-    ],
-    "yRangeManual": [0, 800000],
-    "yIsPercent": false,
-    "yFormat": ",.0f",
-    "labFormat": ",.0f"
-},
-{
     "chartId": "housing-transportation-percent-income",
     "chapterId": "community",
     "mainTitle": "Percentage of income spent on housing and transportation by moderate- and low-income residents",
@@ -73,6 +52,27 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%"
+},
+{
+    "chartId": "impervious-area",
+    "chapterId": "environment",
+    "mainTitle": "Acres of impervious area",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Acres",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/impervious-area/impervious-area.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "IMPERVIOUS_ACRES",
+            "actualColor": "#548c00",
+            "targetColor": "#b7e572"
+        }
+    ],
+    "yRangeManual": [0, 800000],
+    "yIsPercent": false,
+    "yFormat": ",.0f",
+    "labFormat": ",.0f"
 },
 {
     "chartId": "workforce-participation-race-ethnicity",
