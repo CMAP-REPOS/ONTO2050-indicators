@@ -6,7 +6,8 @@ This indicator uses the Northeastern Illinois Development Database (NDD) to meas
 
 Header | Definition
 -------|-----------
-`YEAR` | Year of observation
+`YEAR_RANGE` | Range of observation years
+`END_YEAR` | Last year of observation range
 `PCT_SUPPORTIVE_RES_INFILL` | Percentage of new residential units developed since 2015 located within highly and partially infill supportive areas
 `PCT_SUPPORTIVE_NONRES_INFILL` | Percentage of new non-residential square footage developed since 2015 located within highly and partially infill supportive areas
 `ACTUAL_OR_TARGET` | `Actual` if the record is from observed data; `Target` if it is an ON TO 2050 target
@@ -25,7 +26,8 @@ Infill development and land use patterns are crucial to promoting economic growt
 
 Header | Definition
 -------|-----------
-`YEAR` | Year of observation
+`YEAR_RANGE` | Range of observation years
+`END_YEAR` | Last year of observation range
 `PCT_RES_INFILL_EDA` | Share of new infill residential units within EDAs
 `PCT_RES_INFILL_NOT_EDA` | Share of new infill residential units *not* within EDAs
 `PCT_NONRES_INFILL_EDA` | Share of new infill non-residential square footage within EDAs
