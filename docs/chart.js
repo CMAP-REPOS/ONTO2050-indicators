@@ -52,12 +52,26 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
     let scX = d3.scaleTime().range([0, width]);
     let scY = d3.scaleLinear().range([height, 0]);
 
+    // Number formatters
+    if (yFormat && yFormat.endsWith('s')) {
+        // Replace "G" (giga) suffix with "B" for billions
+        yFormatter = d => d3.format(yFormat)(d).replace('G', 'B');
+    } else {
+        yFormatter = d3.format(yFormat);
+    };
+    if (labFormat && labFormat.endsWith('s')) {
+        // Replace "G" (giga) suffix with "B" for billions
+        labFormatter = d => d3.format(labFormat)(d).replace('G', 'B');
+    } else {
+        labFormatter = d3.format(labFormat);
+    };
+
     // Axis functions
     let xAxis = d3.axisBottom(scX)
         .ticks(5);
     let yAxis = d3.axisLeft(scY)
         .ticks(5)
-        .tickFormat(d3.format(yFormat));
+        .tickFormat(yFormatter);
 
     // Clear any existing elements from the chart div
     clearChart();
@@ -80,33 +94,41 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
         if (targetColor) {
             if (yVarName) {
                 legend.append('div')
-                    .attr('class', 'legend-item')
+                    .attr('class', 'legend-item actual')
                     .attr('id', `${yVar}`)
                     .attr('style', `border-left: 18px solid ${actualColor}`)
                     .text(`${yVarName} (actual)`);
                 legend.append('div')
-                    .attr('class', 'legend-item')
+                    .attr('class', 'legend-item target')
                     .attr('id', `${yVar}`)
                     .attr('style', `border-left: 18px solid ${targetColor}`)
                     .text(`${yVarName} (target)`);
             } else {
                 legend.append('div')
-                    .attr('class', 'legend-item')
+                    .attr('class', 'legend-item actual')
                     .attr('id', `${yVar}`)
                     .attr('style', `border-left: 18px solid ${actualColor}`)
                     .text('Actual');
                 legend.append('div')
-                    .attr('class', 'legend-item')
+                    .attr('class', 'legend-item target')
                     .attr('id', `${yVar}`)
                     .attr('style', `border-left: 18px solid ${targetColor}`)
                     .text('Target');
             };
         } else {
-            legend.append('div')
-                .attr('class', 'legend-item')
-                .attr('id', `${yVar}`)
-                .attr('style', `border-left: 18px solid ${actualColor}`)
-                .text(`${yVarName}`);
+            if (yVarName) {
+                legend.append('div')
+                    .attr('class', 'legend-item actual')
+                    .attr('id', `${yVar}`)
+                    .attr('style', `border-left: 18px solid ${actualColor}`)
+                    .text(`${yVarName}`);
+            // } else {
+            //     legend.append('div')
+            //         .attr('class', 'legend-item actual')
+            //         .attr('id', `${yVar}`)
+            //         .attr('style', `border-left: 18px solid ${actualColor}`)
+            //         .text('Actual');
+            };
         };
     };
 
@@ -206,6 +228,7 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
             .attr('id', 'y-axis')
             .call(yAxis);
 
+        // Add data
         let yVar,
             yVarName,
             actualColor,
@@ -255,9 +278,9 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
                         yearText = yearText + ' target';
                     };
                     if (yVarName === null) {
-                        return `${yearText}: ${d3.format(labFormat)(d[yVar])}`;
+                        return `${yearText}: ${labFormatter(d[yVar])}`;
                     } else {
-                        return `${yVarName}, ${yearText}: ${d3.format(labFormat)(d[yVar])}`;
+                        return `${yVarName}, ${yearText}: ${labFormatter(d[yVar])}`;
                     };
                 });
 
