@@ -1,0 +1,1262 @@
+[
+{
+    "chartId": "infill-development",
+    "chapterId": "community",
+    "mainTitle": "Share of new development occurring in highly and partially infill supportive areas",
+    "xTitle": "Year",
+    "xVar": "END_YEAR",
+    "yTitle": "Percentage of all development since 2015",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/infill-development/infill-development.csv",
+    "yVars": [
+        {
+            "name": "Residential units",
+            "yVar": "PCT_SUPPORTIVE_RES_INFILL",
+            "actualColor": "#006b8c",
+            "targetColor": "#72cae5"
+        },
+        {
+            "name": "Non-residential sq. ft.",
+            "yVar": "PCT_SUPPORTIVE_NONRES_INFILL",
+            "actualColor": "#8c4100",
+            "targetColor": "#e5a872"
+        }
+    ],
+    "yRangeManual": [0, 1],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".0%"
+},
+{
+    "chartId": "housing-transportation-percent-income",
+    "chapterId": "community",
+    "mainTitle": "Percentage of income spent on housing and transportation by moderate- and low-income residents",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage of household income",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/housing-transportation-percent-income/housing-transportation-percent-income.csv",
+    "yVars": [
+        {
+            "name": "Housing + transportation",
+            "yVar": "PCT_INCOME_HT",
+            "actualColor": "#8c4100",
+            "targetColor": "#e5a872"
+        },
+        {
+            "name": "Housing only",
+            "yVar": "PCT_INCOME_H",
+            "actualColor": "#009ccc",
+            "targetColor": null
+        },
+        {
+            "name": "Transportation only",
+            "yVar": "PCT_INCOME_T",
+            "actualColor": "#7acc00",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": [0, 1],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "walkable-areas",
+    "chapterId": "community",
+    "mainTitle": "Population and jobs in highly walkable areas",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage located in highly walkable areas",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/walkable-areas/walkable-areas.csv",
+    "yVars": [
+        {
+            "name": "Population",
+            "yVar": "PCT_POP_HIGHLY_WALKABLE",
+            "actualColor": "#006b8c",
+            "targetColor": "#72cae5"
+        },
+        {
+            "name": "Jobs",
+            "yVar": "PCT_JOBS_HIGHLY_WALKABLE",
+            "actualColor": "#8c4100",
+            "targetColor": "#e5a872"
+        }
+    ],
+    "yRangeManual": [0, 1],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "educational-attainment",
+    "chapterId": "prosperity",
+    "mainTitle": "Educational attainment (associate's degree or higher)",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage of population (age 25+)",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/educational-attainment/educational-attainment.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "PCT_ASSOC_DEG_PLUS",
+            "actualColor": "#8c7200",
+            "targetColor": "#e5d072"
+        }
+    ],
+    "yRangeManual": [0, 1],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "workforce-participation",
+    "chapterId": "prosperity",
+    "mainTitle": "Workforce participation",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Workforce participation rate (ages 20-64)",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/workforce-participation/workforce-participation.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "WORKFORCE_PARTIC_RATE",
+            "actualColor": "#8c7200",
+            "targetColor": "#e5d072"
+        }
+    ],
+    "yRangeManual": null,
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "stem-employment",
+    "chapterId": "prosperity",
+    "mainTitle": "Employment in STEM occupations",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage of all jobs",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/stem-employment/stem-employment.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "PCT_STEM_JOBS",
+            "actualColor": "#8c7200",
+            "targetColor": "#e5d072"
+        }
+    ],
+    "yRangeManual": [0.10, 0.15],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".2%"
+},
+{
+    "chartId": "venture-capital-funding",
+    "chapterId": "prosperity",
+    "mainTitle": "Venture capital funding",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Share of U.S. venture capital deals",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/venture-capital-funding/venture-capital-funding.csv",
+    "yVars": [
+        {
+            "name": "Illinois",
+            "yVar": "IL_PCT_VC_DEALS",
+            "actualColor": "#8c7200",
+            "targetColor": "#e5d072"
+        }
+    ],
+    "yRangeManual": [0, 0.08],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".2%"
+},
+{
+    "chartId": "patenting-activity",
+    "chapterId": "prosperity",
+    "mainTitle": "Patenting activity",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Share of U.S. origin utility patents",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/patenting-activity/patenting-activity.csv",
+    "yVars": [
+        {
+            "name": "Chicago region",
+            "yVar": "PCT_PATENTS_CHI",
+            "actualColor": "#8c7200",
+            "targetColor": "#e5d072"
+        }
+    ],
+    "yRangeManual": [0, 0.05],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".2%"
+},
+{
+    "chartId": "manufacturing-exports",
+    "chapterId": "prosperity",
+    "mainTitle": "Manufacturing exports",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Value of region's manufacturing exports",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/manufacturing-exports/manufacturing-exports.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "MANUF_EXPORTS_VALUE",
+            "actualColor": "#8c7200",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": [0, 60000000000],
+    "yIsPercent": false,
+    "yFormat": "$.2~s",
+    "labFormat": "$.4~s"
+},
+{
+    "chartId": "impervious-area",
+    "chapterId": "environment",
+    "mainTitle": "Acres of impervious area",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Acres",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/impervious-area/impervious-area.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "IMPERVIOUS_ACRES",
+            "actualColor": "#548c00",
+            "targetColor": "#b7e572"
+        }
+    ],
+    "yRangeManual": [0, 800000],
+    "yIsPercent": false,
+    "yFormat": ".3~s",
+    "labFormat": ",.0f"
+},
+{
+    "chartId": "watersheds-low-imperviousness",
+    "chapterId": "environment",
+    "mainTitle": "Regional land in watersheds below 25 percent impervious coverage",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage of region's land",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/watersheds-low-imperviousness/watersheds-low-imperviousness.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "PCT_WS_AREA_LT25_IMP",
+            "actualColor": "#548c00",
+            "targetColor": "#b7e572"
+        }
+    ],
+    "yRangeManual": [0, 1],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".2%"
+},
+{
+    "chartId": "water-demand_1",
+    "chapterId": "environment",
+    "mainTitle": "Water demand (total)",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Millions of gallons per day",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/water-demand/water-demand.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "TOTAL_DEMAND_MGD",
+            "actualColor": "#548c00",
+            "targetColor": "#b7e572"
+        }
+    ],
+    "yRangeManual": [0, 1500],
+    "yIsPercent": false,
+    "yFormat": ",.0f",
+    "labFormat": ",.3f"
+},
+{
+    "chartId": "water-demand_2",
+    "chapterId": "environment",
+    "mainTitle": "Water demand (residential, per capita)",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Gallons per day",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/water-demand/water-demand.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "RES_DEMAND_GPCD",
+            "actualColor": "#548c00",
+            "targetColor": "#b7e572"
+        }
+    ],
+    "yRangeManual": [0, 100],
+    "yIsPercent": false,
+    "yFormat": ",.0f",
+    "labFormat": ",.2f"
+},
+{
+    "chartId": "greenhouse-gas-emissions",
+    "chapterId": "environment",
+    "mainTitle": "Greenhouse gas emissions",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Million metric tons of CO2 equivalent",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/greenhouse-gas-emissions/greenhouse-gas-emissions.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "GHG_EMISSIONS_MMTCO2E",
+            "actualColor": "#548c00",
+            "targetColor": "#b7e572"
+        }
+    ],
+    "yRangeManual": [0, 150],
+    "yIsPercent": false,
+    "yFormat": ",.0f",
+    "labFormat": ",.1f"
+},
+{
+    "chartId": "conserved-land-acres",
+    "chapterId": "environment",
+    "mainTitle": "Acres of conserved land",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Acres",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/conserved-land-acres/conserved-land-acres.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "CONSERVED_ACRES",
+            "actualColor": "#548c00",
+            "targetColor": "#b7e572"
+        }
+    ],
+    "yRangeManual": [0, 450000],
+    "yIsPercent": false,
+    "yFormat": ".3~s",
+    "labFormat": ",.0f"
+},
+{
+    "chartId": "access-to-parks",
+    "chapterId": "environment",
+    "mainTitle": "Access to parks",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage of population",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/access-to-parks/access-to-parks.csv",
+    "yVars": [
+        {
+            "name": "4+ acres per 1,000 residents",
+            "yVar": "PARK_ACCESS_4PLUS",
+            "actualColor": "#548c00",
+            "targetColor": "#b7e572"
+        },
+        {
+            "name": "10+ acres per 1,000 residents",
+            "yVar": "PARK_ACCESS_10PLUS",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        }
+    ],
+    "yRangeManual": [0, 1],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "farmland-acres",
+    "chapterId": "environment",
+    "mainTitle": "Acres of farmland used to harvest produce for direct human consumption",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Acres",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/farmland-acres/farmland-acres.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "FARM_ACRES_HUMAN_CONS",
+            "actualColor": "#548c00",
+            "targetColor": "#b7e572"
+        }
+    ],
+    "yRangeManual": [0, 12000],
+    "yIsPercent": false,
+    "yFormat": ",.0f",
+    "labFormat": ",.0f"
+},
+{
+    "chartId": "lake-michigan",
+    "chapterId": "environment",
+    "mainTitle": "Lake Michigan withdrawals",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Millions of gallons per day",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/water-demand/lake-michigan.csv",
+    "yVars": [
+        {
+            "name": "Net annual pumpage",
+            "yVar": "NET_PUMPAGE_MGD",
+            "actualColor": "#548c00",
+            "targetColor": null
+        },
+        {
+            "name": "Water lost",
+            "yVar": "LOSS_MGD",
+            "actualColor": "#44008c",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": [0, 1200],
+    "yIsPercent": false,
+    "yFormat": ",.0f",
+    "labFormat": ",.3f"
+},
+{
+    "chartId": "deep-bedrock",
+    "chapterId": "environment",
+    "mainTitle": "Deep bedrock aquifer withdrawals",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Millions of gallons per day",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/water-demand/deep-bedrock.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "DEEP_BEDROCK_MGD",
+            "actualColor": "#548c00",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": [0, 200],
+    "yIsPercent": false,
+    "yFormat": ",.0f",
+    "labFormat": ",.3f"
+},
+{
+    "chartId": "state-revenue-disbursement",
+    "chapterId": "governance",
+    "mainTitle": "Municipalities with per capita state revenue disbursement below 80 percent of regional median",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Number of municipalities",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/state-revenue-disbursement/state-revenue-disbursement.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "MUNIS_LOW_DISBURSEMENT",
+            "actualColor": "#006b8c",
+            "targetColor": "#72cae5"
+        }
+    ],
+    "yRangeManual": null,
+    "yIsPercent": false,
+    "yFormat": ",.0f",
+    "labFormat": ",.0f"
+},
+{
+    "chartId": "board-member-training",
+    "chapterId": "governance",
+    "mainTitle": "Local governments that train appointed board members",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage of municipalities",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/board-member-training/board-member-training.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "PCT_GOVS_TRAINING",
+            "actualColor": "#006b8c",
+            "targetColor": "#72cae5"
+        }
+    ],
+    "yRangeManual": [0, 1],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".0%"
+},
+{
+    "chartId": "nhs-pavement",
+    "chapterId": "mobility",
+    "mainTitle": "Percentage of NHS pavement in poor condition",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage of NHS lane-miles",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/nhs-pavement/nhs-pavement.csv",
+    "yVars": [
+        {
+            "name": "Interstate only",
+            "yVar": "PCT_NHS_PAVEMENT_POOR_INTER",
+            "actualColor": "#cca600",
+            "targetColor": "#e5d072"
+        },
+        {
+            "name": "Non-Interstate only",
+            "yVar": "PCT_NHS_PAVEMENT_POOR_NONINT",
+            "actualColor": "#7acc00",
+            "targetColor": "#b7e572"
+        },
+        {
+            "name": "Interstate + non-Interstate",
+            "yVar": "PCT_NHS_PAVEMENT_POOR_ALL",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        }
+    ],
+    "yRangeManual": null,
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "nhs-bridges",
+    "chapterId": "mobility",
+    "mainTitle": "Percentage of NHS bridge area in poor condition",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage of NHS bridge area",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/nhs-bridges/nhs-bridges.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "PCT_NHS_BRIDGE_AREA_POOR",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        }
+    ],
+    "yRangeManual": [0, 0.14],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "transit-repair-a",
+    "chapterId": "mobility",
+    "mainTitle": "Transit asset state of good repair: percent of fixed-route buses that have met or exceeded their useful life",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "CTA & Pace buses (%)",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/transit-repair/transit-repair-a.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "PCT_BUSES_PAST_ULB",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        }
+    ],
+    "yRangeManual": [0, 0.30],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "transit-repair-b",
+    "chapterId": "mobility",
+    "mainTitle": "Transit asset state of good repair: percent of rail vehicles that have met or exceeded their useful life",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "CTA & Metra rail vehicles (%)",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/transit-repair/transit-repair-b.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "PCT_RAILVEH_PAST_ULB",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        }
+    ],
+    "yRangeManual": [0, 0.60],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "transit-repair-c",
+    "chapterId": "mobility",
+    "mainTitle": "Transit asset state of good repair: percent of directional rail route miles with track performance restrictions",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "CTA & Metra directional rail route miles (%)",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/transit-repair/transit-repair-c.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "PCT_SLOW_ZONES",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        }
+    ],
+    "yRangeManual": [0, 0.10],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "highway-congestion-hours",
+    "chapterId": "mobility",
+    "mainTitle": "Average congested hours of weekday travel for limited access highways",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Average weekday congested hours",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/highway-congestion-hours/highway-congestion-hours.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "AVG_CONGESTED_HOURS",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        }
+    ],
+    "yRangeManual": [0, 7],
+    "yIsPercent": false,
+    "yFormat": ",.0f",
+    "labFormat": ",.2f"
+},
+{
+    "chartId": "reliable-interstate-travel",
+    "chapterId": "mobility",
+    "mainTitle": "Percentage of person-miles traveled on the Interstate system with reliable travel time",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Interstate person-miles with reliable travel time",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/reliable-interstate-travel/reliable-interstate-travel.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "PCT_RELIABLE_PERS_MILES",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        }
+    ],
+    "yRangeManual": [0, 1],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "traffic-fatalities",
+    "chapterId": "mobility",
+    "mainTitle": "Number of traffic fatalities",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Traffic fatalities (5-year average)",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/traffic-fatalities/traffic-fatalities.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "TRAFFIC_FATALITIES_5YR_AVG",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        }
+    ],
+    "yRangeManual": [0, 600],
+    "yIsPercent": false,
+    "yFormat": ".3~s",
+    "labFormat": ",.0f"
+},
+{
+    "chartId": "rail-crossing-delay",
+    "chapterId": "mobility",
+    "mainTitle": "Motorist delay at highway-rail grade crossings",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Aggregate delay per weekday (hours)",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/rail-crossing-delay/rail-crossing-delay.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "WEEKDAY_DELAY_HOURS",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        }
+    ],
+    "yRangeManual": [0, 12000],
+    "yIsPercent": false,
+    "yFormat": ".3~s",
+    "labFormat": ",.0f"
+},
+{
+    "chartId": "terminal-carload-transit",
+    "chapterId": "mobility",
+    "mainTitle": "Chicago Terminal carload transit time",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Average carload transit time (hours)",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/terminal-carload-transit/terminal-carload-transit.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "CHI_CARLOAD_TRANSIT_HOURS",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        }
+    ],
+    "yRangeManual": [0, 50],
+    "yIsPercent": false,
+    "yFormat": ",.0f",
+    "labFormat": ",.2f"
+},
+{
+    "chartId": "unlinked-transit-trips",
+    "chapterId": "mobility",
+    "mainTitle": "Annual unlinked transit trips",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Annual unlinked transit trips",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/unlinked-transit-trips/unlinked-transit-trips.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "UNLINKED_TRANSIT_TRIPS",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        }
+    ],
+    "yRangeManual": [0, 1400000000],
+    "yIsPercent": false,
+    "yFormat": ".3~s",
+    "labFormat": ",.0f"
+},
+{
+    "chartId": "population-jobs-transit-availability",
+    "chapterId": "mobility",
+    "mainTitle": "Population and jobs with at least moderately high transit availability",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage with moderately high transit availability",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/population-jobs-transit-availability/population-jobs-transit-availability.csv",
+    "yVars": [
+        {
+            "name": "Population",
+            "yVar": "PCT_POP_TA_MODHI",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        },
+        {
+            "name": "Jobs",
+            "yVar": "PCT_JOBS_TA_MODHI",
+            "actualColor": "#8c7200",
+            "targetColor": "#e5d072"
+        }
+    ],
+    "yRangeManual": [0, 1],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "non-single-occupancy-modes",
+    "chapterId": "mobility",
+    "mainTitle": "Percent of trips to work via non-SOV modes",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage of trips to work",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/non-single-occupancy-modes/non-single-occupancy-modes.csv",
+    "yVars": [
+        {
+            "name": "All non-SOV modes",
+            "yVar": "PCT_NONSOV_TOTAL",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        },
+        {
+            "name": "Public transportation",
+            "yVar": "PCT_NONSOV_TRANSIT",
+            "actualColor": "#7acc00",
+            "targetColor": null
+        },
+        {
+            "name": "Bicycle",
+            "yVar": "PCT_NONSOV_BIKE",
+            "actualColor": "#cca600",
+            "targetColor": null
+        },
+        {
+            "name": "Walk",
+            "yVar": "PCT_NONSOV_WALK",
+            "actualColor": "#009ccc",
+            "targetColor": null
+        },
+        {
+            "name": "Carpool",
+            "yVar": "PCT_NONSOV_CARPOOL",
+            "actualColor": "#cc5f00",
+            "targetColor": null
+        },
+        {
+            "name": "Work at home",
+            "yVar": "PCT_NONSOV_HOME",
+            "actualColor": "#9daab3",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": [0, 0.4],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "traffic-signals",
+    "chapterId": "mobility",
+    "mainTitle": "Number of traffic signals with transit priority and/or queue jumping",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Number of traffic signals",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/traffic-signals/traffic-signals.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "SIGNALS_TP_QJ",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        }
+    ],
+    "yRangeManual": [0, 3000],
+    "yIsPercent": false,
+    "yFormat": ",.0f",
+    "labFormat": ",.0f"
+},
+{
+    "chartId": "transit-preference",
+    "chapterId": "mobility",
+    "mainTitle": "Miles of roadway with transit preference",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Miles of roadway",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/transit-preference/transit-preference.csv",
+    "yVars": [
+        {
+            "name": "Expressways",
+            "yVar": "TP_MILES_EXPWY",
+            "actualColor": "#cca600",
+            "targetColor": "#e5d072"
+        },
+        {
+            "name": "Urban streets",
+            "yVar": "TP_MILES_STREET",
+            "actualColor": "#7acc00",
+            "targetColor": "#b7e572"
+        },
+        {
+            "name": "Expressways + urban streets",
+            "yVar": "TP_MILES_TOTAL",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        }
+    ],
+    "yRangeManual": [0, 600],
+    "yIsPercent": false,
+    "yFormat": ",.0f",
+    "labFormat": ",.1f"
+},
+{
+    "chartId": "regional-trails",
+    "chapterId": "mobility",
+    "mainTitle": "Percentage of Regional Greenways and Trails Plan completed",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Completed percentage of 2016 RGTP",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/regional-trails/regional-trails.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "PCT_RGTP_COMPLETE",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        }
+    ],
+    "yRangeManual": [0, 1],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "housing-transportation-percent-income-race-ethnicity",
+    "chapterId": "inclusive-growth",
+    "mainTitle": "Percent of income spent on housing and transportation by moderate- and low-income households, by race and ethnicity",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage of household income",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/housing-transportation-percent-income/housing-transportation-percent-income-race-ethnicity.csv",
+    "yVars": [
+        {
+            "name": "Black",
+            "yVar": "PCT_INCOME_HT_BLACK",
+            "actualColor": "#8de572",
+            "targetColor": null
+        },
+        {
+            "name": "Hispanic",
+            "yVar": "PCT_INCOME_HT_HISPANIC",
+            "actualColor": "#cca700",
+            "targetColor": null
+        },
+        {
+            "name": "White (non-Hispanic)",
+            "yVar": "PCT_INCOME_HT_WHITE",
+            "actualColor": "#72a6e5",
+            "targetColor": null
+        },
+        {
+            "name": "All races/ethnicities",
+            "yVar": "PCT_INCOME_HT_ALL",
+            "actualColor": "#9daab3",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": [0, 1],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "access-to-parks-in-edas",
+    "chapterId": "inclusive-growth",
+    "mainTitle": "Access to parks in economically disconnected areas",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage of population",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/access-to-parks/access-to-parks-in-edas.csv",
+    "yVars": [
+        {
+            "name": "4+ acres per 1,000 residents (EDA)",
+            "yVar": "PARK_ACCESS_4PLUS_EDA",
+            "actualColor": "#548c00",
+            "targetColor": null
+        },
+        {
+            "name": "4+ acres per 1,000 residents (non-EDA)",
+            "yVar": "PARK_ACCESS_4PLUS_NOT_EDA",
+            "actualColor": "#b7e572",
+            "targetColor": null
+        },
+        {
+            "name": "10+ acres per 1,000 residents (EDA)",
+            "yVar": "PARK_ACCESS_10PLUS_EDA",
+            "actualColor": "#44008c",
+            "targetColor": null
+        },
+        {
+            "name": "10+ acres per 1,000 residents (non-EDA)",
+            "yVar": "PARK_ACCESS_10PLUS_NOT_EDA",
+            "actualColor": "#aa72e5",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": [0, 1],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "educational-attainment-race-ethnicity",
+    "chapterId": "inclusive-growth",
+    "mainTitle": "Educational attainment by race and ethnicity (associate's degree or higher)",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage of population (age 25+)",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/educational-attainment/educational-attainment-race-ethnicity.csv",
+    "yVars": [
+        {
+            "name": "Asian",
+            "yVar": "PCT_ASSOC_DEG_PLUS_ASIAN",
+            "actualColor": "#cc3000",
+            "targetColor": null
+        },
+        {
+            "name": "Black",
+            "yVar": "PCT_ASSOC_DEG_PLUS_BLACK",
+            "actualColor": "#8de572",
+            "targetColor": null
+        },
+        {
+            "name": "Hispanic",
+            "yVar": "PCT_ASSOC_DEG_PLUS_HISPANIC",
+            "actualColor": "#cca700",
+            "targetColor": null
+        },
+        {
+            "name": "White (non-Hispanic)",
+            "yVar": "PCT_ASSOC_DEG_PLUS_WHITE",
+            "actualColor": "#72a6e5",
+            "targetColor": null
+        },
+        {
+            "name": "All races/ethnicities",
+            "yVar": "PCT_ASSOC_DEG_PLUS_ALL",
+            "actualColor": "#9daab3",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": [0, 1],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "workforce-participation-race-ethnicity",
+    "chapterId": "inclusive-growth",
+    "mainTitle": "Workforce participation by race and ethnicity",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Workforce participation rate (ages 16+)",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/workforce-participation/workforce-participation-race-ethnicity.csv",
+    "yVars": [
+        {
+            "name": "Asian",
+            "yVar": "WORKFORCE_PARTIC_RATE_ASIAN",
+            "actualColor": "#cc3000",
+            "targetColor": null
+        },
+        {
+            "name": "Black",
+            "yVar": "WORKFORCE_PARTIC_RATE_BLACK",
+            "actualColor": "#8de572",
+            "targetColor": null
+        },
+        {
+            "name": "Hispanic",
+            "yVar": "WORKFORCE_PARTIC_RATE_HISPANIC",
+            "actualColor": "#cca700",
+            "targetColor": null
+        },
+        {
+            "name": "White (non-Hispanic)",
+            "yVar": "WORKFORCE_PARTIC_RATE_WHITE",
+            "actualColor": "#72a6e5",
+            "targetColor": null
+        },
+        {
+            "name": "All races/ethnicities",
+            "yVar": "WORKFORCE_PARTIC_RATE_ALL",
+            "actualColor": "#9daab3",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": null,
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "household-income-race-ethnicity",
+    "chapterId": "inclusive-growth",
+    "mainTitle": "Median household income by race and ethnicity",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Median household income (2016 dollars)",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/household-income-race-ethnicity/household-income-race-ethnicity.csv",
+    "yVars": [
+        {
+            "name": "Asian",
+            "yVar": "MED_HH_INC_ASIAN",
+            "actualColor": "#cc3000",
+            "targetColor": null
+        },
+        {
+            "name": "Black",
+            "yVar": "MED_HH_INC_BLACK",
+            "actualColor": "#8de572",
+            "targetColor": null
+        },
+        {
+            "name": "Hispanic",
+            "yVar": "MED_HH_INC_HISPANIC",
+            "actualColor": "#cca700",
+            "targetColor": null
+        },
+        {
+            "name": "White (non-Hispanic)",
+            "yVar": "MED_HH_INC_WHITE",
+            "actualColor": "#72a6e5",
+            "targetColor": null
+        },
+        {
+            "name": "All races/ethnicities",
+            "yVar": "MED_HH_INC_ALL",
+            "actualColor": "#9daab3",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": [0, 100000],
+    "yIsPercent": false,
+    "yFormat": "$.2~s",
+    "labFormat": "$,.0f"
+},
+{
+    "chartId": "unemployment-race-ethnicity",
+    "chapterId": "inclusive-growth",
+    "mainTitle": "Unemployment by race and ethnicity",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Unemployment rate (population aged 16+)",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/unemployment-race-ethnicity/unemployment-race-ethnicity.csv",
+    "yVars": [
+        {
+            "name": "Asian",
+            "yVar": "PCT_UNEMPLOYED_ASIAN",
+            "actualColor": "#cc3000",
+            "targetColor": null
+        },
+        {
+            "name": "Black",
+            "yVar": "PCT_UNEMPLOYED_BLACK",
+            "actualColor": "#8de572",
+            "targetColor": null
+        },
+        {
+            "name": "Hispanic",
+            "yVar": "PCT_UNEMPLOYED_HISPANIC",
+            "actualColor": "#cca700",
+            "targetColor": null
+        },
+        {
+            "name": "White (non-Hispanic)",
+            "yVar": "PCT_UNEMPLOYED_WHITE",
+            "actualColor": "#72a6e5",
+            "targetColor": null
+        },
+        {
+            "name": "All races/ethnicities",
+            "yVar": "PCT_UNEMPLOYED_ALL",
+            "actualColor": "#9daab3",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": [0, 0.25],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%"
+},
+{
+    "chartId": "income-inequality",
+    "chapterId": "inclusive-growth",
+    "mainTitle": "Gini coefficient (income inequality)",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Gini coefficient",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/income-inequality/income-inequality.csv",
+    "yVars": [
+        {
+            "name": "Chicago",
+            "yVar": "GINI_COEFF_CHI",
+            "actualColor": "#2f3d44",
+            "targetColor": null
+        },
+        {
+            "name": "Boston",
+            "yVar": "GINI_COEFF_BOS",
+            "actualColor": "#e58d72",
+            "targetColor": null
+        },
+        {
+            "name": "Los Angeles",
+            "yVar": "GINI_COEFF_LA",
+            "actualColor": "#e572c8",
+            "targetColor": null
+        },
+        {
+            "name": "New York",
+            "yVar": "GINI_COEFF_NY",
+            "actualColor": "#7283e5",
+            "targetColor": null
+        },
+        {
+            "name": "Washington, D.C.",
+            "yVar": "GINI_COEFF_WAS",
+            "actualColor": "#72dde5",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": null,
+    "yIsPercent": false,
+    "yFormat": ".2f",
+    "labFormat": ".3f"
+},
+{
+    "chartId": "mean-household-income",
+    "chapterId": "inclusive-growth",
+    "mainTitle": "Change in mean household income since 2006 by quintile",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Inflation-adjusted income factor relative to 2006",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/mean-household-income/mean-household-income.csv",
+    "yVars": [
+        {
+            "name": "1st quintile (lowest income)",
+            "yVar": "MEAN_INC_REL2006_QUINT1",
+            "actualColor": "#8c4100",
+            "targetColor": null
+        },
+        {
+            "name": "2nd quintile",
+            "yVar": "MEAN_INC_REL2006_QUINT2",
+            "actualColor": "#cc8200",
+            "targetColor": null
+        },
+        {
+            "name": "3rd quintile",
+            "yVar": "MEAN_INC_REL2006_QUINT3",
+            "actualColor": "#e5d072",
+            "targetColor": null
+        },
+        {
+            "name": "4th quintile",
+            "yVar": "MEAN_INC_REL2006_QUINT4",
+            "actualColor": "#b4cc00",
+            "targetColor": null
+        },
+        {
+            "name": "5th quintile (highest income)",
+            "yVar": "MEAN_INC_REL2006_QUINT5",
+            "actualColor": "#548c00",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": [0.8, 1.1],
+    "yIsPercent": false,
+    "yFormat": ".2f",
+    "labFormat": ".4f"
+},
+{
+    "chartId": "commute-time-race-ethnicity",
+    "chapterId": "inclusive-growth",
+    "mainTitle": "Average journey to work time by race and ethnicity",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Commute time (minutes)",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/commute-time-race-ethnicity/commute-time-race-ethnicity.csv",
+    "yVars": [
+        {
+            "name": "Asian",
+            "yVar": "COMMUTE_MINS_ASIAN",
+            "actualColor": "#cc3000",
+            "targetColor": null
+        },
+        {
+            "name": "Black",
+            "yVar": "COMMUTE_MINS_BLACK",
+            "actualColor": "#8de572",
+            "targetColor": null
+        },
+        {
+            "name": "Hispanic",
+            "yVar": "COMMUTE_MINS_HISPANIC",
+            "actualColor": "#cca700",
+            "targetColor": null
+        },
+        {
+            "name": "White (non-Hispanic)",
+            "yVar": "COMMUTE_MINS_WHITE",
+            "actualColor": "#72a6e5",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": null,
+    "yIsPercent": false,
+    "yFormat": ".0f",
+    "labFormat": ".1f"
+}
+]

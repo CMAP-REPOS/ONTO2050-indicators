@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>ON TO 2050 Indicators Dashboard</title>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300"
+        rel="stylesheet" type="text/css">
+    <link href="./style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="intro">
+        <h1>ON TO 2050 Indicators Dashboard</h1>
+        <p>
+            This is a simple dashboard for displaying the latest available data
+            from <a href="https://www.cmap.illinois.gov/">CMAP</a>'s
+            <a href="https://www.cmap.illinois.gov/2050/indicators">ON TO 2050
+            indicators</a>. The source data, in CSV format, can be found
+            <a href="https://github.com/CMAP-REPOS/ONTO2050-indicators">on
+            GitHub</a>.
+        </p>
+        <select id="indicators">
+            <option value=''>Select an indicator to display</option>  <!-- Default option: blank -->
+        </select>
+    </div>
+    <!-- CSS dropdowns: https://www.w3schools.com/Css/css_dropdowns.asp
+    <div id="chapters">
+        <span class="chapter" id="community">Community</span>
+        <span class="chapter" id="prosperity">Prosperity</span>
+        <span class="chapter" id="environment">Environment</span>
+        <span class="chapter" id="governance">Governance</span>
+        <span class="chapter" id="mobility">Mobility</span>
+        <span class="chapter" id="inclusive-growth">Inclusive Growth</span>
+    </div>
+    -->
+    <div id="chart"></div>  <!-- Populated by createChart() -->
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="./chart.js"></script>
+    <script>
+        const jsonPath = './chart_specs.json'; // 'https://gist.githubusercontent.com/nmpeterson/f6d6a7031f3a5ee1c2a6d7972a14bfb3/raw/chart_specs.json';
+
+        // Read JSON file containing chart specifications
+        d3.json(jsonPath).then(json => {
+            // console.log(json);
+
+            // console.log(getChapterIndicatorIds(json, 'community'));
+            // console.log(getChapterIndicatorIds(json, 'prosperity'));
+            // console.log(getChapterIndicatorIds(json, 'environment'));
+            // console.log(getChapterIndicatorIds(json, 'governance'));
+            // console.log(getChapterIndicatorIds(json, 'mobility'));
+            // console.log(getChapterIndicatorIds(json, 'inclusive-growth'));
+
+            // Dynamically populate dropdown with indicators in JSON
+            json.forEach(d => {
+                d3.select('select#indicators')
+                    .append('option')
+                    .attr('value', d.chartId)
+                    .text(d.mainTitle);
+            });
+
+            // Create chart for selected indicator
+            let sel = document.getElementById("indicators");
+            let chartId;
+            d3.select('#indicators').on('change', () => {
+                chartId = sel.options[sel.selectedIndex].value;
+                //console.log(chartId);
+                if (chartId != '') {
+                    createChart(getChartSpecById(json, chartId));
+                } else {
+                    // Clear chart if no indicator is selected
+                    clearChart();
+                };
+            });
+
+        }).catch(error => console.error(error));
+    </script>
+</body>
+</html>
