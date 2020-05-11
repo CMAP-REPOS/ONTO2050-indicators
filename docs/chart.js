@@ -241,7 +241,7 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
 
             // Line-plotting function
             let plotLine = d3.line()
-                .curve(d3.curveCardinal.tension(0.5))  // Heisenberg says "relax"
+                .curve(d3.curveMonotoneX)  // Heisenberg says "relax"
                 .x(d => scX(d[xVar]))
                 .y(d => scY(d[yVar]));
 
