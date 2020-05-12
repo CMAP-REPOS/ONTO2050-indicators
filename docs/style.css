@@ -5,18 +5,114 @@ html, body {
     width: 100%;
     font-family: 'Open Sans';
 }
+html {
+    -webkit-text-size-adjust: 100%;
+}
 div {
     margin: 0 auto;
     text-align: center;
 }
+
+/* Intro section */
+h1, h2, h3, h4, h5, h6 {
+    width: 100%;
+    margin: auto;
+}
+h1 { margin: 24px auto; }
+p {
+    margin: 12px auto;
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+}
+p > a:link {
+    color: #00ac9c;
+    text-decoration: none;
+}
+p > a:visited {
+    color: #008c7e;
+    text-decoration: none;
+}
+p > a:hover, a:active {
+    text-decoration: underline;
+}
 div#intro { width: 800px; }
+
+/* Indicator selection dropdowns
+   heavily inspired by <https://www.w3schools.com/Css/css_dropdowns.asp> */
+/*select { margin: 16px auto; }*/
+div#chapters {
+    width: 798px;
+    position: relative;
+}
+
+ul#dropdowns {
+  list-style-type: none;
+  margin: 24px auto;
+  padding: 0;
+  overflow: hidden;
+}
+
+li.drophead {
+    width: 133px;
+    float: left;
+    display: inline-block;
+    background-color: #ecf0f2;
+}
+li.drophead span.chapter {
+    font: 600 14px 'Open Sans';
+    color: #000000;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    padding: 8px 0px;
+}
+li.drophead:hover span.chapter { color: #ffffff; }
+li.drophead:hover div.droplist { display: block; }
+
+div.droplist {
+    display: none;
+    position: absolute;
+    background-color: #f5f7f8;
+    box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+div.droplist#governance,
+div.droplist#mobility,
+div.droplist#inclusive-growth {
+    right: 0;
+}
+div.droplist > a.indicator {
+    font-size: 14px;
+    color: #000000;
+    text-decoration: none;
+    text-align: left;
+    display: block;
+    padding: 8px 12px;
+}
+
+li#community:hover { background-color: #cc5f00; }
+li#prosperity:hover { background-color: #cca600; }
+li#environment:hover { background-color: #7acc00; }
+li#governance:hover { background-color: #009ccc; }
+li#mobility:hover { background-color: #6300cc; }
+li#inclusive-growth:hover { background-color: #cc0000; }
+
+div.droplist a.community:hover { background-color: #f8ebdf; }
+div.droplist a.prosperity:hover { background-color: #f8f4df; }
+div.droplist a.environment:hover { background-color: #eef8df; }
+div.droplist a.governance:hover { background-color: #dff2f8; }
+div.droplist a.mobility:hover { background-color: #ebdff8; }
+div.droplist a.inclusive-growth:hover { background-color: #f8dfdf; }
+
+/* Chart, legend, footnote */
 div#chart {
     width: 776px;  /* 800-(2*padding) */
     padding: 12px;
 }
 div#legend {
     max-width: 90%;
-    padding: 12px;
+    margin-top: 8px;
 }
 div.legend-item {
     height: 18px;
@@ -25,33 +121,6 @@ div.legend-item {
     padding-right: 24px;
     display: inline-block;
 }
-h1, h2, h3, h4, h5, h6 {
-    width: 100%;
-    margin: auto;
-}
-h1 { margin: 24px auto; }
-p {
-    margin: 16px auto;
-    width: 100%;
-    text-align: left;
-    font-size: 16px;
-}
-select { margin: 16px auto; }
-
-/* Link styles */
-a:link {
-    color: #67ac00;
-    text-decoration: none;
-}
-a:visited {
-    color: #548c00;
-    text-decoration: none;
-}
-a:hover, a:active {
-    text-decoration: underline;
-}
-
-/* Chart graphic elements */
 path {
     stroke-width: 2px;
     fill: none;
@@ -66,8 +135,6 @@ line.grid {
     stroke-width: 1px;
     shape-rendering: crispEdges;
 }
-
-/* Chart-specific text elements */
 #main-title {
     font: 600 20px 'Open Sans';
     max-width: 90%;
@@ -76,3 +143,10 @@ line.grid {
 .axis-title { font: 400 14px 'Open Sans'; }
 .tick { font: 300 12px 'Open Sans'; }
 .label { font: 400 12px 'Open Sans'; }
+p#footnote {
+    width: 100%;
+    margin: 0px;
+    padding-top: 8px;
+    font: 300 12px 'Open Sans';
+    text-align: right;
+}
