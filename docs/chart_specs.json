@@ -155,11 +155,11 @@
     "mainTitle": "Venture capital funding",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Share of U.S. venture capital deals",
+    "yTitle": "Illinois' share of U.S. venture capital deals",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/venture-capital-funding/venture-capital-funding.csv",
     "yVars": [
         {
-            "name": "Illinois",
+            "name": null,
             "yVar": "IL_PCT_VC_DEALS",
             "actualColor": "#8c7200",
             "targetColor": "#e5d072"
@@ -176,11 +176,11 @@
     "mainTitle": "Patenting activity",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Share of U.S. origin utility patents",
+    "yTitle": "Region's share of U.S. origin utility patents",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/patenting-activity/patenting-activity.csv",
     "yVars": [
         {
-            "name": "Chicago region",
+            "name": null,
             "yVar": "PCT_PATENTS_CHI",
             "actualColor": "#8c7200",
             "targetColor": "#e5d072"
@@ -486,6 +486,12 @@
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/nhs-pavement/nhs-pavement.csv",
     "yVars": [
         {
+            "name": "Interstate + non-Interstate",
+            "yVar": "PCT_NHS_PAVEMENT_POOR_ALL",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        },
+        {
             "name": "Interstate only",
             "yVar": "PCT_NHS_PAVEMENT_POOR_INTER",
             "actualColor": "#cca600",
@@ -496,12 +502,6 @@
             "yVar": "PCT_NHS_PAVEMENT_POOR_NONINT",
             "actualColor": "#7acc00",
             "targetColor": "#b7e572"
-        },
-        {
-            "name": "Interstate + non-Interstate",
-            "yVar": "PCT_NHS_PAVEMENT_POOR_ALL",
-            "actualColor": "#44008c",
-            "targetColor": "#aa72e5"
         }
     ],
     "yRangeManual": null,
@@ -828,6 +828,12 @@
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/transit-preference/transit-preference.csv",
     "yVars": [
         {
+            "name": "Expressways + urban streets",
+            "yVar": "TP_MILES_TOTAL",
+            "actualColor": "#44008c",
+            "targetColor": "#aa72e5"
+        },
+        {
             "name": "Expressways",
             "yVar": "TP_MILES_EXPWY",
             "actualColor": "#cca600",
@@ -838,12 +844,6 @@
             "yVar": "TP_MILES_STREET",
             "actualColor": "#7acc00",
             "targetColor": "#b7e572"
-        },
-        {
-            "name": "Expressways + urban streets",
-            "yVar": "TP_MILES_TOTAL",
-            "actualColor": "#44008c",
-            "targetColor": "#aa72e5"
         }
     ],
     "yRangeManual": [0, 600],

@@ -3,74 +3,100 @@
 <head>
     <title>ON TO 2050 Indicators Dashboard</title>
     <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300"
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
         rel="stylesheet" type="text/css">
     <link href="./style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
     <div id="intro">
         <h1>ON TO 2050 Indicators Dashboard</h1>
         <p>
-            This is a simple dashboard for displaying the latest available data
-            from <a href="https://www.cmap.illinois.gov/">CMAP</a>'s
-            <a href="https://www.cmap.illinois.gov/2050/indicators">ON TO 2050
-            indicators</a>. The source data, in CSV format, can be found
-            <a href="https://github.com/CMAP-REPOS/ONTO2050-indicators">on
-            GitHub</a>.
+            This is a simple dashboard for displaying the latest data from <a href="https://www.cmap.illinois.gov/" target="_blank">CMAP</a>'s <a href="https://www.cmap.illinois.gov/2050/indicators" target="_blank">ON TO 2050 indicators</a>. The source data (in CSV format) and code can be found <a href="https://github.com/CMAP-REPOS/ONTO2050-indicators" target="_blank">on GitHub</a>. Please submit any questions or feedback via <a href="https://www.cmap.illinois.gov/contact" target="_blank">this form</a>.
         </p>
-        <select id="indicators">
-            <option value=''>Select an indicator to display</option>  <!-- Default option: blank -->
-        </select>
+        <p>
+            Select an indicator to display from the list of ON TO 2050 chapters below.
+        </p>
+        <p>
+            (Please be aware that a small number of secondary indicators have been excluded because they currently only have a single observation and no targets, and are therefore not yet suitable for graphing.)
+        </p>
     </div>
-    <!-- CSS dropdowns: https://www.w3schools.com/Css/css_dropdowns.asp
-    <div id="chapters">
-        <span class="chapter" id="community">Community</span>
-        <span class="chapter" id="prosperity">Prosperity</span>
-        <span class="chapter" id="environment">Environment</span>
-        <span class="chapter" id="governance">Governance</span>
-        <span class="chapter" id="mobility">Mobility</span>
-        <span class="chapter" id="inclusive-growth">Inclusive Growth</span>
-    </div>
-    -->
-    <div id="chart"></div>  <!-- Populated by createChart() -->
 
+    <div id="chapters">
+        <ul id="dropdowns">
+            <li class="drophead" id="community">
+                <span class="chapter" id="community">Community</span>
+                <div class="droplist" id="community"></div>
+            </li>
+            <li class="drophead" id="prosperity">
+                <span class="chapter" id="prosperity">Prosperity</span>
+                <div class="droplist" id="prosperity"></div>
+            </li>
+            <li class="drophead" id="environment">
+                <span class="chapter" id="environment">Environment</span>
+                <div class="droplist" id="environment"></div>
+            </li>
+            <li class="drophead" id="governance">
+                <span class="chapter" id="governance">Governance</span>
+                <div class="droplist" id="governance"></div>
+            </li>
+            <li class="drophead" id="mobility">
+                <span class="chapter" id="mobility">Mobility</span>
+                <div class="droplist" id="mobility"></div>
+            </li>
+            <li class="drophead" id="inclusive-growth">
+                <span class="chapter" id="inclusive-growth">Inclusive Growth</span>
+                <div class="droplist" id="inclusive-growth"></div>
+            </li>
+        </ul>
+    </div>
+
+    <div id="chart"></div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="./chart.js"></script>
     <script>
-        const jsonPath = './chart_specs.json'; // 'https://gist.githubusercontent.com/nmpeterson/f6d6a7031f3a5ee1c2a6d7972a14bfb3/raw/chart_specs.json';
+        const jsonPath = './chart_specs.json';
+        let chartId = window.location.hash.substr(1);
+
+        // Allow clicking instead of hover for dropdown menus on touchscreens
+        // Inspiration: <https://stackoverflow.com/a/45113336/1060346> and
+        // <https://coderwall.com/p/3uwgga/make-css-dropdown-menus-work-on-touch-devices>
+        if (window.navigator.maxTouchPoints || 'ontouchstart' in document) {
+            $(document).ready(function() {
+                $('li.drophead').click(function(event) {
+                    event.stopPropagation();
+                    $(this).children('div.droplist').toggle();
+                });
+                $(document).click(function() {
+                    $('div.droplist').hide();
+                });
+            });
+        };
 
         // Read JSON file containing chart specifications
         d3.json(jsonPath).then(json => {
-            // console.log(json);
 
-            // console.log(getChapterIndicatorIds(json, 'community'));
-            // console.log(getChapterIndicatorIds(json, 'prosperity'));
-            // console.log(getChapterIndicatorIds(json, 'environment'));
-            // console.log(getChapterIndicatorIds(json, 'governance'));
-            // console.log(getChapterIndicatorIds(json, 'mobility'));
-            // console.log(getChapterIndicatorIds(json, 'inclusive-growth'));
-
-            // Dynamically populate dropdown with indicators in JSON
+            // Dynamically populate chapter dropdowns with indicators in JSON
             json.forEach(d => {
-                d3.select('select#indicators')
-                    .append('option')
-                    .attr('value', d.chartId)
+                d3.select(`ul#dropdowns > li#${d.chapterId} > div.droplist`)
+                    .append('a')
+                    .attr('href', `#${d.chartId}`)
+                    .attr('class', `indicator ${d.chapterId}`)
+                    .attr('id', `${chartId}`)
                     .text(d.mainTitle);
             });
 
-            // Create chart for selected indicator
-            let sel = document.getElementById("indicators");
-            let chartId;
-            d3.select('#indicators').on('change', () => {
-                chartId = sel.options[sel.selectedIndex].value;
-                //console.log(chartId);
-                if (chartId != '') {
-                    createChart(getChartSpecById(json, chartId));
-                } else {
-                    // Clear chart if no indicator is selected
-                    clearChart();
-                };
-            });
+            // Update chart on initial page load and whenever hash changes
+            function updateChart(chartId) {
+                chartId ? createChart(getChartSpecById(json, chartId)) : clearChart();
+            };
+            updateChart(chartId);
+            window.addEventListener('hashchange', function() {
+                chartId = window.location.hash.substr(1);
+                updateChart(chartId);
+            }, false);
 
         }).catch(error => console.error(error));
     </script>
