@@ -40,7 +40,7 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
     //console.log(yVars, actualColors, targetColors);
 
     // Set the dimensions of the canvas / graph
-    let margin = {top: 10, right: 20, bottom: 50, left: 80},
+    let margin = {top: 20, right: 25, bottom: 50, left: 80},
         width = chartWidth - margin.left - margin.right,
         height = chartHeight - margin.top - margin.bottom;
 
@@ -59,6 +59,7 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
     } else {
         yFormatter = d3.format(yFormat);
     };
+
     if (labFormat && labFormat.endsWith('s')) {
         // Replace "G" (giga) suffix with "B" for billions
         labFormatter = d => d3.format(labFormat)(d).replace('G', 'B');
@@ -285,7 +286,7 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
                 });
 
             // Label the points
-            /*let labBuffer = Math.abs(yLims[1] - yLims[0]) * 0.05;
+            /*let labBuffer = Math.abs(yLims[1] - yLims[0]) * 0.02;
             svg.select(`#${yVar}`)
                 .selectAll(`text`)
                 .data(data.filter(d => d[xVar] >= lastActualYear && d[yVar] != null))
@@ -297,9 +298,23 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
                 .attr('x', d => scX(d[xVar]))
                 .attr('y', d => scY(d[yVar] + labBuffer))
                 .attr('text-anchor', 'middle')
-                .text(d => d3.format(labFormat)(d[yVar]));*/
+                .text(d => labFormatter(d[yVar]));*/
         };
     });
+
+
+    // Add footnote linking to indicator-specific readme.md on GitHub
+    let docUrl = csvUrl
+        .replace('raw.githubusercontent.com', 'www.github.com')
+        .replace('/master/', '/blob/master/')
+        .replace(csvUrl.split('/').pop(), 'readme.md');
+    let dataUrl = csvUrl
+        .replace('raw.githubusercontent.com', 'www.github.com')
+        .replace('/master/', '/blob/master/');
+    let footnote = chart.append('p')
+        .attr('id', 'footnote')
+        .html(`Read <a href="${docUrl}" target="_blank">more information</a> about ` +
+              `this indicator, or see <a href="${dataUrl}" target="_blank">the data.</a>`);
 };
 
 function filterChartSpecs(json, key, value) {
@@ -311,16 +326,6 @@ function filterChartSpecs(json, key, value) {
         };
     });
     //console.log(result);
-    return result;
-};
-
-function getChapterIndicatorIds(json, chapterId) {
-    // Return a list of chart IDs for indicators with a specific chapter id
-    //console.log(chapterId);
-    let result = [];
-    filterChartSpecs(json, 'chapterId', chapterId).forEach(d => {
-        result.push(d.chartId);
-    });
     return result;
 };
 
