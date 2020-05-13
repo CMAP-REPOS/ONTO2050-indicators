@@ -1,10 +1,12 @@
-# ONTO2050 Indicators
+# ON TO 2050 Indicators
 
 With its many partners and stakeholders, the Chicago Metropolitan Agency for Planning ([CMAP](http://www.cmap.illinois.gov/about)) began to develop the [ON TO 2050](https://www.cmap.illinois.gov/2050) comprehensive plan in 2015. The three-year process was highly transparent, featuring extensive research, analysis, and public engagement. The resulting plan was adopted on October 10, 2018, and builds on the agency’s first comprehensive regional plan, [GO TO 2040](http://www.cmap.illinois.gov/about/2040), which was released in 2010 and updated in 2014. Adoption of the plan guides transportation investments and frames regional priorities on development, the environment, the economy, and other issues affecting quality of life.
 
 Where possible, each ON TO 2050 recommendation is tracked by one or more [indicators](https://www.cmap.illinois.gov/2050/indicators) to set targets and monitor progress. Because changes to patterns of development or mobility take time, the plan designates targets for both 2025 and 2050. Most important, these targets are not simple forecasts of current trends; they instead represent optimistic, but achievable, outcomes that assume the implementation of ON TO 2050. To provide consistency over time, many indicators have been carried forward from [GO TO 2040](https://www.cmap.illinois.gov/about/2040), the predecessor to this plan, with some improved data sources or analytical approaches. Read more in the [ON TO 2050 Indicators Appendix](https://www.cmap.illinois.gov/documents/10180/905585/FINAL+Indicators+Appendix.pdf/ae234d88-74c0-7a94-f70d-ea350c999810).
 
 This repository includes the ON TO 2050 indicator data in CSV format. Each CSV is in a folder with a `readme.md` file containing relevant context and metadata. The data provided is generally only the final indicator values, not any underlying source data (which is often very large and/or restricted). Each indicator will be updated as new source data becomes available, in order to track the implementation progress of the plan. Unless othwerwise noted, each indicator represents the seven Illinois counties composing the CMAP region: Cook, DuPage, Kane, Kendall, Lake, McHenry and Will.
+
+This repository's `docs` folder includes code for a [dashboard website](https://cmap-repos.github.io/ONTO2050-indicators/) that dynamically generates charts for each indicator directly from their CSV files.
 
 ---
 
