@@ -80,7 +80,7 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
     // Add the title
     let chart = d3.select('div#chart');
     let title = chart.append('h2')
-        .attr('id', 'main-title')
+        .attr('id', 'chart-title')
         .text(mainTitle);
 
     // Add legend
@@ -123,12 +123,6 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
                     .attr('id', `${yVar}`)
                     .attr('style', `border-left: 18px solid ${actualColor}`)
                     .text(`${yVarName}`);
-            // } else {
-            //     legend.append('div')
-            //         .attr('class', 'legend-item actual')
-            //         .attr('id', `${yVar}`)
-            //         .attr('style', `border-left: 18px solid ${actualColor}`)
-            //         .text('Actual');
             };
         };
     };
@@ -253,12 +247,14 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
             // Add the actual/target lines
             svg.select(`#${yVar}`)
                 .append('path')
+                .attr('class', 'actual')
                 .attr('style', `stroke: ${actualColor}`)
                 .attr('d', plotLine(data.filter(d => d[xVar] <= lastActualYear && d[yVar] != null)));
             if (targetColor) {
                 svg.select(`#${yVar}`)
                     .append('path')
-                    .attr('style', `stroke: ${targetColor}; stroke-dasharray: 8,4;`)
+                    .attr('class', 'target')
+                    .attr('style', `stroke: ${targetColor}`)
                     .attr('d', plotLine(data.filter(d => d[xVar] >= lastActualYear && d[yVar] != null)));
             };
 
@@ -313,8 +309,10 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
         .replace('/master/', '/blob/master/');
     let footnote = chart.append('p')
         .attr('id', 'footnote')
-        .html(`Read <a href="${docUrl}" target="_blank">more information</a> about ` +
-              `this indicator, or see <a href="${dataUrl}" target="_blank">the data.</a>`);
+        .html(
+            `Read <a href="${docUrl}" target="_blank">more information</a> about ` +
+            `this indicator, or see <a href="${dataUrl}" target="_blank">the data.</a>`
+        );
 };
 
 function filterChartSpecs(json, key, value) {

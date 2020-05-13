@@ -3,21 +3,23 @@
 <head>
     <title>ON TO 2050 Indicators Dashboard</title>
     <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
-        rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Noticia+Text&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" type="text/css">
     <link href="./style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
     <div id="intro">
-        <h1>ON TO 2050 Indicators Dashboard</h1>
-        <p>
-            This is a simple dashboard for displaying the latest data from <a href="https://www.cmap.illinois.gov/" target="_blank">CMAP</a>'s <a href="https://www.cmap.illinois.gov/2050/indicators" target="_blank">ON TO 2050 indicators</a>. The source data (in CSV format) and code can be found <a href="https://github.com/CMAP-REPOS/ONTO2050-indicators" target="_blank">on GitHub</a>. Please submit any questions or feedback via <a href="https://www.cmap.illinois.gov/contact" target="_blank">this form</a>.
+        <h1 id="page-title">ON TO 2050 Indicators Dashboard</h1>
+        <p class="intro">
+            The <a href="https://www.cmap.illinois.gov/" target="_blank">Chicago Metropolitan Agency for Planning (CMAP)</a> and its partners developed and are now implementing <a href="https://www.cmap.illinois.gov/onto2050" target="_blank">ON TO 2050</a>, a long-range plan to help communities in the Chicago region implement strategies that address transportation, housing, economic development, open space, the environment, and other quality-of-life issues.
+            A series of <a href="https://www.cmap.illinois.gov/2050/indicators" target="_blank">indicators</a> were chosen to track implementation progress toward specific recommendations in the plan.
+            This website is a simple dashboard for visualizing the most current data for each of those indicators.
+            The raw data (in CSV format) and dashboard code is <a href="https://github.com/CMAP-REPOS/ONTO2050-indicators" target="_blank">published on GitHub</a>.
+            Detailed information about each indicator (underlying datasets, methodology, etc.) has been compiled in the <a href="https://www.cmap.illinois.gov/documents/10180/905585/FINAL+Indicators+Appendix.pdf/ae234d88-74c0-7a94-f70d-ea350c999810" target="_blank">ON TO 2050 Indicators Appendix</a>.
+            Please submit any questions or feedback via <a href="https://www.cmap.illinois.gov/contact" target="_blank">this form</a>.
         </p>
-        <p>
+        <p class="intro">
             Select an indicator to display from the list of ON TO 2050 chapters below.
-        </p>
-        <p>
             (Please be aware that a small number of secondary indicators have been excluded because they currently only have a single observation and no targets, and are therefore not yet suitable for graphing.)
         </p>
     </div>
@@ -25,27 +27,27 @@
     <div id="chapters">
         <ul id="dropdowns">
             <li class="drophead" id="community">
-                <span class="chapter" id="community">Community</span>
+                <a href="javascript:void(0)" class="chapter" id="community">Community</a>
                 <div class="droplist" id="community"></div>
             </li>
             <li class="drophead" id="prosperity">
-                <span class="chapter" id="prosperity">Prosperity</span>
+                <a href="javascript:void(0)" class="chapter" id="prosperity">Prosperity</a>
                 <div class="droplist" id="prosperity"></div>
             </li>
             <li class="drophead" id="environment">
-                <span class="chapter" id="environment">Environment</span>
+                <a href="javascript:void(0)" class="chapter" id="environment">Environment</a>
                 <div class="droplist" id="environment"></div>
             </li>
             <li class="drophead" id="governance">
-                <span class="chapter" id="governance">Governance</span>
+                <a href="javascript:void(0)" class="chapter" id="governance">Governance</a>
                 <div class="droplist" id="governance"></div>
             </li>
             <li class="drophead" id="mobility">
-                <span class="chapter" id="mobility">Mobility</span>
+                <a href="javascript:void(0)" class="chapter" id="mobility">Mobility</a>
                 <div class="droplist" id="mobility"></div>
             </li>
             <li class="drophead" id="inclusive-growth">
-                <span class="chapter" id="inclusive-growth">Inclusive Growth</span>
+                <a href="javascript:void(0)" class="chapter" id="inclusive-growth">Inclusive Growth</a>
                 <div class="droplist" id="inclusive-growth"></div>
             </li>
         </ul>
@@ -60,19 +62,30 @@
         const jsonPath = './chart_specs.json';
         let chartId = window.location.hash.substr(1);
 
-        // Allow clicking instead of hover for dropdown menus on touchscreens
-        // Inspiration: <https://stackoverflow.com/a/45113336/1060346> and
-        // <https://coderwall.com/p/3uwgga/make-css-dropdown-menus-work-on-touch-devices>
+        // Use clicking instead of hover for dropdown menus on touchscreens
         if (window.navigator.maxTouchPoints || 'ontouchstart' in document) {
             $(document).ready(function() {
+                // Hide dropdown after an indicator is selected
+                $('a.indicator').click(function(event) {
+                    event.stopPropagation();
+                    $('div.droplist').hide();
+                });
+                // Toggle dropdown when chapter is clicked, hide all others
                 $('li.drophead').click(function(event) {
                     event.stopPropagation();
                     $(this).children('div.droplist').toggle();
+                    $('li.drophead').not(this).children('div.droplist').hide();
                 });
+                // Hide all dropdowns when another part of page is clicked
                 $(document).click(function() {
                     $('div.droplist').hide();
                 });
             });
+        } else {
+            // Show dropdowns on hover for non-touch devices
+            d3.select('head')
+                .append('style')
+                .text('li.drophead:hover > div.droplist { display: block; }')
         };
 
         // Read JSON file containing chart specifications

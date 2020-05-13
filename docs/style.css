@@ -1,46 +1,45 @@
-/* Structural elements  */
+/* Structural/base elements  */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    font-family: 'Open Sans';
+    font: 400 15px 'Open Sans';
+    color: #181f22;
 }
 html {
     -webkit-text-size-adjust: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+    width: 100%;
+    margin: auto;
 }
 div {
     margin: 0 auto;
     text-align: center;
 }
-
-/* Intro section */
-h1, h2, h3, h4, h5, h6 {
-    width: 100%;
-    margin: auto;
-}
-h1 { margin: 24px auto; }
 p {
     margin: 12px auto;
     width: 100%;
     text-align: left;
-    font-size: 14px;
 }
-p > a:link {
-    color: #00ac9c;
-    text-decoration: none;
-}
-p > a:visited {
-    color: #008c7e;
-    text-decoration: none;
-}
-p > a:hover, a:active {
+p > a {
     text-decoration: underline;
+    color: #00ac9c;
 }
-div#intro { width: 800px; }
+p > a:hover {
+    color: #008c7e;
+}
 
-/* Indicator selection dropdowns
-   heavily inspired by <https://www.w3schools.com/Css/css_dropdowns.asp> */
-/*select { margin: 16px auto; }*/
+/* Intro section */
+h1#page-title { margin: 24px auto; }
+div#intro { width: 800px; }
+p.intro {
+    font-family: 'Noticia Text';
+    line-height: 1.6;
+    color: #475c66;
+}
+
+/* Indicator selection dropdowns */
 div#chapters {
     width: 798px;
     position: relative;
@@ -59,16 +58,16 @@ li.drophead {
     display: inline-block;
     background-color: #ecf0f2;
 }
-li.drophead span.chapter {
-    font: 600 14px 'Open Sans';
-    color: #000000;
+li.drophead > a.chapter {
+    font: 600 15px 'Open Sans';
+    color: #181f22;
     text-decoration: none;
     display: inline-block;
     text-align: center;
     padding: 8px 0px;
 }
-li.drophead:hover span.chapter { color: #ffffff; }
-li.drophead:hover div.droplist { display: block; }
+li.drophead:hover > a.chapter { color: #ffffff; }
+/*li.drophead:hover > div.droplist { display: block; }*/ /* Only want this behavior for non-touch devices! */
 
 div.droplist {
     display: none;
@@ -84,7 +83,7 @@ div.droplist#inclusive-growth {
 }
 div.droplist > a.indicator {
     font-size: 14px;
-    color: #000000;
+    color: #181f22;
     text-decoration: none;
     text-align: left;
     display: block;
@@ -98,12 +97,12 @@ li#governance:hover { background-color: #009ccc; }
 li#mobility:hover { background-color: #6300cc; }
 li#inclusive-growth:hover { background-color: #cc0000; }
 
-div.droplist a.community:hover { background-color: #f8ebdf; }
-div.droplist a.prosperity:hover { background-color: #f8f4df; }
-div.droplist a.environment:hover { background-color: #eef8df; }
-div.droplist a.governance:hover { background-color: #dff2f8; }
-div.droplist a.mobility:hover { background-color: #ebdff8; }
-div.droplist a.inclusive-growth:hover { background-color: #f8dfdf; }
+div.droplist > a.community:hover { background-color: #f8ebdf; }
+div.droplist > a.prosperity:hover { background-color: #f8f4df; }
+div.droplist > a.environment:hover { background-color: #eef8df; }
+div.droplist > a.governance:hover { background-color: #dff2f8; }
+div.droplist > a.mobility:hover { background-color: #ebdff8; }
+div.droplist > a.inclusive-growth:hover { background-color: #f8dfdf; }
 
 /* Chart, legend, footnote */
 div#chart {
@@ -125,6 +124,9 @@ path {
     stroke-width: 2px;
     fill: none;
 }
+path.target {
+    stroke-dasharray: 8,4;
+}
 .axis > path {
     stroke: #000000;
     stroke-width: 1px;
@@ -135,18 +137,17 @@ line.grid {
     stroke-width: 1px;
     shape-rendering: crispEdges;
 }
-#main-title {
+h2#chart-title {
     font: 600 20px 'Open Sans';
     max-width: 90%;
 }
-.legend-item { font: 300 12px 'Open Sans'; }
-.axis-title { font: 400 14px 'Open Sans'; }
-.tick { font: 300 12px 'Open Sans'; }
-.label { font: 400 12px 'Open Sans'; }
+.legend-item { font: 300 13px 'Open Sans'; }
+.axis-title { font: 400 15px 'Open Sans'; }
+.tick { font: 300 13px 'Open Sans'; }
+.label { font: 400 13px 'Open Sans'; }
 p#footnote {
-    width: 100%;
     margin: 0px;
-    padding-top: 8px;
-    font: 300 12px 'Open Sans';
+    padding-top: 12px;
     text-align: right;
+    font: 300 13px 'Open Sans';
 }
