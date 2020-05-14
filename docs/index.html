@@ -22,6 +22,8 @@
             Select an indicator to display from the list of ON TO 2050 chapters below.
             (Please be aware that a small number of secondary indicators have been excluded because they currently only have a single observation and no targets, and are therefore not yet suitable for graphing.)
         </p>
+        <span class="fas fa-chevron-up" id="hide-intro" title="Hide intro"></span>
+        <span class="fas fa-chevron-down" id="show-intro" title="Show intro"></span>
     </div>
 
     <div id="chapters">
@@ -57,11 +59,9 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://kit.fontawesome.com/9111ff38f4.js" crossorigin="anonymous"></script>
     <script src="./chart.js"></script>
     <script>
-        const jsonPath = './chart_specs.json';
-        let chartId = window.location.hash.substr(1);
-
         // Use clicking instead of hover for dropdown menus on touchscreens
         if (window.navigator.maxTouchPoints || 'ontouchstart' in document) {
             $(document).ready(function() {
@@ -83,12 +83,28 @@
             });
         } else {
             // Show dropdowns on hover for non-touch devices
-            d3.select('head')
-                .append('style')
-                .text('li.drophead:hover > div.droplist { display: block; }')
+            $('head').append(
+                '<style>li.drophead:hover > div.droplist { display: block; }</style>'
+            );
         };
 
-        // Read JSON file containing chart specifications
+        // Show/hide intro paragraphs when arrow icons are clicked
+        $('span#hide-intro,span#show-intro').css('cursor', 'pointer');
+        $('span#show-intro').hide(); // Hide "show intro" button initially
+        $('span#hide-intro').click(function(event) {
+            $('p.intro').hide("fast");
+            $('span#show-intro').show();
+            $(this).hide();
+        });
+        $('span#show-intro').click(function(event) {
+            $('p.intro').show("fast");
+            $('span#hide-intro').show();
+            $(this).hide();
+        });
+
+        // Read JSON file containing chart specifications and populate dropdowns
+        const jsonPath = './chart_specs.json';
+        let chartId = window.location.hash.substr(1);
         d3.json(jsonPath).then(json => {
 
             // Dynamically populate chapter dropdowns with indicators in JSON
