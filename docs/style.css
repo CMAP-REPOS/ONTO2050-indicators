@@ -23,11 +23,12 @@ p {
     text-align: left;
 }
 p > a {
-    text-decoration: underline;
     color: #00ac9c;
+    text-decoration: none;
 }
 p > a:hover {
     color: #008c7e;
+    text-decoration: underline;
 }
 
 /* Intro section */
@@ -153,8 +154,7 @@ h2#chart-title {
 .tick { font: 300 13px 'Open Sans'; }
 .label { font: 400 13px 'Open Sans'; }
 p#footnote {
-    margin: 0px;
-    padding-top: 12px;
-    text-align: right;
-    font: 300 13px 'Open Sans';
+    margin: 0px auto;
+    padding-top: 6px;
+    font: 300 12px 'Open Sans';
 }
