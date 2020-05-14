@@ -101,7 +101,7 @@
             "targetColor": "#e5a872"
         }
     ],
-    "yRangeManual": [0, 1],
+    "yRangeManual": [0.2, 0.6],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
@@ -321,7 +321,7 @@
             "targetColor": "#b7e572"
         }
     ],
-    "yRangeManual": [0, 1],
+    "yRangeManual": [0.4, 0.8],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".2%",
@@ -392,7 +392,7 @@
     "mainTitle": "Greenhouse gas emissions",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Million metric tons of CO2 equivalent",
+    "yTitle": "Million metric tons of CO₂ equivalent",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/greenhouse-gas-emissions/greenhouse-gas-emissions.csv",
     "yVars": [
         {
@@ -889,7 +889,7 @@
             "targetColor": "#aa72e5"
         }
     ],
-    "yRangeManual": [0, 50],
+    "yRangeManual": [22, 50],
     "yIsPercent": false,
     "yFormat": ",.0f",
     "labFormat": ",.2f",
@@ -949,7 +949,7 @@
             "targetColor": "#e5d072"
         }
     ],
-    "yRangeManual": [0, 1],
+    "yRangeManual": [0.3, 0.7],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
@@ -1281,7 +1281,7 @@
     "mainTitle": "Workforce participation by race and ethnicity",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Workforce participation rate (ages 16+)",
+    "yTitle": "Workforce participation rate (age 16+)",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/workforce-participation/workforce-participation-race-ethnicity.csv",
     "yVars": [
         {
@@ -1315,7 +1315,7 @@
             "targetColor": null
         }
     ],
-    "yRangeManual": null,
+    "yRangeManual": [0.55, 0.75],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
@@ -1519,7 +1519,7 @@
             "targetColor": null
         }
     ],
-    "yRangeManual": [0.8, 1.1],
+    "yRangeManual": [0.8, 1.2],
     "yIsPercent": false,
     "yFormat": ".2f",
     "labFormat": ".4f",
