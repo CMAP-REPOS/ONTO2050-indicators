@@ -31,12 +31,19 @@ p > a:hover {
 }
 
 /* Intro section */
-h1#page-title { margin: 24px auto; }
+h1#page-title { margin: 24px auto 12px auto; }
 div#intro { width: 800px; }
 p.intro {
     font-family: 'Noticia Text';
     line-height: 1.6;
     color: #475c66;
+}
+span.fas {
+    color: #d2d9de;
+    font-size: 24px;
+}
+span.fas:hover {
+    color: #9daab3;
 }
 
 /* Indicator selection dropdowns */
@@ -47,7 +54,7 @@ div#chapters {
 
 ul#dropdowns {
   list-style-type: none;
-  margin: 24px auto;
+  margin: 12px auto 24px auto;
   padding: 0;
   overflow: hidden;
 }
