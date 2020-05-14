@@ -29,15 +29,24 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
         yVars = [],
         yVarNames = [],
         actualColors = [],
-        targetColors = [];
+        targetColors = [],
+        recLinks = [];
 
     chartSpec.yVars.forEach(d => {
         yVars.push(d.yVar);
         yVarNames.push(d.name);
         actualColors.push(d.actualColor);
         targetColors.push(d.targetColor);
-    })
+    });
     //console.log(yVars, actualColors, targetColors);
+
+    chartSpec.planRecs.forEach(d => {
+        if (d.text && d.url) {
+            let recLink = `<a href="${d.url}" target="_blank">${d.text}</a>`;
+            recLinks.push(recLink);
+        };
+    });
+    //console.log(recLinks);
 
     // Set the dimensions of the canvas / graph
     let margin = {top: 20, right: 25, bottom: 50, left: 80},
@@ -307,12 +316,23 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
     let dataUrl = csvUrl
         .replace('raw.githubusercontent.com', 'www.github.com')
         .replace('/master/', '/blob/master/');
-    let footnote = chart.append('p')
+    chart.append('p')
         .attr('id', 'footnote')
         .html(
             `Read <a href="${docUrl}" target="_blank">more information</a> about ` +
             `this indicator, or see <a href="${dataUrl}" target="_blank">the data.</a>`
         );
+
+    // Add footnote linking to any related plan recommendations
+    let recLinkText;
+    if (recLinks.length > 0) {
+        recLinkText = 'Related ON TO 2050 recommendation' +
+            (recLinks.length > 1 ? 's' : '') +  // Pluralize if 2+ recs
+            ': ' + recLinks.join('; ') + '.';
+        chart.append('p')
+            .attr('id', 'footnote')
+            .html(recLinkText);
+    };
 };
 
 function filterChartSpecs(json, key, value) {

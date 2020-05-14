@@ -24,7 +24,17 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".0%"
+    "labFormat": ".0%",
+    "planRecs": [
+        {
+            "text": "Target infill, infrastructure, and natural area investments",
+            "url": "https://www.cmap.illinois.gov/2050/community/reinvestment"
+        },
+        {
+            "text": "Invest in disinvested areas",
+            "url": "https://www.cmap.illinois.gov/2050/community/disinvested-areas"
+        }
+    ]
 },
 {
     "chartId": "housing-transportation-percent-income",
@@ -32,7 +42,7 @@
     "mainTitle": "Percentage of income spent on housing and transportation by moderate- and low-income residents",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage of household income",
+    "yTitle": "Average share of household income",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/housing-transportation-percent-income/housing-transportation-percent-income.csv",
     "yVars": [
         {
@@ -57,7 +67,17 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Match regional and local housing supply with the type residents want",
+            "url": "https://www.cmap.illinois.gov/2050/community/housing"
+        },
+        {
+            "text": "Leverage the transportation network to promote inclusive growth",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transportation-equity"
+        }
+    ]
 },
 {
     "chartId": "walkable-areas",
@@ -84,15 +104,25 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Support development of compact, walkable communities",
+            "url": "https://www.cmap.illinois.gov/2050/community/walkable-communities"
+        },
+        {
+            "text": "Make transit more competitive",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transit"
+        }
+    ]
 },
 {
     "chartId": "educational-attainment",
     "chapterId": "prosperity",
-    "mainTitle": "Educational attainment (associate's degree or higher)",
+    "mainTitle": "Educational attainment",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage of population (age 25+)",
+    "yTitle": "People aged 25+ with associate's degree or higher",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/educational-attainment/educational-attainment.csv",
     "yVars": [
         {
@@ -105,7 +135,13 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Prioritize pathways for upward economic mobility",
+            "url": "https://www.cmap.illinois.gov/2050/prosperity/career-pathways-upward-mobility"
+        }
+    ]
 },
 {
     "chartId": "workforce-participation",
@@ -126,7 +162,13 @@
     "yRangeManual": null,
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Conduct regional planning for human capital",
+            "url": "https://www.cmap.illinois.gov/2050/prosperity/human-capital-workforce"
+        }
+    ]
 },
 {
     "chartId": "stem-employment",
@@ -134,7 +176,7 @@
     "mainTitle": "Employment in STEM occupations",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage of all jobs",
+    "yTitle": "Percentage of region's jobs",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/stem-employment/stem-employment.csv",
     "yVars": [
         {
@@ -147,7 +189,13 @@
     "yRangeManual": [0.10, 0.15],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".2%"
+    "labFormat": ".2%",
+    "planRecs": [
+        {
+            "text": "Support the region's traded clusters",
+            "url": "https://www.cmap.illinois.gov/2050/prosperity/clusters"
+        }
+    ]
 },
 {
     "chartId": "venture-capital-funding",
@@ -168,7 +216,13 @@
     "yRangeManual": [0, 0.08],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".2%"
+    "labFormat": ".2%",
+    "planRecs": [
+        {
+            "text": "Pursue regional economic development",
+            "url": "https://www.cmap.illinois.gov/2050/prosperity/regional-economic-development"
+        }
+    ]
 },
 {
     "chartId": "patenting-activity",
@@ -189,7 +243,13 @@
     "yRangeManual": [0, 0.05],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".2%"
+    "labFormat": ".2%",
+    "planRecs": [
+        {
+            "text": "Enhance economic innovation",
+            "url": "https://www.cmap.illinois.gov/2050/prosperity/innovation"
+        }
+    ]
 },
 {
     "chartId": "manufacturing-exports",
@@ -210,7 +270,13 @@
     "yRangeManual": [0, 60000000000],
     "yIsPercent": false,
     "yFormat": "$.2~s",
-    "labFormat": "$.4~s"
+    "labFormat": "$.4~s",
+    "planRecs": [
+        {
+            "text": "Support the region's traded clusters",
+            "url": "https://www.cmap.illinois.gov/2050/prosperity/clusters"
+        }
+    ]
 },
 {
     "chartId": "impervious-area",
@@ -231,7 +297,13 @@
     "yRangeManual": [0, 800000],
     "yIsPercent": false,
     "yFormat": ".3~s",
-    "labFormat": ",.0f"
+    "labFormat": ",.0f",
+    "planRecs": [
+        {
+            "text": "Protect and enhance the integrity of aquatic systems",
+            "url": "https://www.cmap.illinois.gov/2050/environment/water-quality"
+        }
+    ]
 },
 {
     "chartId": "watersheds-low-imperviousness",
@@ -252,7 +324,13 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".2%"
+    "labFormat": ".2%",
+    "planRecs": [
+        {
+            "text": "Protect and enhance the integrity of aquatic systems",
+            "url": "https://www.cmap.illinois.gov/2050/environment/water-quality"
+        }
+    ]
 },
 {
     "chartId": "water-demand_1",
@@ -273,7 +351,13 @@
     "yRangeManual": [0, 1500],
     "yIsPercent": false,
     "yFormat": ",.0f",
-    "labFormat": ",.3f"
+    "labFormat": ",.3f",
+    "planRecs": [
+        {
+            "text": "Coordinate and conserve shared water supply resources",
+            "url": "https://www.cmap.illinois.gov/2050/environment/water-supply"
+        }
+    ]
 },
 {
     "chartId": "water-demand_2",
@@ -294,7 +378,13 @@
     "yRangeManual": [0, 100],
     "yIsPercent": false,
     "yFormat": ",.0f",
-    "labFormat": ",.2f"
+    "labFormat": ",.2f",
+    "planRecs": [
+        {
+            "text": "Coordinate and conserve shared water supply resources",
+            "url": "https://www.cmap.illinois.gov/2050/environment/water-supply"
+        }
+    ]
 },
 {
     "chartId": "greenhouse-gas-emissions",
@@ -315,7 +405,13 @@
     "yRangeManual": [0, 150],
     "yIsPercent": false,
     "yFormat": ",.0f",
-    "labFormat": ",.1f"
+    "labFormat": ",.1f",
+    "planRecs": [
+        {
+            "text": "Intensify climate mitigation efforts",
+            "url": "https://www.cmap.illinois.gov/2050/environment/climate-mitigation"
+        }
+    ]
 },
 {
     "chartId": "conserved-land-acres",
@@ -336,7 +432,13 @@
     "yRangeManual": [0, 450000],
     "yIsPercent": false,
     "yFormat": ".3~s",
-    "labFormat": ",.0f"
+    "labFormat": ",.0f",
+    "planRecs": [
+        {
+            "text": "Integrate land preservation into strategic growth",
+            "url": "https://www.cmap.illinois.gov/2050/environment/land-preservation"
+        }
+    ]
 },
 {
     "chartId": "access-to-parks",
@@ -344,7 +446,7 @@
     "mainTitle": "Access to parks",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage of population",
+    "yTitle": "Percentage of region's population",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/access-to-parks/access-to-parks.csv",
     "yVars": [
         {
@@ -363,7 +465,17 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Improve natural resources through the redevelopment process",
+            "url": "https://www.cmap.illinois.gov/2050/environment/redevelopment"
+        },
+        {
+            "text": "Target infill, infrastructure, and natural area investments",
+            "url": "https://www.cmap.illinois.gov/2050/community/reinvestment"
+        }
+    ]
 },
 {
     "chartId": "farmland-acres",
@@ -384,7 +496,13 @@
     "yRangeManual": [0, 12000],
     "yIsPercent": false,
     "yFormat": ",.0f",
-    "labFormat": ",.0f"
+    "labFormat": ",.0f",
+    "planRecs": [
+        {
+            "text": "Integrate land preservation into strategic growth efforts",
+            "url": "https://www.cmap.illinois.gov/2050/environment/land-preservation"
+        }
+    ]
 },
 {
     "chartId": "lake-michigan",
@@ -411,7 +529,13 @@
     "yRangeManual": [0, 1200],
     "yIsPercent": false,
     "yFormat": ",.0f",
-    "labFormat": ",.3f"
+    "labFormat": ",.3f",
+    "planRecs": [
+        {
+            "text": "Coordinate and conserve shared water supply resources",
+            "url": "https://www.cmap.illinois.gov/2050/environment/water-supply"
+        }
+    ]
 },
 {
     "chartId": "deep-bedrock",
@@ -432,7 +556,13 @@
     "yRangeManual": [0, 200],
     "yIsPercent": false,
     "yFormat": ",.0f",
-    "labFormat": ",.3f"
+    "labFormat": ",.3f",
+    "planRecs": [
+        {
+            "text": "Coordinate and conserve shared water supply resources",
+            "url": "https://www.cmap.illinois.gov/2050/environment/water-supply"
+        }
+    ]
 },
 {
     "chartId": "state-revenue-disbursement",
@@ -450,10 +580,16 @@
             "targetColor": "#72cae5"
         }
     ],
-    "yRangeManual": null,
+    "yRangeManual": [0, 120],
     "yIsPercent": false,
     "yFormat": ",.0f",
-    "labFormat": ",.0f"
+    "labFormat": ",.0f",
+    "planRecs": [
+        {
+            "text": "Develop tax policies that strengthen communities and the region",
+            "url": "https://www.cmap.illinois.gov/2050/governance/tax-policy"
+        }
+    ]
 },
 {
     "chartId": "board-member-training",
@@ -461,7 +597,7 @@
     "mainTitle": "Local governments that train appointed board members",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage of municipalities",
+    "yTitle": "Percentage of region's municipalities",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/board-member-training/board-member-training.csv",
     "yVars": [
         {
@@ -474,7 +610,13 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".0%"
+    "labFormat": ".0%",
+    "planRecs": [
+        {
+            "text": "Build local government capacity",
+            "url": "https://www.cmap.illinois.gov/2050/governance/government-capacity"
+        }
+    ]
 },
 {
     "chartId": "nhs-pavement",
@@ -507,7 +649,13 @@
     "yRangeManual": null,
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Enhance the region's approach to transportation programming",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transportation-programming"
+        }
+    ]
 },
 {
     "chartId": "nhs-bridges",
@@ -528,7 +676,13 @@
     "yRangeManual": [0, 0.14],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Enhance the region's approach to transportation programming",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transportation-programming"
+        }
+    ]
 },
 {
     "chartId": "transit-repair-a",
@@ -536,7 +690,7 @@
     "mainTitle": "Transit asset state of good repair: percent of fixed-route buses that have met or exceeded their useful life",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "CTA & Pace buses (%)",
+    "yTitle": "CTA & Pace buses",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/transit-repair/transit-repair-a.csv",
     "yVars": [
         {
@@ -549,7 +703,13 @@
     "yRangeManual": [0, 0.30],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Enhance the region's approach to transportation programming",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transportation-programming"
+        }
+    ]
 },
 {
     "chartId": "transit-repair-b",
@@ -557,7 +717,7 @@
     "mainTitle": "Transit asset state of good repair: percent of rail vehicles that have met or exceeded their useful life",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "CTA & Metra rail vehicles (%)",
+    "yTitle": "CTA & Metra rail vehicles",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/transit-repair/transit-repair-b.csv",
     "yVars": [
         {
@@ -570,7 +730,13 @@
     "yRangeManual": [0, 0.60],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Enhance the region's approach to transportation programming",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transportation-programming"
+        }
+    ]
 },
 {
     "chartId": "transit-repair-c",
@@ -578,7 +744,7 @@
     "mainTitle": "Transit asset state of good repair: percent of directional rail route miles with track performance restrictions",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "CTA & Metra directional rail route miles (%)",
+    "yTitle": "CTA & Metra directional rail route miles",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/transit-repair/transit-repair-c.csv",
     "yVars": [
         {
@@ -591,7 +757,13 @@
     "yRangeManual": [0, 0.10],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Enhance the region's approach to transportation programming",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transportation-programming"
+        }
+    ]
 },
 {
     "chartId": "highway-congestion-hours",
@@ -612,7 +784,13 @@
     "yRangeManual": [0, 7],
     "yIsPercent": false,
     "yFormat": ",.0f",
-    "labFormat": ",.2f"
+    "labFormat": ",.2f",
+    "planRecs": [
+        {
+            "text": "Build regionally significant projects",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/regionally-significant-projects"
+        }
+    ]
 },
 {
     "chartId": "reliable-interstate-travel",
@@ -633,7 +811,13 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Harness technology to improve travel and anticipate future impacts",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transportation-technology"
+        }
+    ]
 },
 {
     "chartId": "traffic-fatalities",
@@ -654,7 +838,13 @@
     "yRangeManual": [0, 600],
     "yIsPercent": false,
     "yFormat": ".3~s",
-    "labFormat": ",.0f"
+    "labFormat": ",.0f",
+    "planRecs": [
+        {
+            "text": "Improve travel safety",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/safety"
+        }
+    ]
 },
 {
     "chartId": "rail-crossing-delay",
@@ -675,7 +865,13 @@
     "yRangeManual": [0, 12000],
     "yIsPercent": false,
     "yFormat": ".3~s",
-    "labFormat": ",.0f"
+    "labFormat": ",.0f",
+    "planRecs": [
+        {
+            "text": "Maintain the region's status as North America's freight hub",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/freight"
+        }
+    ]
 },
 {
     "chartId": "terminal-carload-transit",
@@ -696,7 +892,13 @@
     "yRangeManual": [0, 50],
     "yIsPercent": false,
     "yFormat": ",.0f",
-    "labFormat": ",.2f"
+    "labFormat": ",.2f",
+    "planRecs": [
+        {
+            "text": "Maintain the region's status as North America's freight hub",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/freight"
+        }
+    ]
 },
 {
     "chartId": "unlinked-transit-trips",
@@ -717,7 +919,13 @@
     "yRangeManual": [0, 1400000000],
     "yIsPercent": false,
     "yFormat": ".3~s",
-    "labFormat": ",.0f"
+    "labFormat": ",.0f",
+    "planRecs": [
+        {
+            "text": "Make transit more competitive",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transit"
+        }
+    ]
 },
 {
     "chartId": "population-jobs-transit-availability",
@@ -744,7 +952,13 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Make transit more competitive",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transit"
+        }
+    ]
 },
 {
     "chartId": "non-single-occupancy-modes",
@@ -795,7 +1009,21 @@
     "yRangeManual": [0, 0.4],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Make transit more competitive",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transit"
+        },
+        {
+            "text": "Harness technology to improve travel and anticipate future impacts",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transportation-technology"
+        },
+        {
+            "text": "Improve travel safety",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/safety"
+        }
+    ]
 },
 {
     "chartId": "traffic-signals",
@@ -816,7 +1044,17 @@
     "yRangeManual": [0, 3000],
     "yIsPercent": false,
     "yFormat": ",.0f",
-    "labFormat": ",.0f"
+    "labFormat": ",.0f",
+    "planRecs": [
+        {
+            "text": "Make transit more competitive",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transit"
+        },
+        {
+            "text": "Harness technology to improve travel and anticipate future impacts",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transportation-technology"
+        }
+    ]
 },
 {
     "chartId": "transit-preference",
@@ -849,7 +1087,13 @@
     "yRangeManual": [0, 600],
     "yIsPercent": false,
     "yFormat": ",.0f",
-    "labFormat": ",.1f"
+    "labFormat": ",.1f",
+    "planRecs": [
+        {
+            "text": "Make transit more competitive",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transit"
+        }
+    ]
 },
 {
     "chartId": "regional-trails",
@@ -870,7 +1114,17 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Improve travel safety",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/safety"
+        },
+        {
+            "text": "Build regionally significant projects",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/regionally-significant-projects"
+        }
+    ]
 },
 {
     "chartId": "housing-transportation-percent-income-race-ethnicity",
@@ -878,7 +1132,7 @@
     "mainTitle": "Percent of income spent on housing and transportation by moderate- and low-income households, by race and ethnicity",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage of household income",
+    "yTitle": "Average share of household income",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/housing-transportation-percent-income/housing-transportation-percent-income-race-ethnicity.csv",
     "yVars": [
         {
@@ -909,7 +1163,17 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Match regional and local housing supply with the type residents want",
+            "url": "https://www.cmap.illinois.gov/2050/community/housing"
+        },
+        {
+            "text": "Leverage the transportation network to promote inclusive growth",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transportation-equity"
+        }
+    ]
 },
 {
     "chartId": "access-to-parks-in-edas",
@@ -917,7 +1181,7 @@
     "mainTitle": "Access to parks in economically disconnected areas",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage of population",
+    "yTitle": "Percentage of region's population",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/access-to-parks/access-to-parks-in-edas.csv",
     "yVars": [
         {
@@ -948,15 +1212,25 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Improve natural resources through the redevelopment process",
+            "url": "https://www.cmap.illinois.gov/2050/environment/redevelopment"
+        },
+        {
+            "text": "Target infill, infrastructure, and natural area investments",
+            "url": "https://www.cmap.illinois.gov/2050/community/reinvestment"
+        }
+    ]
 },
 {
     "chartId": "educational-attainment-race-ethnicity",
     "chapterId": "inclusive-growth",
-    "mainTitle": "Educational attainment by race and ethnicity (associate's degree or higher)",
+    "mainTitle": "Educational attainment by race and ethnicity",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage of population (age 25+)",
+    "yTitle": "People aged 25+ with associate's degree or higher",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/educational-attainment/educational-attainment-race-ethnicity.csv",
     "yVars": [
         {
@@ -993,7 +1267,13 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Prioritize pathways for upward economic mobility",
+            "url": "https://www.cmap.illinois.gov/2050/prosperity/career-pathways-upward-mobility"
+        }
+    ]
 },
 {
     "chartId": "workforce-participation-race-ethnicity",
@@ -1038,7 +1318,13 @@
     "yRangeManual": null,
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Conduct regional planning for human capital",
+            "url": "https://www.cmap.illinois.gov/2050/prosperity/human-capital-workforce"
+        }
+    ]
 },
 {
     "chartId": "household-income-race-ethnicity",
@@ -1083,7 +1369,13 @@
     "yRangeManual": [0, 100000],
     "yIsPercent": false,
     "yFormat": "$.2~s",
-    "labFormat": "$,.0f"
+    "labFormat": "$,.0f",
+    "planRecs": [
+        {
+            "text": "Use collaborative leadership to address regional challenges",
+            "url": "https://www.cmap.illinois.gov/2050/governance/regional-leadership-collaboration"
+        }
+    ]
 },
 {
     "chartId": "unemployment-race-ethnicity",
@@ -1128,7 +1420,13 @@
     "yRangeManual": [0, 0.25],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".1%"
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Conduct regional planning for human capital",
+            "url": "https://www.cmap.illinois.gov/2050/prosperity/human-capital-workforce"
+        }
+    ]
 },
 {
     "chartId": "income-inequality",
@@ -1173,7 +1471,13 @@
     "yRangeManual": null,
     "yIsPercent": false,
     "yFormat": ".2f",
-    "labFormat": ".3f"
+    "labFormat": ".3f",
+    "planRecs": [
+        {
+            "text": "Pursue regional economic development",
+            "url": "https://www.cmap.illinois.gov/2050/prosperity/regional-economic-development"
+        }
+    ]
 },
 {
     "chartId": "mean-household-income",
@@ -1218,7 +1522,13 @@
     "yRangeManual": [0.8, 1.1],
     "yIsPercent": false,
     "yFormat": ".2f",
-    "labFormat": ".4f"
+    "labFormat": ".4f",
+    "planRecs": [
+        {
+            "text": "Use collaborative leadership to address regional challenges",
+            "url": "https://www.cmap.illinois.gov/2050/governance/regional-leadership-collaboration"
+        }
+    ]
 },
 {
     "chartId": "commute-time-race-ethnicity",
@@ -1257,6 +1567,12 @@
     "yRangeManual": null,
     "yIsPercent": false,
     "yFormat": ".0f",
-    "labFormat": ".1f"
+    "labFormat": ".1f",
+    "planRecs": [
+        {
+            "text": "Leverage the transportation network to promote inclusive growth",
+            "url": "https://www.cmap.illinois.gov/2050/mobility/transportation-equity"
+        }
+    ]
 }
 ]
