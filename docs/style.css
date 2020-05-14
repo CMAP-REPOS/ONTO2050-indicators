@@ -35,9 +35,12 @@ p > a:hover {
 h1#page-title { margin: 24px auto 12px auto; }
 div#intro { width: 800px; }
 p.intro {
-    font-family: 'Noticia Text';
+    font: 400 15px 'Noticia Text';
     line-height: 1.6;
     color: #475c66;
+}
+p.intro > b {
+    font-weight: 700;
 }
 span.fas {
     color: #d2d9de;
