@@ -39,16 +39,12 @@ p.intro {
     line-height: 1.6;
     color: #475c66;
 }
-p.intro > b {
-    font-weight: 700;
-}
+p.intro > b { font-weight: 700; }
 span.fas {
     color: #d2d9de;
     font-size: 24px;
 }
-span.fas:hover {
-    color: #9daab3;
-}
+span.fas:hover { color: #9daab3; }
 
 /* Indicator selection dropdowns */
 div#chapters {
@@ -78,7 +74,7 @@ li.drophead > a.chapter {
     padding: 8px 0px;
 }
 li.drophead:hover > a.chapter { color: #ffffff; }
-/*li.drophead:hover > div.droplist { display: block; }*/ /* Only want this behavior for non-touch devices! */
+/*li.drophead:hover > div.droplist { display: block; }*/ /* Add with JS for for non-touch devices only! */
 
 div.droplist {
     display: none;
@@ -131,13 +127,12 @@ div.legend-item {
     padding-right: 24px;
     display: inline-block;
 }
+div#footnote { margin-top: 24px; }
 path {
     stroke-width: 2px;
     fill: none;
 }
-path.target {
-    stroke-dasharray: 8,4;
-}
+path.target { stroke-dasharray: 8,4; }
 .axis > path {
     stroke: #000000;
     stroke-width: 1px;
@@ -156,8 +151,4 @@ h2#chart-title {
 .axis-title { font: 400 15px 'Open Sans'; }
 .tick { font: 300 13px 'Open Sans'; }
 .label { font: 400 13px 'Open Sans'; }
-p#footnote {
-    margin: 0px auto;
-    padding-top: 6px;
-    font: 300 12px 'Open Sans';
-}
+p.footnote { font: 300 15px 'Open Sans'; }

@@ -316,8 +316,10 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
     let dataUrl = csvUrl
         .replace('raw.githubusercontent.com', 'www.github.com')
         .replace('/master/', '/blob/master/');
-    chart.append('p')
+    let footnote = chart.append('div')
         .attr('id', 'footnote')
+    footnote.append('p')
+        .attr('class', 'footnote')
         .html(
             `Read <a href="${docUrl}" target="_blank">more information</a> about ` +
             `this indicator, or see <a href="${dataUrl}" target="_blank">the data.</a>`
@@ -329,8 +331,8 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
         recLinkText = 'Related ON TO 2050 recommendation' +
             (recLinks.length > 1 ? 's' : '') +  // Pluralize if 2+ recs
             ': ' + recLinks.join('; ') + '.';
-        chart.append('p')
-            .attr('id', 'footnote')
+        footnote.append('p')
+            .attr('class', 'footnote')
             .html(recLinkText);
     };
 };
