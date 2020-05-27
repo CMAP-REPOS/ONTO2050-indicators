@@ -144,6 +144,7 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
             .attr('transform', `translate(${margin.left},${margin.top})`);
 
     // Get the data
+    let allXVals = [];
     let allYVals = [];
     d3.csv(csvUrl).then(data => {
         data.forEach(d => {
@@ -156,6 +157,7 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
                         d[v] = d[v] / 100;
                     };
                     allYVals.push(d[v]);
+                    allXVals.push(d[xVar]);
                 } else {
                     d[v] = null;
                 }
@@ -163,6 +165,7 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
             };
         });
         //console.log(data);
+        //console.log(allXVals);
         //console.log(allYVals);
 
         let lastActualYear = d3.max(
@@ -172,7 +175,7 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
         //console.log(lastActualYear);
 
         // Scale the range of the data
-        let xLims = d3.extent(data, d => d[xVar]);
+        let xLims = d3.extent(allXVals);
         scX.domain(xLims); //.nice();
 
         let yLims;
