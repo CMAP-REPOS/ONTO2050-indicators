@@ -1127,6 +1127,55 @@
     ]
 },
 {
+    "chartId": "infill-development-in-edas",
+    "chapterId": "inclusive-growth",
+    "mainTitle": "Share of new infill development occurring in Economically Disconnected Areas",
+    "xTitle": "Year",
+    "xVar": "END_YEAR",
+    "yTitle": "Percentage of infill development since 2015",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/infill-development/infill-development-in-edas.csv",
+    "yVars": [
+        {
+            "name": "Residential units (EDA)",
+            "yVar": "PCT_RES_INFILL_EDA",
+            "actualColor": "#006b8c",
+            "targetColor": null
+        },
+        {
+            "name": "Residential units (non-EDA)",
+            "yVar": "PCT_RES_INFILL_NOT_EDA",
+            "actualColor": "#72cae5",
+            "targetColor": null
+        },
+        {
+            "name": "Non-residential sq. ft. (EDA)",
+            "yVar": "PCT_NONRES_INFILL_EDA",
+            "actualColor": "#8c4100",
+            "targetColor": null
+        },
+        {
+            "name": "Non-residential sq. ft. (non-EDA)",
+            "yVar": "PCT_NONRES_INFILL_NOT_EDA",
+            "actualColor": "#e5a872",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": [0, 1],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".0%",
+    "planRecs": [
+        {
+            "text": "Target infill, infrastructure, and natural area investments",
+            "url": "https://www.cmap.illinois.gov/2050/community/reinvestment"
+        },
+        {
+            "text": "Invest in disinvested areas",
+            "url": "https://www.cmap.illinois.gov/2050/community/disinvested-areas"
+        }
+    ]
+},
+{
     "chartId": "housing-transportation-percent-income-race-ethnicity",
     "chapterId": "inclusive-growth",
     "mainTitle": "Percent of income spent on housing and transportation by moderate- and low-income households, by race and ethnicity",
@@ -1178,7 +1227,7 @@
 {
     "chartId": "access-to-parks-in-edas",
     "chapterId": "inclusive-growth",
-    "mainTitle": "Access to parks in economically disconnected areas",
+    "mainTitle": "Access to parks in Economically Disconnected Areas",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "Percentage of region's population",
