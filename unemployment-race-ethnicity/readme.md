@@ -8,10 +8,10 @@ Header | Definition
 -------|-----------
 `YEAR` | Year of observation
 `PCT_UNEMPLOYED_ALL` | Unemployment rate among the overall population
-`PCT_UNEMPLOYED_BLACK` | Unemployment rate among the black population
+`PCT_UNEMPLOYED_BLACK` | Unemployment rate among the Black population
 `PCT_UNEMPLOYED_ASIAN` | Unemployment rate among the Asian population
 `PCT_UNEMPLOYED_HISPANIC` | Unemployment rate among the Hispanic/Latino population
-`PCT_UNEMPLOYED_WHITE` | Unemployment rate among the white (non-Hispanic) population
+`PCT_UNEMPLOYED_WHITE` | Unemployment rate among the White (non-Hispanic) population
 `ACTUAL_OR_TARGET` | `Actual` if the record is from observed data; `Target` if it is an ON TO 2050 target
 
 **Source:** The U.S. Census Bureau’s American Community Survey (ACS)

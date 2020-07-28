@@ -18,7 +18,7 @@ Header | Definition
 
 # [Educational Attainment by Race and Ethnicity](https://www.cmap.illinois.gov/2050/indicators/educational-attainment#IGperspective)
 
-As a kindred indicator, ON TO 2050 will also track the proportion of residents in the Chicago region who are age 25 and older holding an associate’s degree or higher by race and ethnicity. Disparate outcomes exist across races and ethnicities in educational attainment. Black and Hispanic residents have educational attainment rates lower than the regional average and significantly lower than Asian and white residents.
+As a kindred indicator, ON TO 2050 will also track the proportion of residents in the Chicago region who are age 25 and older holding an associate’s degree or higher by race and ethnicity. Disparate outcomes exist across races and ethnicities in educational attainment. Black and Hispanic residents have educational attainment rates lower than the regional average and significantly lower than Asian and White residents.
 
 ### educational-attainment-race-ethnicity.csv
 
@@ -27,9 +27,9 @@ Header | Definition
 `YEAR` | Year of observation
 `PCT_ASSOC_DEG_PLUS_ALL` | Percentage of total population aged 25+ with an associate's degree or higher
 `PCT_ASSOC_DEG_PLUS_ASIAN` | Percentage of Asian population aged 25+ with an associate's degree or higher
-`PCT_ASSOC_DEG_PLUS_BLACK` | Percentage of black population aged 25+ with an associate's degree or higher
+`PCT_ASSOC_DEG_PLUS_BLACK` | Percentage of Black population aged 25+ with an associate's degree or higher
 `PCT_ASSOC_DEG_PLUS_HISPANIC` | Percentage of Hispanic/Latino population aged 25+ with an associate's degree or higher
-`PCT_ASSOC_DEG_PLUS_WHITE` | Percentage of white (non-Hispanic) population aged 25+ with an associate's degree or higher
+`PCT_ASSOC_DEG_PLUS_WHITE` | Percentage of White (non-Hispanic) population aged 25+ with an associate's degree or higher
 `ACTUAL_OR_TARGET` | `Actual` if the record is from observed data; `Target` if it is an ON TO 2050 target
 
 **Source:** CMAP analysis of data from the U.S. Census Bureau’s American Community Survey (ACS)

@@ -9,9 +9,9 @@ Header | Definition
 `YEAR` | Year of observation
 `MED_HH_INC_ALL` | Median household income of all households in 2016 inflation-adjusted dollars
 `MED_HH_INC_ASIAN` | Median household income of Asian households in 2016 inflation-adjusted dollars
-`MED_HH_INC_BLACK` | Median household income of black households in 2016 inflation-adjusted dollars
+`MED_HH_INC_BLACK` | Median household income of Black households in 2016 inflation-adjusted dollars
 `MED_HH_INC_HISPANIC` | Median household income of Hispanic/Latino households in 2016 inflation-adjusted dollars
-`MED_HH_INC_WHITE` | Median household income of white (non-Hispanic) households in 2016 inflation-adjusted dollars
+`MED_HH_INC_WHITE` | Median household income of White (non-Hispanic) households in 2016 inflation-adjusted dollars
 `ACTUAL_OR_TARGET` | `Actual` if the record is from observed data; `Target` if it is an ON TO 2050 target
 
 **Source:** CMAP analysis of data from the U.S. Census Bureau’s American Community Survey (ACS)

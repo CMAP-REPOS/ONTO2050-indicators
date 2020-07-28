@@ -28,10 +28,10 @@ Header | Definition
 -------|-----------
 `YEAR` | Year of observation
 `WORKFORCE_PARTIC_RATE_ALL` | Workforce participation rate among entire population aged 16+
-`WORKFORCE_PARTIC_RATE_BLACK` | Workforce participation rate among black population aged 16+
+`WORKFORCE_PARTIC_RATE_BLACK` | Workforce participation rate among Black population aged 16+
 `WORKFORCE_PARTIC_RATE_ASIAN` | Workforce participation rate among Asian population aged 16+
 `WORKFORCE_PARTIC_RATE_HISPANIC` | Workforce participation rate among Hispanic/Latino population aged 16+
-`WORKFORCE_PARTIC_RATE_WHITE` | Workforce participation rate among white (non-Hispanic) population aged 16+
+`WORKFORCE_PARTIC_RATE_WHITE` | Workforce participation rate among White (non-Hispanic) population aged 16+
 `ACTUAL_OR_TARGET` | `Actual` if the record is from observed data; `Target` if it is an ON TO 2050 target
 
 **Source:** CMAP analysis of data from the U.S. Census Bureau’s American Community Survey (ACS)

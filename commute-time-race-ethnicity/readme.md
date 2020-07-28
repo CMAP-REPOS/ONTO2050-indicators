@@ -10,9 +10,9 @@ Header | Definition
 -------|-----------
 `YEAR` | Year of observation
 `COMMUTE_MINS_ASIAN` | Average journey to work time in minutes for Asian workers
-`COMMUTE_MINS_BLACK` | Average journey to work time in minutes for black workers
+`COMMUTE_MINS_BLACK` | Average journey to work time in minutes for Black workers
 `COMMUTE_MINS_HISPANIC` | Average journey to work time in minutes for Hispanic/Latino workers
-`COMMUTE_MINS_WHITE` | Average journey to work time in minutes for white (non-Hispanic) workers
+`COMMUTE_MINS_WHITE` | Average journey to work time in minutes for White (non-Hispanic) workers
 `ACTUAL_OR_TARGET` | `Actual` if the record is from observed data; `Target` if it is an ON TO 2050 target
 
  **Source:** CMAP analysis of public-use microdata from the Minnesota Population Center’s IPUMS-USA database
