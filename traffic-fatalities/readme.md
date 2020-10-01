@@ -13,4 +13,4 @@ Header | Definition
 
 **Source:** Illinois Department of Transportation crash reports
 
-**Geography:** Seven-county CMAP region
+**Geography:** Seven-county CMAP region, plus Aux Sable Township in Grundy County and Sandwich and Somonauk Townships in DeKalb County
