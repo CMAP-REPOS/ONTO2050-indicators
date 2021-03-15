@@ -138,8 +138,9 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
 
     // Add the svg canvas
     let svg = chart.append('svg')
-            .attr('width', width + margin.left + margin.right)
-            .attr('height', height + margin.top + margin.bottom)
+            .attr('width', chartWidth)
+            .attr('height', chartHeight)
+            .attr('viewBox', `0 0 ${chartWidth} ${chartHeight}`)
         .append('g')
             .attr('transform', `translate(${margin.left},${margin.top})`);
 
