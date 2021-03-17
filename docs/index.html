@@ -135,8 +135,8 @@
     });
 
     // Read JSON file containing chart specifications and populate dropdowns
-    //const jsonPath = './chart_specs.json';
-    const jsonPath = 'https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/docs/chart_specs.json';
+    const jsonPath = './chart_specs.json';
+    //const jsonPath = 'https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/docs/chart_specs.json';
     let chartId = window.location.hash.substr(1);
     d3.json(jsonPath).then(json => {
 
