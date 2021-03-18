@@ -520,7 +520,7 @@
             "targetColor": null
         }
     ],
-    "yRangeManual": null,
+    "yRangeManual": [0.3, 0.4],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
