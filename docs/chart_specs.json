@@ -505,6 +505,33 @@
     ]
 },
 {
+    "chartId": "protected-conservation-areas",
+    "chapterId": "environment",
+    "mainTitle": "Protected share of CMAP Conservation Areas Layer",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage of Conservation Areas Layer",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/conserved-land-acres/protected-conservation-areas.csv",
+    "yVars": [
+        {
+            "name": null,
+            "yVar": "PCT_PROTECTED_CAL_AREAS",
+            "actualColor": "#548c00",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": [0.3, 0.4],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".1%",
+    "planRecs": [
+        {
+            "text": "Integrate land preservation into strategic growth",
+            "url": "https://www.cmap.illinois.gov/2050/environment/land-preservation"
+        }
+    ]
+},
+{
     "chartId": "lake-michigan",
     "chapterId": "environment",
     "mainTitle": "Lake Michigan withdrawals",
