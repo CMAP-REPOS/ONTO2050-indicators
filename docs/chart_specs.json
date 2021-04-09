@@ -1607,6 +1607,45 @@
     ]
 },
 {
+    "chartId": "non-residential-market-value",
+    "chapterId": "inclusive-growth",
+    "mainTitle": "Change in non-residential market value in disinvested and economically disconnected areas",
+    "xTitle": "Year",
+    "xVar": "YEAR",
+    "yTitle": "Percentage change since 2010",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/non-residential-market-value/non-residential-market-value.csv",
+    "yVars": [
+        {
+            "name": "EDAs and disinvested areas",
+            "yVar": "PCT_CHG_NONRES_VAL_EDA",
+            "actualColor": "#8c4100",
+            "targetColor": null
+        },
+        {
+            "name": "Rest of region (not EDA or disinvested)",
+            "yVar": "PCT_CHG_NONRES_VAL_NOT_EDA",
+            "actualColor": "#e5a872",
+            "targetColor": null
+        },
+        {
+            "name": "CMAP region",
+            "yVar": "PCT_CHG_NONRES_VAL_ALL",
+            "actualColor": "#72cae5",
+            "targetColor": null
+        }
+    ],
+    "yRangeManual": [-0.2, 0.3],
+    "yIsPercent": true,
+    "yFormat": ".0%",
+    "labFormat": ".0%",
+    "planRecs": [
+        {
+            "text": "Invest in disinvested areas",
+            "url": "https://www.cmap.illinois.gov/2050/community/disinvested-areas"
+        }
+    ]
+},
+{
     "chartId": "commute-time-race-ethnicity",
     "chapterId": "inclusive-growth",
     "mainTitle": "Average journey to work time by race and ethnicity",
