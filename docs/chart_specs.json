@@ -1214,25 +1214,25 @@
         {
             "name": "Black",
             "yVar": "PCT_INCOME_HT_BLACK",
-            "actualColor": "#8de572",
+            "actualColor": "#84c87e",
             "targetColor": null
         },
         {
             "name": "Hispanic",
             "yVar": "PCT_INCOME_HT_HISPANIC",
-            "actualColor": "#cca700",
+            "actualColor": "#d8ba39",
             "targetColor": null
         },
         {
             "name": "White (non-Hispanic)",
             "yVar": "PCT_INCOME_HT_WHITE",
-            "actualColor": "#72a6e5",
+            "actualColor": "#75a5d8",
             "targetColor": null
         },
         {
             "name": "All races/ethnicities",
             "yVar": "PCT_INCOME_HT_ALL",
-            "actualColor": "#9daab3",
+            "actualColor": "#607b88",
             "targetColor": null
         }
     ],
@@ -1312,31 +1312,31 @@
         {
             "name": "Asian",
             "yVar": "PCT_ASSOC_DEG_PLUS_ASIAN",
-            "actualColor": "#cc3000",
+            "actualColor": "#e77272",
             "targetColor": null
         },
         {
             "name": "Black",
             "yVar": "PCT_ASSOC_DEG_PLUS_BLACK",
-            "actualColor": "#8de572",
+            "actualColor": "#84c87e",
             "targetColor": null
         },
         {
             "name": "Hispanic",
             "yVar": "PCT_ASSOC_DEG_PLUS_HISPANIC",
-            "actualColor": "#cca700",
+            "actualColor": "#d8ba39",
             "targetColor": null
         },
         {
             "name": "White (non-Hispanic)",
             "yVar": "PCT_ASSOC_DEG_PLUS_WHITE",
-            "actualColor": "#72a6e5",
+            "actualColor": "#75a5d8",
             "targetColor": null
         },
         {
             "name": "All races/ethnicities",
             "yVar": "PCT_ASSOC_DEG_PLUS_ALL",
-            "actualColor": "#9daab3",
+            "actualColor": "#607b88",
             "targetColor": null
         }
     ],
@@ -1363,31 +1363,31 @@
         {
             "name": "Asian",
             "yVar": "WORKFORCE_PARTIC_RATE_ASIAN",
-            "actualColor": "#cc3000",
+            "actualColor": "#e77272",
             "targetColor": null
         },
         {
             "name": "Black",
             "yVar": "WORKFORCE_PARTIC_RATE_BLACK",
-            "actualColor": "#8de572",
+            "actualColor": "#84c87e",
             "targetColor": null
         },
         {
             "name": "Hispanic",
             "yVar": "WORKFORCE_PARTIC_RATE_HISPANIC",
-            "actualColor": "#cca700",
+            "actualColor": "#d8ba39",
             "targetColor": null
         },
         {
             "name": "White (non-Hispanic)",
             "yVar": "WORKFORCE_PARTIC_RATE_WHITE",
-            "actualColor": "#72a6e5",
+            "actualColor": "#75a5d8",
             "targetColor": null
         },
         {
             "name": "All races/ethnicities",
             "yVar": "WORKFORCE_PARTIC_RATE_ALL",
-            "actualColor": "#9daab3",
+            "actualColor": "#607b88",
             "targetColor": null
         }
     ],
@@ -1414,31 +1414,31 @@
         {
             "name": "Asian",
             "yVar": "MED_HH_INC_ASIAN",
-            "actualColor": "#cc3000",
+            "actualColor": "#e77272",
             "targetColor": null
         },
         {
             "name": "Black",
             "yVar": "MED_HH_INC_BLACK",
-            "actualColor": "#8de572",
+            "actualColor": "#84c87e",
             "targetColor": null
         },
         {
             "name": "Hispanic",
             "yVar": "MED_HH_INC_HISPANIC",
-            "actualColor": "#cca700",
+            "actualColor": "#d8ba39",
             "targetColor": null
         },
         {
             "name": "White (non-Hispanic)",
             "yVar": "MED_HH_INC_WHITE",
-            "actualColor": "#72a6e5",
+            "actualColor": "#75a5d8",
             "targetColor": null
         },
         {
             "name": "All races/ethnicities",
             "yVar": "MED_HH_INC_ALL",
-            "actualColor": "#9daab3",
+            "actualColor": "#607b88",
             "targetColor": null
         }
     ],
@@ -1465,31 +1465,31 @@
         {
             "name": "Asian",
             "yVar": "PCT_UNEMPLOYED_ASIAN",
-            "actualColor": "#cc3000",
+            "actualColor": "#e77272",
             "targetColor": null
         },
         {
             "name": "Black",
             "yVar": "PCT_UNEMPLOYED_BLACK",
-            "actualColor": "#8de572",
+            "actualColor": "#84c87e",
             "targetColor": null
         },
         {
             "name": "Hispanic",
             "yVar": "PCT_UNEMPLOYED_HISPANIC",
-            "actualColor": "#cca700",
+            "actualColor": "#d8ba39",
             "targetColor": null
         },
         {
             "name": "White (non-Hispanic)",
             "yVar": "PCT_UNEMPLOYED_WHITE",
-            "actualColor": "#72a6e5",
+            "actualColor": "#75a5d8",
             "targetColor": null
         },
         {
             "name": "All races/ethnicities",
             "yVar": "PCT_UNEMPLOYED_ALL",
-            "actualColor": "#9daab3",
+            "actualColor": "#607b88",
             "targetColor": null
         }
     ],
@@ -1657,25 +1657,25 @@
         {
             "name": "Asian",
             "yVar": "COMMUTE_MINS_ASIAN",
-            "actualColor": "#cc3000",
+            "actualColor": "#e77272",
             "targetColor": null
         },
         {
             "name": "Black",
             "yVar": "COMMUTE_MINS_BLACK",
-            "actualColor": "#8de572",
+            "actualColor": "#84c87e",
             "targetColor": null
         },
         {
             "name": "Hispanic",
             "yVar": "COMMUTE_MINS_HISPANIC",
-            "actualColor": "#cca700",
+            "actualColor": "#d8ba39",
             "targetColor": null
         },
         {
             "name": "White (non-Hispanic)",
             "yVar": "COMMUTE_MINS_WHITE",
-            "actualColor": "#72a6e5",
+            "actualColor": "#75a5d8",
             "targetColor": null
         }
     ],
