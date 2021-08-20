@@ -26,6 +26,7 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
     yIsPercent = chartSpec.yIsPercent,
     yFormat = chartSpec.yFormat,
     labFormat = chartSpec.labFormat,
+    baseYear = d3.timeParse('%Y')(chartSpec.baseYear),
     yVars = [],
     yVarNames = [],
     actualColors = [],
@@ -258,18 +259,18 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
         .attr('id', yVar)
 
       // Add the actual/target lines
-      svg.select(`#${yVar}`)
-        .append('path')
-        .attr('class', 'actual')
-        .attr('style', `stroke: ${actualColor}`)
-        .attr('d', plotLine(data.filter(d => d[xVar] <= lastActualYear && d[yVar] != null)));
       if (targetColor) {
         svg.select(`#${yVar}`)
           .append('path')
           .attr('class', 'target')
           .attr('style', `stroke: ${targetColor}`)
-          .attr('d', plotLine(data.filter(d => d[xVar] >= lastActualYear && d[yVar] != null)));
+          .attr('d', plotLine(data.filter(d => (+d[xVar] == +baseYear || +d[xVar] > +lastActualYear) && d[yVar] != null)));
       };
+      svg.select(`#${yVar}`)
+        .append('path')
+        .attr('class', 'actual')
+        .attr('style', `stroke: ${actualColor}`)
+        .attr('d', plotLine(data.filter(d => +d[xVar] <= +lastActualYear && d[yVar] != null)));
 
       // Add points for all observations (actual/target)
       svg.select(`#${yVar}`)
