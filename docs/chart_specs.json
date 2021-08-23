@@ -25,7 +25,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".0%",
-    "baseYear": 2016,
+    "targetBaseYear": 2016,
     "planRecs": [
         {
             "text": "Target infill, infrastructure, and natural area investments",
@@ -69,7 +69,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": 2015,
+    "targetBaseYear": 2015,
     "planRecs": [
         {
             "text": "Match regional and local housing supply with the type residents want",
@@ -107,7 +107,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": 2015,
+    "targetBaseYear": 2015,
     "planRecs": [
         {
             "text": "Support development of compact, walkable communities",
@@ -139,7 +139,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": 2015,
+    "targetBaseYear": 2015,
     "planRecs": [
         {
             "text": "Prioritize pathways for upward economic mobility",
@@ -167,7 +167,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": 2015,
+    "targetBaseYear": 2015,
     "planRecs": [
         {
             "text": "Conduct regional planning for human capital",
@@ -195,7 +195,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".2%",
-    "baseYear": 2017,
+    "targetBaseYear": 2017,
     "planRecs": [
         {
             "text": "Support the region's traded clusters",
@@ -223,7 +223,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".2%",
-    "baseYear": 2016,
+    "targetBaseYear": 2016,
     "planRecs": [
         {
             "text": "Pursue regional economic development",
@@ -251,7 +251,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".2%",
-    "baseYear": 2016,
+    "targetBaseYear": 2016,
     "planRecs": [
         {
             "text": "Enhance economic innovation",
@@ -279,7 +279,7 @@
     "yIsPercent": false,
     "yFormat": "$.2~s",
     "labFormat": "$.4~s",
-    "baseYear": null,
+    "targetBaseYear": null,
     "planRecs": [
         {
             "text": "Support the region's traded clusters",
@@ -307,7 +307,7 @@
     "yIsPercent": false,
     "yFormat": ".3~s",
     "labFormat": ",.0f",
-    "baseYear": 2011,
+    "targetBaseYear": 2011,
     "planRecs": [
         {
             "text": "Protect and enhance the integrity of aquatic systems",
@@ -335,7 +335,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".2%",
-    "baseYear": 2011,
+    "targetBaseYear": 2011,
     "planRecs": [
         {
             "text": "Protect and enhance the integrity of aquatic systems",
@@ -363,7 +363,7 @@
     "yIsPercent": false,
     "yFormat": ",.0f",
     "labFormat": ",.3f",
-    "baseYear": 2013,
+    "targetBaseYear": 2013,
     "planRecs": [
         {
             "text": "Coordinate and conserve shared water supply resources",
@@ -391,7 +391,7 @@
     "yIsPercent": false,
     "yFormat": ",.0f",
     "labFormat": ",.2f",
-    "baseYear": 2013,
+    "targetBaseYear": 2013,
     "planRecs": [
         {
             "text": "Coordinate and conserve shared water supply resources",
@@ -419,7 +419,7 @@
     "yIsPercent": false,
     "yFormat": ",.0f",
     "labFormat": ",.1f",
-    "baseYear": 2015,
+    "targetBaseYear": 2015,
     "planRecs": [
         {
             "text": "Intensify climate mitigation efforts",
@@ -447,7 +447,7 @@
     "yIsPercent": false,
     "yFormat": ".3~s",
     "labFormat": ",.0f",
-    "baseYear": 2017,
+    "targetBaseYear": 2017,
     "planRecs": [
         {
             "text": "Integrate land preservation into strategic growth",
@@ -481,7 +481,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": 2013,
+    "targetBaseYear": 2013,
     "planRecs": [
         {
             "text": "Improve natural resources through the redevelopment process",
@@ -513,7 +513,7 @@
     "yIsPercent": false,
     "yFormat": ",.0f",
     "labFormat": ",.0f",
-    "baseYear": 2012,
+    "targetBaseYear": 2012,
     "planRecs": [
         {
             "text": "Integrate land preservation into strategic growth efforts",
@@ -541,7 +541,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": null,
+    "targetBaseYear": null,
     "planRecs": [
         {
             "text": "Integrate land preservation into strategic growth",
@@ -575,7 +575,7 @@
     "yIsPercent": false,
     "yFormat": ",.0f",
     "labFormat": ",.3f",
-    "baseYear": null,
+    "targetBaseYear": null,
     "planRecs": [
         {
             "text": "Coordinate and conserve shared water supply resources",
@@ -603,7 +603,7 @@
     "yIsPercent": false,
     "yFormat": ",.0f",
     "labFormat": ",.3f",
-    "baseYear": null,
+    "targetBaseYear": null,
     "planRecs": [
         {
             "text": "Coordinate and conserve shared water supply resources",
@@ -631,7 +631,7 @@
     "yIsPercent": false,
     "yFormat": ",.0f",
     "labFormat": ",.0f",
-    "baseYear": 2015,
+    "targetBaseYear": 2015,
     "planRecs": [
         {
             "text": "Develop tax policies that strengthen communities and the region",
@@ -659,7 +659,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".0%",
-    "baseYear": 2018,
+    "targetBaseYear": 2018,
     "planRecs": [
         {
             "text": "Build local government capacity",
@@ -699,7 +699,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": 2016,
+    "targetBaseYear": 2016,
     "planRecs": [
         {
             "text": "Enhance the region's approach to transportation programming",
@@ -727,7 +727,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": 2017,
+    "targetBaseYear": 2017,
     "planRecs": [
         {
             "text": "Enhance the region's approach to transportation programming",
@@ -755,7 +755,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": 2016,
+    "targetBaseYear": 2016,
     "planRecs": [
         {
             "text": "Enhance the region's approach to transportation programming",
@@ -783,7 +783,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": 2016,
+    "targetBaseYear": 2016,
     "planRecs": [
         {
             "text": "Enhance the region's approach to transportation programming",
@@ -811,7 +811,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": 2017,
+    "targetBaseYear": 2017,
     "planRecs": [
         {
             "text": "Enhance the region's approach to transportation programming",
@@ -839,7 +839,7 @@
     "yIsPercent": false,
     "yFormat": ",.0f",
     "labFormat": ",.2f",
-    "baseYear": 2017,
+    "targetBaseYear": 2017,
     "planRecs": [
         {
             "text": "Build regionally significant projects",
@@ -867,7 +867,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": 2017,
+    "targetBaseYear": 2017,
     "planRecs": [
         {
             "text": "Harness technology to improve travel and anticipate future impacts",
@@ -895,7 +895,7 @@
     "yIsPercent": false,
     "yFormat": ".3~s",
     "labFormat": ",.0f",
-    "baseYear": 2016,
+    "targetBaseYear": 2016,
     "planRecs": [
         {
             "text": "Improve travel safety",
@@ -923,7 +923,7 @@
     "yIsPercent": false,
     "yFormat": ".3~s",
     "labFormat": ",.0f",
-    "baseYear": 2017,
+    "targetBaseYear": 2017,
     "planRecs": [
         {
             "text": "Maintain the region's status as North America's freight hub",
@@ -951,7 +951,7 @@
     "yIsPercent": false,
     "yFormat": ",.0f",
     "labFormat": ",.2f",
-    "baseYear": 2017,
+    "targetBaseYear": 2017,
     "planRecs": [
         {
             "text": "Maintain the region's status as North America's freight hub",
@@ -979,7 +979,7 @@
     "yIsPercent": false,
     "yFormat": ".3~s",
     "labFormat": ",.0f",
-    "baseYear": 2016,
+    "targetBaseYear": 2016,
     "planRecs": [
         {
             "text": "Make transit more competitive",
@@ -1013,7 +1013,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": 2017,
+    "targetBaseYear": 2017,
     "planRecs": [
         {
             "text": "Make transit more competitive",
@@ -1071,7 +1071,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": 2015,
+    "targetBaseYear": 2015,
     "planRecs": [
         {
             "text": "Make transit more competitive",
@@ -1107,7 +1107,7 @@
     "yIsPercent": false,
     "yFormat": ",.0f",
     "labFormat": ",.0f",
-    "baseYear": 2018,
+    "targetBaseYear": 2018,
     "planRecs": [
         {
             "text": "Make transit more competitive",
@@ -1151,7 +1151,7 @@
     "yIsPercent": false,
     "yFormat": ",.0f",
     "labFormat": ",.1f",
-    "baseYear": 2018,
+    "targetBaseYear": 2018,
     "planRecs": [
         {
             "text": "Make transit more competitive",
@@ -1179,7 +1179,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": 2017,
+    "targetBaseYear": 2017,
     "planRecs": [
         {
             "text": "Improve travel safety",
@@ -1229,7 +1229,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".0%",
-    "baseYear": null,
+    "targetBaseYear": null,
     "planRecs": [
         {
             "text": "Target infill, infrastructure, and natural area investments",
@@ -1279,7 +1279,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": null,
+    "targetBaseYear": null,
     "planRecs": [
         {
             "text": "Match regional and local housing supply with the type residents want",
@@ -1329,7 +1329,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": null,
+    "targetBaseYear": null,
     "planRecs": [
         {
             "text": "Improve natural resources through the redevelopment process",
@@ -1385,7 +1385,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": null,
+    "targetBaseYear": null,
     "planRecs": [
         {
             "text": "Prioritize pathways for upward economic mobility",
@@ -1437,7 +1437,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": null,
+    "targetBaseYear": null,
     "planRecs": [
         {
             "text": "Conduct regional planning for human capital",
@@ -1489,7 +1489,7 @@
     "yIsPercent": false,
     "yFormat": "$.2~s",
     "labFormat": "$,.0f",
-    "baseYear": null,
+    "targetBaseYear": null,
     "planRecs": [
         {
             "text": "Use collaborative leadership to address regional challenges",
@@ -1541,7 +1541,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "baseYear": null,
+    "targetBaseYear": null,
     "planRecs": [
         {
             "text": "Conduct regional planning for human capital",
@@ -1593,7 +1593,7 @@
     "yIsPercent": false,
     "yFormat": ".2f",
     "labFormat": ".3f",
-    "baseYear": null,
+    "targetBaseYear": null,
     "planRecs": [
         {
             "text": "Pursue regional economic development",
@@ -1645,7 +1645,7 @@
     "yIsPercent": false,
     "yFormat": ".2f",
     "labFormat": ".4f",
-    "baseYear": null,
+    "targetBaseYear": null,
     "planRecs": [
         {
             "text": "Use collaborative leadership to address regional challenges",
@@ -1685,7 +1685,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".0%",
-    "baseYear": null,
+    "targetBaseYear": null,
     "planRecs": [
         {
             "text": "Invest in disinvested areas",
@@ -1731,7 +1731,7 @@
     "yIsPercent": false,
     "yFormat": ".0f",
     "labFormat": ".1f",
-    "baseYear": null,
+    "targetBaseYear": null,
     "planRecs": [
         {
             "text": "Leverage the transportation network to promote inclusive growth",

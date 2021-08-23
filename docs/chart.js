@@ -26,7 +26,7 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
     yIsPercent = chartSpec.yIsPercent,
     yFormat = chartSpec.yFormat,
     labFormat = chartSpec.labFormat,
-    baseYear = d3.timeParse('%Y')(chartSpec.baseYear),
+    targetBaseYear = d3.timeParse('%Y')(chartSpec.targetBaseYear),
     yVars = [],
     yVarNames = [],
     actualColors = [],
@@ -264,7 +264,7 @@ function createChart(chartSpec, chartWidth=776, chartHeight=450) {
           .append('path')
           .attr('class', 'target')
           .attr('style', `stroke: ${targetColor}`)
-          .attr('d', plotLine(data.filter(d => (+d[xVar] == +baseYear || +d[xVar] > +lastActualYear) && d[yVar] != null)));
+          .attr('d', plotLine(data.filter(d => (+d[xVar] == +targetBaseYear || +d[xVar] > +lastActualYear) && d[yVar] != null)));
       };
       svg.select(`#${yVar}`)
         .append('path')
