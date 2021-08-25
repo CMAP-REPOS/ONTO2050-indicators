@@ -16,7 +16,7 @@
   <meta charset="utf-8">
   <title>ON TO 2050 Indicators Dashboard</title>
   <link href="https://www.cmap.illinois.gov/o/cmap-2019-theme/images/favicon.ico" rel="icon">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Noticia+Text:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" type="text/css">
   <link href="./style.css" rel="stylesheet" type="text/css">
 </head>
@@ -45,9 +45,6 @@
       </p>
       <p class="intro">
         <b>Select an indicator to display from the list of ON TO 2050 chapters below.</b>
-
-        (Please be aware that a small number of secondary indicators have been excluded because they currently only have a single observation and no targets,
-        and are therefore not yet suitable for graphing.)
       </p>
       <span class="fas fa-chevron-up" id="hide-intro" title="Hide intro"></span>
       <span class="fas fa-chevron-down" id="show-intro" title="Show intro"></span>
@@ -55,70 +52,54 @@
   </div>
 
   <div class="row g-0">
-    <div id="chapters" class="col-12">
-      <ul id="dropdowns">
-        <li class="drophead" id="community">
-          <a href="javascript:void(0)" class="chapter" id="community">Community</a>
-          <div class="droplist" id="community"></div>
-        </li>
-        <li class="drophead" id="prosperity">
-          <a href="javascript:void(0)" class="chapter" id="prosperity">Prosperity</a>
-          <div class="droplist" id="prosperity"></div>
-        </li>
-        <li class="drophead" id="environment">
-          <a href="javascript:void(0)" class="chapter" id="environment">Environment</a>
-          <div class="droplist" id="environment"></div>
-        </li>
-        <li class="drophead" id="governance">
-          <a href="javascript:void(0)" class="chapter" id="governance">Governance</a>
-          <div class="droplist" id="governance"></div>
-        </li>
-        <li class="drophead" id="mobility">
-          <a href="javascript:void(0)" class="chapter" id="mobility">Mobility</a>
-          <div class="droplist" id="mobility"></div>
-        </li>
-        <li class="drophead" id="inclusive-growth">
-          <a href="javascript:void(0)" class="chapter" id="inclusive-growth">Inclusive Growth</a>
-          <div class="droplist" id="inclusive-growth"></div>
-        </li>
-      </ul>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="col-12" id="chapters">
+        <span class="navbar-brand">Indicators by Chapter</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="-toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav-content">
+          <ul class="navbar-nav mb-0 mb-lg-0" id="dropdowns">
+            <li class="nav-item dropdown" id="community">
+              <a href="#" class="nav-link dropdown-toggle" id="community-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Community</a>
+              <ul class="dropdown-menu" id="community-drop" aria-labelledby="community-toggle"></ul>
+            </li>
+            <li class="nav-item dropdown" id="prosperity">
+              <a href="#" class="nav-link dropdown-toggle" id="prosperity-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Prosperity</a>
+              <ul class="dropdown-menu" id="prosperity-drop" aria-labelledby="prosperity-toggle"></ul>
+            </li>
+            <li class="nav-item dropdown" id="environment">
+              <a href="#" class="nav-link dropdown-toggle" id="environment-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Environment</a>
+              <ul class="dropdown-menu" id="environment-drop" aria-labelledby="environment-toggle"></ul>
+            </li>
+            <li class="nav-item dropdown" id="governance">
+              <a href="#" class="nav-link dropdown-toggle" id="governance-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Governance</a>
+              <ul class="dropdown-menu dropdown-menu-end" id="governance-drop" aria-labelledby="governance-toggle"></ul>
+            </li>
+            <li class="nav-item dropdown" id="mobility">
+              <a href="#" class="nav-link dropdown-toggle" id="mobility-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mobility</a>
+              <ul class="dropdown-menu dropdown-menu-end" id="mobility-drop" aria-labelledby="mobility-toggle"></ul>
+            </li>
+            <li class="nav-item dropdown" id="inclusive-growth">
+              <a href="#" class="nav-link dropdown-toggle" id="inclusive-growth-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Inclusive Growth</a>
+              <ul class="dropdown-menu dropdown-menu-end" id="inclusive-growth-drop" aria-labelledby="inclusive-growth-toggle"></ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </div>
 
   <div class="row g-0">
     <div id="chart" class="col-12"></div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3@5.16.0/dist/d3.min.js" integrity="sha256-Xb6SSzhH3wEPC4Vy3W70Lqh9Y3Du/3KxPqI2JHQSpTw=" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/9111ff38f4.js" crossorigin="anonymous"></script>
   <script src="./chart.js"></script>
   <script>
-    // Use clicking instead of hover for dropdown menus on touchscreens
-    if (window.navigator.maxTouchPoints || 'ontouchstart' in document) {
-      $(document).ready(function() {
-        // Hide dropdown after an indicator is selected
-        $('a.indicator').click(function(event) {
-          event.stopPropagation();
-          $('div.droplist').hide();
-        });
-        // Toggle dropdown when chapter is clicked, hide all others
-        $('li.drophead').click(function(event) {
-          event.stopPropagation();
-          $(this).children('div.droplist').toggle();
-          $('li.drophead').not(this).children('div.droplist').hide();
-        });
-        // Hide all dropdowns when another part of page is clicked
-        $(document).click(function() {
-          $('div.droplist').hide();
-        });
-      });
-    } else {
-      // Show dropdowns on hover for non-touch devices
-      $('head').append(
-        '<style>li.drophead:hover > div.droplist { display: block; }</style>'
-      );
-    };
 
     // Show/hide intro paragraphs when arrow icons are clicked
     $('span#hide-intro,span#show-intro').css('cursor', 'pointer');
@@ -136,16 +117,16 @@
 
     // Read JSON file containing chart specifications and populate dropdowns
     const jsonPath = './chart_specs.json';
-    //const jsonPath = 'https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/docs/chart_specs.json';
     let chartId = window.location.hash.substr(1);
     d3.json(jsonPath).then(json => {
 
       // Dynamically populate chapter dropdowns with indicators in JSON
       json.forEach(d => {
-        d3.select(`ul#dropdowns > li#${d.chapterId} > div.droplist`)
+        d3.select(`ul#dropdowns > li#${d.chapterId} > ul`)
+          .append('li')
           .append('a')
           .attr('href', `#${d.chartId}`)
-          .attr('class', `indicator ${d.chapterId}`)
+          .attr('class', `dropdown-item indicator ${d.chapterId}`)
           .attr('id', `${chartId}`)
           .text(d.mainTitle);
       });

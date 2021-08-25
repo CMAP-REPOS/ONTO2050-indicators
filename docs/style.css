@@ -36,7 +36,8 @@ h1#page-title {
   margin: 24px auto 12px auto;
   font: 600 30px 'Open Sans';
 }
-div#intro { max-width: 800px; }
+div#intro,
+div#chapters { max-width: 800px; }
 p.intro {
   font: 400 15px 'Noticia Text';
   line-height: 1.6;
@@ -50,53 +51,37 @@ span.fas {
 span.fas:hover { color: #9daab3; }
 
 /* Indicator selection dropdowns */
-div#chapters {
-  max-width: 798px;
-  position: relative;
+.navbar-brand {
+  font: 600 20px 'Open Sans';
 }
-
-ul#dropdowns {
-  list-style-type: none;
+.navbar-nav {
   margin: 12px auto 24px auto;
-  padding: 0;
-  overflow: hidden;
 }
-
-li.drophead {
-  width: 16.6666%;
-  float: left;
-  display: inline-block;
+.nav-item {
   background-color: #ecf0f2;
 }
-li.drophead > a.chapter {
+.nav-item .nav-link {
   font: 600 15px 'Open Sans';
   color: #181f22;
   text-decoration: none;
-  display: inline-block;
   text-align: center;
   padding: 8px 0px;
 }
-li.drophead:hover > a.chapter { color: #ffffff; }
-/*li.drophead:hover > div.droplist { display: block; }*/ /* Add with JS for for non-touch devices only! */
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover { color: #ffffff; }
 
-div.droplist {
-  display: none;
-  position: absolute;
+.dropdown-menu {
   background-color: #f5f7f8;
   box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.2);
-  z-index: 1;
 }
-div.droplist#governance,
-div.droplist#mobility,
-div.droplist#inclusive-growth {
-  right: 0;
-}
-div.droplist > a.indicator {
+.dropdown-menu > li > a.indicator {
   font-size: 14px;
   color: #181f22;
   text-decoration: none;
   text-align: left;
   display: block;
+  width: 450px;
+  white-space: normal;
   padding: 8px 12px;
 }
 
@@ -107,12 +92,12 @@ li#governance:hover { background-color: #009ccc; }
 li#mobility:hover { background-color: #6300cc; }
 li#inclusive-growth:hover { background-color: #cc0000; }
 
-div.droplist > a.community:hover { background-color: #f8ebdf; }
-div.droplist > a.prosperity:hover { background-color: #f8f4df; }
-div.droplist > a.environment:hover { background-color: #eef8df; }
-div.droplist > a.governance:hover { background-color: #dff2f8; }
-div.droplist > a.mobility:hover { background-color: #ebdff8; }
-div.droplist > a.inclusive-growth:hover { background-color: #f8dfdf; }
+a.community:hover { background-color: #f8ebdf; }
+a.prosperity:hover { background-color: #f8f4df; }
+a.environment:hover { background-color: #eef8df; }
+a.governance:hover { background-color: #dff2f8; }
+a.mobility:hover { background-color: #ebdff8; }
+a.inclusive-growth:hover { background-color: #f8dfdf; }
 
 /* Chart, legend, footnote */
 div#chart {
