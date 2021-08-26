@@ -77,8 +77,20 @@ span.fas:hover { color: #9daab3; }
   text-align: center;
   padding: 4px 8px;
 }
-/* .navbar-light .navbar-nav .nav-link:focus, */
+.navbar-light .navbar-nav .nav-link:focus,
 .navbar-light .navbar-nav .nav-link:hover { color: #ffffff; }
+.navbar-light .navbar-nav #community-toggle.nav-link:focus,
+.navbar-light .navbar-nav #community-toggle.nav-link:hover { background-color: #cc5f00; }
+.navbar-light .navbar-nav #prosperity-toggle.nav-link:focus,
+.navbar-light .navbar-nav #prosperity-toggle.nav-link:hover { background-color: #ac8c00; }
+.navbar-light .navbar-nav #environment-toggle.nav-link:focus,
+.navbar-light .navbar-nav #environment-toggle.nav-link:hover { background-color: #67ac00; }
+.navbar-light .navbar-nav #governance-toggle.nav-link:focus,
+.navbar-light .navbar-nav #governance-toggle.nav-link:hover { background-color: #009ccc; }
+.navbar-light .navbar-nav #mobility-toggle.nav-link:focus,
+.navbar-light .navbar-nav #mobility-toggle.nav-link:hover { background-color: #8436d8; }
+.navbar-light .navbar-nav #inclusive-growth-toggle.nav-link:focus,
+.navbar-light .navbar-nav #inclusive-growth-toggle.nav-link:hover { background-color: #d83636; }
 
 .dropdown-menu {
   background-color: #f5f7f8;
@@ -96,17 +108,10 @@ span.fas:hover { color: #9daab3; }
   padding: 8px 12px;
 }
 
-li#community:hover { background-color: #cc5f00; }
-li#prosperity:hover { background-color: #cca600; }
-li#environment:hover { background-color: #7acc00; }
-li#governance:hover { background-color: #009ccc; }
-li#mobility:hover { background-color: #6300cc; }
-li#inclusive-growth:hover { background-color: #cc0000; }
-
-a.community:hover { background-color: #f8ebdf; }
-a.prosperity:hover { background-color: #f8f4df; }
-a.environment:hover { background-color: #eef8df; }
-a.governance:hover { background-color: #dff2f8; }
+a.community:hover { background-color: #efc9a7; }
+a.prosperity:hover { background-color: #efe1a7; }
+a.environment:hover { background-color: #d2efa7; }
+a.governance:hover { background-color: #a7deef; }
 a.mobility:hover { background-color: #ebdff8; }
 a.inclusive-growth:hover { background-color: #f8dfdf; }
 
