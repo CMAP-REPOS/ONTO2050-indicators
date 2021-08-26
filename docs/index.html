@@ -22,76 +22,80 @@
 </head>
 <body>
 
-  <div class="row g-0">
-    <div id="intro" class="col-12">
-      <h1 id="page-title">ON TO 2050 Indicators Dashboard</h1>
-      <p class="intro">
-        The <a href="https://www.cmap.illinois.gov/" target="_blank">Chicago Metropolitan Agency for Planning (CMAP)</a> and its partners developed and are
-        now implementing <a href="https://www.cmap.illinois.gov/onto2050" target="_blank">ON TO 2050</a>, a long-range plan to help communities in the Chicago
-        region implement strategies that address transportation, housing, economic development, open space, the environment, and other quality-of-life issues.
+  <div class="container">
 
-        A series of <a href="https://www.cmap.illinois.gov/2050/indicators" target="_blank">indicators</a> were chosen to track implementation progress toward
-        specific recommendations in the plan.
+    <div class="row">
+      <div id="intro" class="col-12">
+        <h1 id="page-title">ON TO 2050 Indicators Dashboard</h1>
+        <p class="intro">
+          The <a href="https://www.cmap.illinois.gov/" target="_blank">Chicago Metropolitan Agency for Planning (CMAP)</a> and its partners developed and are
+          now implementing <a href="https://www.cmap.illinois.gov/onto2050" target="_blank">ON TO 2050</a>, a long-range plan to help communities in the Chicago
+          region implement strategies that address transportation, housing, economic development, open space, the environment, and other quality-of-life issues.
 
-        This website is a simple dashboard for visualizing the most current data for each of those indicators.
+          A series of <a href="https://www.cmap.illinois.gov/2050/indicators" target="_blank">indicators</a> were chosen to track implementation progress toward
+          specific recommendations in the plan.
 
-        The raw data (in CSV format) and dashboard code is <a href="https://github.com/CMAP-REPOS/ONTO2050-indicators" target="_blank">published on GitHub</a>.
+          This website is a simple dashboard for visualizing the most current data for each of those indicators.
 
-        Detailed information about each indicator (underlying datasets, methodology, etc.) has been compiled in the
-        <a href="https://www.cmap.illinois.gov/documents/10180/905585/FINAL+Indicators+Appendix.pdf/ae234d88-74c0-7a94-f70d-ea350c999810" target="_blank">ON TO
-        2050 Indicators Appendix</a>.
+          The raw data (in CSV format) and dashboard code is <a href="https://github.com/CMAP-REPOS/ONTO2050-indicators" target="_blank">published on GitHub</a>.
 
-        Please submit any questions or feedback via <a href="https://www.cmap.illinois.gov/contact" target="_blank">this form</a>.
-      </p>
-      <p class="intro">
-        <b>Select an indicator to display from the list of ON TO 2050 chapters below.</b>
-      </p>
-      <span class="fas fa-chevron-up" id="hide-intro" title="Hide intro"></span>
-      <span class="fas fa-chevron-down" id="show-intro" title="Show intro"></span>
-    </div>
-  </div>
+          Detailed information about each indicator (underlying datasets, methodology, etc.) has been compiled in the
+          <a href="https://www.cmap.illinois.gov/documents/10180/905585/FINAL+Indicators+Appendix.pdf/ae234d88-74c0-7a94-f70d-ea350c999810" target="_blank">ON TO
+          2050 Indicators Appendix</a>.
 
-  <div class="row g-0">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="col-12" id="chapters">
-        <span class="navbar-brand">Indicators by Chapter</span>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="-toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="nav-content">
-          <ul class="navbar-nav mb-0 mb-lg-0" id="dropdowns">
-            <li class="nav-item dropdown" id="community">
-              <a href="#" class="nav-link dropdown-toggle" id="community-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Community</a>
-              <ul class="dropdown-menu" id="community-drop" aria-labelledby="community-toggle"></ul>
-            </li>
-            <li class="nav-item dropdown" id="prosperity">
-              <a href="#" class="nav-link dropdown-toggle" id="prosperity-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Prosperity</a>
-              <ul class="dropdown-menu" id="prosperity-drop" aria-labelledby="prosperity-toggle"></ul>
-            </li>
-            <li class="nav-item dropdown" id="environment">
-              <a href="#" class="nav-link dropdown-toggle" id="environment-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Environment</a>
-              <ul class="dropdown-menu" id="environment-drop" aria-labelledby="environment-toggle"></ul>
-            </li>
-            <li class="nav-item dropdown" id="governance">
-              <a href="#" class="nav-link dropdown-toggle" id="governance-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Governance</a>
-              <ul class="dropdown-menu dropdown-menu-end" id="governance-drop" aria-labelledby="governance-toggle"></ul>
-            </li>
-            <li class="nav-item dropdown" id="mobility">
-              <a href="#" class="nav-link dropdown-toggle" id="mobility-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mobility</a>
-              <ul class="dropdown-menu dropdown-menu-end" id="mobility-drop" aria-labelledby="mobility-toggle"></ul>
-            </li>
-            <li class="nav-item dropdown" id="inclusive-growth">
-              <a href="#" class="nav-link dropdown-toggle" id="inclusive-growth-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Inclusive Growth</a>
-              <ul class="dropdown-menu dropdown-menu-end" id="inclusive-growth-drop" aria-labelledby="inclusive-growth-toggle"></ul>
-            </li>
-          </ul>
-        </div>
+          Please submit any questions or feedback via <a href="https://www.cmap.illinois.gov/contact" target="_blank">this form</a>.
+        </p>
+        <p class="intro">
+          <b>Select an indicator to display from the list of ON TO 2050 chapters below.</b>
+        </p>
+        <span class="fas fa-chevron-up" id="hide-intro" title="Hide intro"></span>
+        <span class="fas fa-chevron-down" id="show-intro" title="Show intro"></span>
       </div>
-    </nav>
-  </div>
+    </div>
 
-  <div class="row g-0">
-    <div id="chart" class="col-12"></div>
+    <div class="row justify-content-evenly">
+      <nav class="navbar navbar-expand-md navbar-light">
+        <div id="chapters" class="col-12">
+          <span class="navbar-brand align-middle">Indicators by Chapter</span>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="-toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="nav-content">
+            <ul class="navbar-nav mb-0 mb-lg-0" id="dropdowns">
+              <li class="nav-item dropdown" id="community">
+                <a href="#" class="nav-link dropdown-toggle" id="community-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Community</a>
+                <ul class="dropdown-menu" id="community-drop" aria-labelledby="community-toggle"></ul>
+              </li>
+              <li class="nav-item dropdown" id="prosperity">
+                <a href="#" class="nav-link dropdown-toggle" id="prosperity-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Prosperity</a>
+                <ul class="dropdown-menu" id="prosperity-drop" aria-labelledby="prosperity-toggle"></ul>
+              </li>
+              <li class="nav-item dropdown" id="environment">
+                <a href="#" class="nav-link dropdown-toggle" id="environment-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Environment</a>
+                <ul class="dropdown-menu" id="environment-drop" aria-labelledby="environment-toggle"></ul>
+              </li>
+              <li class="nav-item dropdown" id="governance">
+                <a href="#" class="nav-link dropdown-toggle" id="governance-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Governance</a>
+                <ul class="dropdown-menu dropdown-menu-end" id="governance-drop" aria-labelledby="governance-toggle"></ul>
+              </li>
+              <li class="nav-item dropdown" id="mobility">
+                <a href="#" class="nav-link dropdown-toggle" id="mobility-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mobility</a>
+                <ul class="dropdown-menu dropdown-menu-end" id="mobility-drop" aria-labelledby="mobility-toggle"></ul>
+              </li>
+              <li class="nav-item dropdown" id="inclusive-growth">
+                <a href="#" class="nav-link dropdown-toggle" id="inclusive-growth-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Inclusive Growth</a>
+                <ul class="dropdown-menu dropdown-menu-end" id="inclusive-growth-drop" aria-labelledby="inclusive-growth-toggle"></ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="row">
+      <div id="chart" class="col-12"></div>
+    </div>
+
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>

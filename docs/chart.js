@@ -4,7 +4,7 @@ function clearChart() {
   return;
 }
 
-function createChart(chartSpec, chartWidth=776, chartHeight=450) {
+function createChart(chartSpec, chartWidth=960, chartHeight=500) {
   // Build a chart in the #chart div from the supplied JSON specification
   //console.log(chartSpec);
   /*
