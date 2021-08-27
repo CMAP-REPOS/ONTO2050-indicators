@@ -10,7 +10,7 @@ JavaScript functions for dynamically generating SVG charts from the indicator CS
 
 JSON file defining the specifications used by the *chart.js* functions to generate the chart for each individual indicator. Contains a single array, where each element is an indicator-specific object with the following structure:
 
-```json
+```
 {
     "chartId": (string) Unique indicator ID,
     "chapterId": (string) Indicator's chapter ID,
