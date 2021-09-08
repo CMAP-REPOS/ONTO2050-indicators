@@ -27,6 +27,7 @@ function createChart(chartSpec, chartWidth=960, chartHeight=500) {
     yFormat = chartSpec.yFormat,
     labFormat = chartSpec.labFormat,
     targetBaseYear = d3.timeParse('%Y')(chartSpec.targetBaseYear),
+    targetType = chartSpec.targetType,
     yVars = [],
     yVarNames = [],
     actualColors = [],
@@ -113,7 +114,7 @@ function createChart(chartSpec, chartWidth=960, chartHeight=500) {
           .attr('class', 'legend-item target')
           .attr('id', `${yVar}`)
           .attr('style', `border-left: 18px solid ${targetColor}`)
-          .text(`${yVarName} (target)`);
+          .text(`${yVarName} (target ${targetType})`);
       } else {
         legend.append('div')
           .attr('class', 'legend-item actual')
@@ -124,7 +125,7 @@ function createChart(chartSpec, chartWidth=960, chartHeight=500) {
           .attr('class', 'legend-item target')
           .attr('id', `${yVar}`)
           .attr('style', `border-left: 18px solid ${targetColor}`)
-          .text('Target');
+          .text(`Target ${targetType}`);
       };
     } else {
       if (yVarName) {
@@ -285,17 +286,23 @@ function createChart(chartSpec, chartWidth=960, chartHeight=500) {
         .append('title')  // Very basic tooltips
         .text(d => {
           let yearText = `${formatYear(d[xVar])}`;
+          let tgtTypeText = "";
           if (d[xVar] > lastActualYear) {
             yearText = yearText + ' target';
+            if (targetType == "minimum") {
+              tgtTypeText = " or higher"
+            } else if (targetType == "maximum") {
+              tgtTypeText = " or lower"
+            };
           };
           if (yVarName === null) {
-            return `${yearText}: ${labFormatter(d[yVar])}`;
+            return `${yearText}: ${labFormatter(d[yVar])}${tgtTypeText}`;
           } else {
-            return `${yVarName}, ${yearText}: ${labFormatter(d[yVar])}`;
+            return `${yVarName}, ${yearText}: ${labFormatter(d[yVar])}${tgtTypeText}`;
           };
         });
 
-      // Label the points
+      // Label the points -- needs collision detection on charts with multiple lines
       /*let labBuffer = Math.abs(yLims[1] - yLims[0]) * 0.02;
       svg.select(`#${yVar}`)
         .selectAll(`text`)

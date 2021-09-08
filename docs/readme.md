@@ -30,11 +30,12 @@ JSON file defining the specifications used by the *chart.js* functions to genera
             (OPTIONAL) Additional specifications for other variables
         }
     ],
-    "yRangeManual": (array or null) Try null first and if the default y-axis range is unacceptable specify an array of the minimum and maximum desired values,
+    "yRangeManual": (numeric array or null) Try null first and if the default y-axis range is unacceptable specify an array of the minimum and maximum desired values,
     "yIsPercent": (true or false) true if yVar values represent percentages,
     "yFormat": (string or null) Number format spec for y-axis labels to pass to d3.format(),
     "labFormat": (string or null) Number format spec for data point labels to pass to d3.format(),
     "targetBaseYear": (number or null) Year of latest observed data available when the targets were established,
+    "targetType": ("minimum", "maximum", or null) Should targets be viewed as minimums or maximums?,
     "planRecs": [
         {
             "text": (string) Name of related ON TO 2050 recommendation,
