@@ -6,6 +6,8 @@ Many of the region’s water resources are not meeting all goals of the Clean Wa
 
 Research has shown that small watersheds with less than 10 percent impervious cover tend to be associated with healthy streams. Further increases of impervious cover (up to 25 percent) can lead to impacted streams that could be restored with intervention. Small watersheds with increases in impervious coverage (up to 60 percent) are considered non-supporting, and when impervious coverage exceeds 60 percent, full restoration of urban drainage systems to pre-development habitat quality may not be possible.
 
+**Note:** USGS has retroatively revised the NLCD dataset on which this indicator is based, which has significantly increased the impervious coverage for all years. The ON TO 2050 targets were based on an earlier version of NLCD, which showed significantly lower impervious coverage in the region. These targets will be revised to account for the new baseline data when ON TO 2050 is updated.
+
 ### watersheds-low-imperviousness.csv
 
 Header | Definition
