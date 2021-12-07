@@ -2,8 +2,6 @@
 
 This indicator measures the total number of acres of impervious surfaces in the region; it is the entire amount of hard surface (such as buildings, sidewalks and streets) in the landscape. Imperviousness is an important environmental indicator because it is negatively associated with various measures of the biological health and physical integrity of surface waters.
 
-**Note:** USGS has retroatively revised the NLCD dataset on which this indicator is based, which has significantly increased the impervious coverage for all years. The ON TO 2050 targets were based on an earlier version of NLCD, which showed significantly lower impervious coverage in the region. These targets will be revised to account for the new baseline data when ON TO 2050 is updated.
-
 ### impervious-area.csv
 
 Header | Definition
