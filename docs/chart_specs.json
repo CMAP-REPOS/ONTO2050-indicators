@@ -752,7 +752,7 @@
             "targetColor": "#aa72e5"
         }
     ],
-    "yRangeManual": [0, 0.2],
+    "yRangeManual": [0, 0.26],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
