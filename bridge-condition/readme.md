@@ -12,4 +12,4 @@ Header | Definition
 
 **Source:** CMAP analysis of the Federal Highway Administration's National Bridge Inventory (NBI)
 
-**Geography:** Seven-county CMAP region, plus Aux Sable Township in Grundy County and Sandwich and Somonauk Townships in DeKalb County
+**Geography:** Seven-county CMAP region

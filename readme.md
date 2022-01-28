@@ -18,6 +18,7 @@ Folder | Indicator(s)
 ---|---
 [`access-to-parks`](access-to-parks) | &bull; Access to Parks<br />&bull; *Access to Parks in Economically Disconnected Areas*
 [`board-member-training`](board-member-training) | &bull; Local Governments That Train Appointed Board Members
+[`bridge-condition`](bridge-condition) | &bull; Percentage of Roadway Bridge Area in “Poor” Condition
 [`commute-time-race-ethnicity`](commute-time-race-ethnicity) | &bull; *Average Journey to Work Time by Race and Ethnicity*
 [`conserved-land-acres`](conserved-land-acres) | &bull; Acres of Conserved Land<br />&bull; *Protected Share of CMAP Conservation Areas Layer*
 [`educational-attainment`](educational-attainment) | &bull; Educational Attainment<br />&bull; *Educational Attainment by Race and Ethnicity*
@@ -31,11 +32,10 @@ Folder | Indicator(s)
 [`infill-development`](infill-development) | &bull; Share of New Development Occurring in Highly and Partially Infill Supportive Areas<br />&bull; *Share of New Infill Development Occurring in Economically Disconnected Areas*
 [`manufacturing-exports`](manufacturing-exports) | &bull; *Manufacturing Exports*
 [`mean-household-income`](mean-household-income) | &bull; *Change in Mean Household Income Since 2006 by Quintile*
-[`nhs-bridges`](nhs-bridges) | &bull; Percentage of NHS Bridge Area in Poor Condition
-[`nhs-pavement`](nhs-pavement) | &bull; Percentage of NHS Pavement in Poor Condition
 [`non-residential-market-value`](non-residential-market-value) | &bull; *Change in Non-Residential Market Value in Disinvested and Economically Disconnected Areas*
 [`non-single-occupancy-modes`](non-single-occupancy-modes) | &bull; Percent of Trips to Work via Non-SOV Modes
 [`patenting-activity`](patenting-activity) | &bull; Patenting Activity
+[`pavement-condition`](pavement-condition) | &bull; Percentage of Highway Pavement in “Not Acceptable” Condition
 [`population-jobs-transit-availability`](population-jobs-transit-availability) | &bull; Population and Jobs with at Least Moderately High Transit Availability
 [`preventable-hospitalizations-race-ethnicity`](preventable-hospitalizations-race-ethnicity) | &bull; *Preventable Hospitalizations by Race and Ethnicity*
 [`rail-crossing-delay`](rail-crossing-delay) | &bull; Motorist Delay at Highway-Rail Grade Crossings

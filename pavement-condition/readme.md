@@ -7,12 +7,11 @@ Maintaining the existing transportation network and improving state of good repa
 Header | Definition
 -------|-----------
 `YEAR` | Year of observation
-`PCT_PAVEMENT_NA_INTER` | Percentage of Interstate NHS lane miles in “not acceptable” condition
-`PCT_PAVEMENT_NA_NHS` | Percentage of non-Interstate NHS lane miles in “not acceptable” condition
-`PCT_PAVEMENT_NA_IDOT` | Percentage of non-NHS IDOT-jurisdiction lane miles in “not acceptable” condition
-`PCT_PAVEMENT_NA_ALL` | Percentage of all IDOT-jurisdiction lane miles (NHS and non-NHS) in “not acceptable” condition
+`PCT_NHS_PAVEMENT_POOR_INTER` | Percentage of Interstate NHS lane miles in “poor” condition
+`PCT_NHS_PAVEMENT_POOR_NONINT` | Percentage of non-Interstate NHS lane miles in “poor” condition
+`PCT_NHS_PAVEMENT_POOR_ALL` | Percentage of all NHS lane miles (Interstate and non-Interstate) in “poor” condition
 `ACTUAL_OR_TARGET` | `Actual` if the record is from observed data; `Target` if it is an ON TO 2050 target
 
 **Source:** CMAP analysis of the Federal Highway Administration's Highway Performance Monitoring System
 
-**Geography:** Seven-county CMAP region, plus Aux Sable Township in Grundy County and Sandwich and Somonauk Townships in DeKalb County
+**Geography:** Seven-county CMAP region

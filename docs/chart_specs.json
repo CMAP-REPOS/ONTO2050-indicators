@@ -690,31 +690,37 @@
     ]
 },
 {
-    "chartId": "nhs-pavement",
+    "chartId": "pavement-condition",
     "chapterId": "mobility",
-    "mainTitle": "Percentage of NHS pavement in poor condition",
+    "mainTitle": "Percentage of Highway Pavement in “Not Acceptable” Condition",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage of NHS lane-miles",
-    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/nhs-pavement/nhs-pavement.csv",
+    "yTitle": "Percentage of lane miles",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/pavement-condition/pavement-condition.csv",
     "yVars": [
         {
-            "name": "Interstate + non-Interstate",
-            "yVar": "PCT_NHS_PAVEMENT_POOR_ALL",
+            "name": "All IDOT-jurisdiction roads",
+            "yVar": "PCT_PAVEMENT_NA_ALL",
             "actualColor": "#44008c",
             "targetColor": "#aa72e5"
         },
         {
-            "name": "Interstate only",
-            "yVar": "PCT_NHS_PAVEMENT_POOR_INTER",
+            "name": "Interstate NHS roads",
+            "yVar": "PCT_PAVEMENT_NA_INTER",
             "actualColor": "#cca600",
-            "targetColor": "#e5d072"
+            "targetColor": null
         },
         {
-            "name": "Non-Interstate only",
-            "yVar": "PCT_NHS_PAVEMENT_POOR_NONINT",
+            "name": "Non-Interstate NHS roads",
+            "yVar": "PCT_PAVEMENT_NA_NHS",
             "actualColor": "#7acc00",
-            "targetColor": "#b7e572"
+            "targetColor": null
+        },
+        {
+            "name": "Non-NHS IDOT-jurisdiction roads",
+            "yVar": "PCT_PAVEMENT_NA_IDOT",
+            "actualColor": "#cc5f00",
+            "targetColor": null
         }
     ],
     "yRangeManual": null,
@@ -731,22 +737,22 @@
     ]
 },
 {
-    "chartId": "nhs-bridges",
+    "chartId": "bridge-condition",
     "chapterId": "mobility",
-    "mainTitle": "Percentage of NHS bridge area in poor condition",
+    "mainTitle": "Percentage of Roadway Bridge Area in “Poor” Condition",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage of NHS bridge area",
-    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/nhs-bridges/nhs-bridges.csv",
+    "yTitle": "Percentage of bridge area",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/bridge-condition/bridge-condition.csv",
     "yVars": [
         {
             "name": null,
-            "yVar": "PCT_NHS_BRIDGE_AREA_POOR",
+            "yVar": "PCT_BRIDGE_AREA_POOR",
             "actualColor": "#44008c",
             "targetColor": "#aa72e5"
         }
     ],
-    "yRangeManual": [0, 0.14],
+    "yRangeManual": [0, 0.2],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
