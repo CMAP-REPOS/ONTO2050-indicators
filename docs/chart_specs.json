@@ -2,10 +2,10 @@
 {
     "chartId": "infill-development",
     "chapterId": "community",
-    "mainTitle": "Share of new development occurring in highly and partially infill supportive areas",
+    "mainTitle": "Share of post-2015 development occurring in infill supportive areas",
     "xTitle": "Year",
     "xVar": "END_YEAR",
-    "yTitle": "Percentage of all development since 2015",
+    "yTitle": "Percentage of all post-2015 development",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/infill-development/infill-development.csv",
     "yVars": [
         {
@@ -692,7 +692,7 @@
 {
     "chartId": "pavement-condition",
     "chapterId": "mobility",
-    "mainTitle": "Percentage of Highway Pavement in “Not Acceptable” Condition",
+    "mainTitle": "Percentage of highway pavement in “not acceptable” condition",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "Percentage of lane miles",
@@ -739,7 +739,7 @@
 {
     "chartId": "bridge-condition",
     "chapterId": "mobility",
-    "mainTitle": "Percentage of Roadway Bridge Area in “Poor” Condition",
+    "mainTitle": "Percentage of roadway bridge area in “poor” condition",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "Percentage of bridge area",
@@ -1131,15 +1131,15 @@
 {
     "chartId": "traffic-signals",
     "chapterId": "mobility",
-    "mainTitle": "Number of traffic signals with transit priority and/or queue jumping",
+    "mainTitle": "Number of intersections with transit priority or queue jumping",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Number of traffic signals",
+    "yTitle": "Number of intersections",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/traffic-signals/traffic-signals.csv",
     "yVars": [
         {
             "name": null,
-            "yVar": "SIGNALS_TP_QJ",
+            "yVar": "INTERSECTIONS_TP_QJ",
             "actualColor": "#44008c",
             "targetColor": "#aa72e5"
         }
@@ -1238,10 +1238,10 @@
 {
     "chartId": "infill-development-in-edas",
     "chapterId": "inclusive-growth",
-    "mainTitle": "Share of new infill development occurring in Economically Disconnected Areas",
+    "mainTitle": "Share of post-2015 infill development occurring in disinvested and economically disconnected areas",
     "xTitle": "Year",
     "xVar": "END_YEAR",
-    "yTitle": "Percentage of infill development since 2015",
+    "yTitle": "Percentage of post-2015 infill development",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/infill-development/infill-development-in-edas.csv",
     "yVars": [
         {
@@ -1340,7 +1340,7 @@
 {
     "chartId": "access-to-parks-in-edas",
     "chapterId": "inclusive-growth",
-    "mainTitle": "Access to parks in Economically Disconnected Areas",
+    "mainTitle": "Access to parks in disinvested and economically disconnected areas",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "Percentage of region's population",

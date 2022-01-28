@@ -16,7 +16,7 @@ This repository's `docs` folder includes code for a [dashboard website](https://
 
 Folder | Indicator(s)
 ---|---
-[`access-to-parks`](access-to-parks) | &bull; Access to Parks<br />&bull; *Access to Parks in Economically Disconnected Areas*
+[`access-to-parks`](access-to-parks) | &bull; Access to Parks<br />&bull; *Access to Parks in Disinvested and Economically Disconnected Areas*
 [`board-member-training`](board-member-training) | &bull; Local Governments That Train Appointed Board Members
 [`bridge-condition`](bridge-condition) | &bull; Percentage of Roadway Bridge Area in “Poor” Condition
 [`commute-time-race-ethnicity`](commute-time-race-ethnicity) | &bull; *Average Journey to Work Time by Race and Ethnicity*
@@ -29,7 +29,7 @@ Folder | Indicator(s)
 [`housing-transportation-percent-income`](housing-transportation-percent-income) | &bull; Percentage of Income Spent on Housing and Transportation by Moderate- and Low-Income Residents<br />&bull; *Percent of Income Spent on Housing and Transportation by Moderate- and Low-Income Households by Race and Ethnicity*
 [`impervious-area`](impervious-area) | &bull; Acres of Impervious Area
 [`income-inequality`](income-inequality) | &bull; *Gini Coefficient*
-[`infill-development`](infill-development) | &bull; Share of New Development Occurring in Highly and Partially Infill Supportive Areas<br />&bull; *Share of New Infill Development Occurring in Economically Disconnected Areas*
+[`infill-development`](infill-development) | &bull; Share of Post-2015 Development Occurring in Infill Supportive Areas<br />&bull; *Share of Post-2015 Infill Development Occurring in Disinvested and Economically Disconnected Areas*
 [`manufacturing-exports`](manufacturing-exports) | &bull; *Manufacturing Exports*
 [`mean-household-income`](mean-household-income) | &bull; *Change in Mean Household Income Since 2006 by Quintile*
 [`non-residential-market-value`](non-residential-market-value) | &bull; *Change in Non-Residential Market Value in Disinvested and Economically Disconnected Areas*
@@ -45,7 +45,7 @@ Folder | Indicator(s)
 [`stem-employment`](stem-employment) | &bull; Employment in STEM Occupations
 [`terminal-carload-transit`](terminal-carload-transit) | &bull; Chicago Terminal Carload Transit Time
 [`traffic-fatalities`](traffic-fatalities) | &bull; Number of Traffic Fatalities
-[`traffic-signals`](traffic-signals) | &bull; Number of Traffic Signals with Transit Priority and/or Queue Jumping
+[`traffic-signals`](traffic-signals) | &bull; Number of Intersections with Transit Priority or Queue Jumping
 [`transit-preference`](transit-preference) | &bull; Miles of Roadway with Transit Preference
 [`transit-repair`](transit-repair) | &bull; Transit Asset State of Good Repair
 [`unemployment-race-ethnicity`](unemployment-race-ethnicity) | &bull; *Unemployment by Race and Ethnicity*
