@@ -37,7 +37,6 @@ Folder | Indicator(s)
 [`patenting-activity`](patenting-activity) | &bull; Patenting Activity
 [`pavement-condition`](pavement-condition) | &bull; Percentage of Highway Pavement in “Not Acceptable” Condition
 [`population-jobs-transit-availability`](population-jobs-transit-availability) | &bull; Population and Jobs with at Least Moderately High Transit Availability
-[`preventable-hospitalizations-race-ethnicity`](preventable-hospitalizations-race-ethnicity) | &bull; *Preventable Hospitalizations by Race and Ethnicity*
 [`rail-crossing-delay`](rail-crossing-delay) | &bull; Motorist Delay at Highway-Rail Grade Crossings
 [`regional-trails`](regional-trails) | &bull; Percentage of Regional Greenways and Trails Plan Completed
 [`reliable-interstate-travel`](reliable-interstate-travel) | &bull; Percentage of Person-Miles Traveled on the Interstate System with Reliable Travel Time
