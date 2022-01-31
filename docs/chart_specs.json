@@ -1343,7 +1343,7 @@
     "mainTitle": "Access to parks in disinvested and economically disconnected areas",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage of region's population",
+    "yTitle": "Percentage of population",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/access-to-parks/access-to-parks-in-edas.csv",
     "yVars": [
         {
