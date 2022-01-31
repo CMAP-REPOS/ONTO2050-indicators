@@ -13,6 +13,5 @@ Header | Definition
 `PCT_PAVEMENT_NA_ALL` | Percentage of all IDOT-jurisdiction lane miles (NHS and non-NHS) in “not acceptable” condition
 `ACTUAL_OR_TARGET` | `Actual` if the record is from observed data; `Target` if it is an ON TO 2050 target
 
-**Source:** CMAP analysis of the Federal Highway Administration's Highway Performance Monitoring System
-
+**Source:** CMAP analysis of IDOT's Illinois Roadway Information System (IRIS)
 **Geography:** Seven-county CMAP region, plus Aux Sable Township in Grundy County and Sandwich and Somonauk Townships in DeKalb County
