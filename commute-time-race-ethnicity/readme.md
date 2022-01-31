@@ -2,8 +2,6 @@
 
 This indicator measures the average one-way commute time of workers in the Chicago metropolitan statistical area by race and ethnicity, inclusive of all modes of transportation. Longer commute times decrease the productivity of workers and hinder their ability to connect to available and attainable employment opportunities. Local and regional planning should emphasize improving commute times and options for residents facing long commutes by providing high-quality transportation options that are cost efficient and increase residential access to fruitful economic opportunities. This will require shifts in transportation, land use, and economic development planning and policy.
 
-**Note:** The methodology for this indicator has been slightly modified from what was included in ON TO 2050. The original version used the [IPUMS USA](https://usa.ipums.org/usa) version of the ACS 5-year sample data, whereas it now uses the Census Bureau version of the ACS 1-year sample PUMS. The "other race" and "two or more races" categories have been dropped, as they were based on a small number of observations and therefore fluctuated quite dramatically from year to year.
-
 ### commute-time-race-ethnicity.csv
 
 Header | Definition
