@@ -10,13 +10,13 @@
     "yVars": [
         {
             "name": "Residential units",
-            "yVar": "PCT_SUPPORTIVE_RES_INFILL",
+            "yVar": "PCT_RES_UNITS_INFILL",
             "actualColor": "#006b8c",
             "targetColor": "#72cae5"
         },
         {
             "name": "Non-residential sq. ft.",
-            "yVar": "PCT_SUPPORTIVE_NONRES_INFILL",
+            "yVar": "PCT_NONRES_SQFT_INFILL",
             "actualColor": "#8c4100",
             "targetColor": "#e5a872"
         }
@@ -1246,25 +1246,25 @@
     "yVars": [
         {
             "name": "Residential units (EDA)",
-            "yVar": "PCT_RES_INFILL_EDA",
+            "yVar": "PCT_RES_UNITS_INFILL_EDA",
             "actualColor": "#006b8c",
             "targetColor": null
         },
         {
             "name": "Residential units (non-EDA)",
-            "yVar": "PCT_RES_INFILL_NOT_EDA",
+            "yVar": "PCT_RES_UNITS_INFILL_NOT_EDA",
             "actualColor": "#72cae5",
             "targetColor": null
         },
         {
             "name": "Non-residential sq. ft. (EDA)",
-            "yVar": "PCT_NONRES_INFILL_EDA",
+            "yVar": "PCT_NONRES_SQFT_INFILL_EDA",
             "actualColor": "#8c4100",
             "targetColor": null
         },
         {
             "name": "Non-residential sq. ft. (non-EDA)",
-            "yVar": "PCT_NONRES_INFILL_NOT_EDA",
+            "yVar": "PCT_NONRES_SQFT_INFILL_NOT_EDA",
             "actualColor": "#e5a872",
             "targetColor": null
         }
