@@ -727,7 +727,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "targetBaseYear": 2016,
+    "targetBaseYear": 2020,
     "targetType": "maximum",
     "planRecs": [
         {
@@ -756,7 +756,7 @@
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "targetBaseYear": 2017,
+    "targetBaseYear": 2020,
     "targetType": "maximum",
     "planRecs": [
         {
@@ -959,7 +959,7 @@
     "yIsPercent": false,
     "yFormat": ".3~s",
     "labFormat": ",.0f",
-    "targetBaseYear": 2017,
+    "targetBaseYear": 2018,
     "targetType": "maximum",
     "planRecs": [
         {
