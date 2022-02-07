@@ -24,7 +24,7 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".0%",
+    "labFormat": ".2%",
     "targetBaseYear": 2016,
     "targetType": "minimum",
     "planRecs": [
@@ -1272,7 +1272,7 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".0%",
+    "labFormat": ".2%",
     "targetBaseYear": null,
     "targetType": null,
     "planRecs": [
