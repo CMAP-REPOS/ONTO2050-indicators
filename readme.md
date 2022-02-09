@@ -32,7 +32,7 @@ Folder | Indicator(s)
 [`infill-development`](infill-development) | &bull; Share of Post-2015 Development Occurring in Infill Supportive Areas<br />&bull; *Share of Post-2015 Infill Development Occurring in Disinvested and Economically Disconnected Areas*
 [`manufacturing-exports`](manufacturing-exports) | &bull; *Manufacturing Exports*
 [`mean-household-income`](mean-household-income) | &bull; *Change in Mean Household Income Since 2006 by Quintile*
-[`non-residential-market-value`](non-residential-market-value) | &bull; *Change in Non-Residential Market Value in Disinvested and Economically Disconnected Areas*
+[`non-residential-market-value`](non-residential-market-value) | &bull; *Change in Non-Residential Market Value in Disinvested and Economically Disconnected Areas Since 2010*
 [`non-single-occupancy-modes`](non-single-occupancy-modes) | &bull; Percent of Trips to Work via Non-SOV Modes
 [`patenting-activity`](patenting-activity) | &bull; Patenting Activity
 [`pavement-condition`](pavement-condition) | &bull; Percentage of Highway Pavement in “Not Acceptable” Condition
