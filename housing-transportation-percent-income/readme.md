@@ -1,4 +1,4 @@
-# [Percentage of Income Spent on Housing and Transportation by Moderate- and Low-Income Residents](https://www.cmap.illinois.gov/2050/indicators/housing-transportation-percent-income)
+# [Percentage of Income Spent on Housing and Transportation by Moderate- and Low-Income Households](https://www.cmap.illinois.gov/2050/indicators/housing-transportation-percent-income)
 
 This measure estimates the share of household income spent on housing and transportation (H+T) costs for moderate- and low-income households. For analysis purposes, any households with incomes below 80 percent of the regional median family income are defined as low- and moderate-income. Data are from the Consumer Expenditure Survey (CES), which the U.S. Bureau of Labor Statistics (BLS) conducts annually. The survey collects information on household income and expenditures, including those for housing and transportation.
 
@@ -18,7 +18,7 @@ Header | Definition
 
 ---
 
-# [Percent of Income Spent on Housing and Transportation by Moderate- and Low-Income Households, by Race and Ethnicity](https://www.cmap.illinois.gov/2050/indicators/housing-transportation-percent-income#InclusiveGrowth)
+# [Percentage of Income Spent on Housing and Transportation by Moderate- and Low-Income Households, by Race and Ethnicity](https://www.cmap.illinois.gov/2050/indicators/housing-transportation-percent-income#InclusiveGrowth)
 
 As a kindred indicator, ON TO 2050 will track the share of household income spent on housing and transportation costs for moderate- and low-income households by race and ethnicity. The share of household income spent on housing and transportation costs for moderate- and low-income households differs by race and ethnicities.
 

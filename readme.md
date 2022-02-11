@@ -26,14 +26,14 @@ Folder | Indicator(s)
 [`greenhouse-gas-emissions`](greenhouse-gas-emissions) | &bull; Greenhouse Gas Emissions
 [`highway-congestion-hours`](highway-congestion-hours) | &bull; Average Congested Hours of Weekday Travel for Limited Access Highways
 [`household-income-race-ethnicity`](household-income-race-ethnicity) | &bull; *Real Median Household Income by Race and Ethnicity*
-[`housing-transportation-percent-income`](housing-transportation-percent-income) | &bull; Percentage of Income Spent on Housing and Transportation by Moderate- and Low-Income Residents<br />&bull; *Percent of Income Spent on Housing and Transportation by Moderate- and Low-Income Households by Race and Ethnicity*
+[`housing-transportation-percent-income`](housing-transportation-percent-income) | &bull; Percentage of Income Spent on Housing and Transportation by Moderate- and Low-Income Households<br />&bull; *Percentage of Income Spent on Housing and Transportation by Moderate- and Low-Income Households, by Race and Ethnicity*
 [`impervious-area`](impervious-area) | &bull; Acres of Impervious Area
 [`income-inequality`](income-inequality) | &bull; *Gini Coefficient*
 [`infill-development`](infill-development) | &bull; Share of Post-2015 Development Occurring in Infill Supportive Areas<br />&bull; *Share of Post-2015 Infill Development Occurring in Disinvested and Economically Disconnected Areas*
 [`manufacturing-exports`](manufacturing-exports) | &bull; *Manufacturing Exports*
 [`mean-household-income`](mean-household-income) | &bull; *Change in Mean Household Income Since 2006 by Quintile*
 [`non-residential-market-value`](non-residential-market-value) | &bull; *Change in Non-Residential Market Value in Disinvested and Economically Disconnected Areas Since 2010*
-[`non-single-occupancy-modes`](non-single-occupancy-modes) | &bull; Percent of Trips to Work via Non-SOV Modes
+[`non-single-occupancy-modes`](non-single-occupancy-modes) | &bull; Percentage of Trips to Work via Non-SOV Modes
 [`patenting-activity`](patenting-activity) | &bull; Patenting Activity
 [`pavement-condition`](pavement-condition) | &bull; Percentage of Highway Pavement in “Not Acceptable” Condition
 [`population-jobs-transit-availability`](population-jobs-transit-availability) | &bull; Population and Jobs with at Least Moderately High Transit Availability

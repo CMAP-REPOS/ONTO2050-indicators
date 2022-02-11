@@ -41,7 +41,7 @@
 {
     "chartId": "housing-transportation-percent-income",
     "chapterId": "community",
-    "mainTitle": "Percentage of income spent on housing and transportation by moderate- and low-income residents",
+    "mainTitle": "Percentage of income spent on housing and transportation by moderate- and low-income households",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "Average share of household income",
@@ -768,7 +768,7 @@
 {
     "chartId": "transit-repair-a",
     "chapterId": "mobility",
-    "mainTitle": "Transit asset state of good repair: percent of fixed-route buses that have met or exceeded their useful life",
+    "mainTitle": "Transit asset state of good repair: percentage of fixed-route buses that have met or exceeded their useful life",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "CTA & Pace buses",
@@ -797,7 +797,7 @@
 {
     "chartId": "transit-repair-b",
     "chapterId": "mobility",
-    "mainTitle": "Transit asset state of good repair: percent of rail vehicles that have met or exceeded their useful life",
+    "mainTitle": "Transit asset state of good repair: percentage of rail vehicles that have met or exceeded their useful life",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "CTA & Metra rail vehicles",
@@ -826,7 +826,7 @@
 {
     "chartId": "transit-repair-c",
     "chapterId": "mobility",
-    "mainTitle": "Transit asset state of good repair: percent of directional rail route miles with track performance restrictions",
+    "mainTitle": "Transit asset state of good repair: percentage of directional rail route miles with track performance restrictions",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "CTA & Metra directional rail route miles",
@@ -1064,7 +1064,7 @@
 {
     "chartId": "non-single-occupancy-modes",
     "chapterId": "mobility",
-    "mainTitle": "Percent of trips to work via non-SOV modes",
+    "mainTitle": "Percentage of trips to work via non-SOV modes",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "Percentage of trips to work",
@@ -1289,7 +1289,7 @@
 {
     "chartId": "housing-transportation-percent-income-race-ethnicity",
     "chapterId": "inclusive-growth",
-    "mainTitle": "Percent of income spent on housing and transportation by moderate- and low-income households, by race and ethnicity",
+    "mainTitle": "Percentage of income spent on housing and transportation by moderate- and low-income households, by race and ethnicity",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "Average share of household income",
