@@ -1029,10 +1029,10 @@
 {
     "chartId": "population-jobs-transit-availability",
     "chapterId": "mobility",
-    "mainTitle": "Population and jobs with at least moderately high transit availability",
+    "mainTitle": "Population and jobs with at least “moderately high” transit availability",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage with moderately high transit availability",
+    "yTitle": "Percentage with “moderately high” transit availability",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/population-jobs-transit-availability/population-jobs-transit-availability.csv",
     "yVars": [
         {
