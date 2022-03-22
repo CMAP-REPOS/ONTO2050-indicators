@@ -4,17 +4,19 @@ This indicator measures the average one-way commute time of workers in the Chica
 
 **Note:** The methodology for this indicator has been slightly modified from what was included in ON TO 2050. The original version used the [IPUMS USA](https://usa.ipums.org/usa) version of the ACS 5-year sample data, whereas it now uses the Census Bureau version of the ACS 1-year sample PUMS. The "other race" and "two or more races" categories have been dropped, as they were based on a small number of observations and therefore fluctuated quite dramatically from year to year.
 
+**Note about 2020 data:** Due to the COVID-19 pandemic, many workers began working from home in 2020. Since this indicator includes workers who work at home, and since those workers' journey to work time is reported as zero minutes in the ACS data, the 2020 averages are sharply lower than previous years.
+
 ### commute-time-race-ethnicity.csv
 
 Header | Definition
 -------|-----------
 `YEAR` | Year of observation
-`COMMUTE_MINS_ASIAN` | Average journey to work time in minutes for Asian workers
-`COMMUTE_MINS_BLACK` | Average journey to work time in minutes for Black workers
+`COMMUTE_MINS_ASIAN` | Average journey to work time in minutes for Asian (non-Hispanic) workers
+`COMMUTE_MINS_BLACK` | Average journey to work time in minutes for Black (non-Hispanic) workers
 `COMMUTE_MINS_HISPANIC` | Average journey to work time in minutes for Hispanic/Latino workers
 `COMMUTE_MINS_WHITE` | Average journey to work time in minutes for White (non-Hispanic) workers
 `ACTUAL_OR_TARGET` | `Actual` if the record is from observed data; `Target` if it is an ON TO 2050 target
 
  **Source:** CMAP analysis of the U.S. Census Bureau's American Community Survey (ACS) Public Use Microdata Sample (PUMS)
 
- **Geography:** The collection of [Public Use Microdata Areas (PUMAs)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/pumas.html) for which the majority of the 2010 population lived within the Chicago-Naperville-Elgin, IL-IN-WI Metropolitan Statistical Area
+ **Geography:** The collection of [Public Use Microdata Areas (PUMAs)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/pumas.html) for which the majority of the 2020 population lived within the Chicago-Naperville-Elgin, IL-IN-WI Metropolitan Statistical Area (i.e. the MSA minus Jasper and Newton Counties in Indiana)

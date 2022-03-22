@@ -2,6 +2,8 @@
 
 This indicator summarizes income inequality in the Chicago region. The Gini coefficient measures the dispersion of income across the income distribution in the Chicago metropolitan statistical area (MSA). The Gini coefficient is measured between 0 to 1, representing perfect equality and perfect inequality, respectively. Broad-based growth can facilitate economic mobility and help decrease inequality. Increasing economic equity can increase both individual prosperity and regional growth, developing periods of economic growth that are stronger and more sustainable.
 
+**Note about 2020 data:** Due to data quality concerns arising from the COVID-19 pandemic, the Census Bureau will not publish 1-year ACS summary tables for 2020. CMAP is not able to calculate Gini coefficients from the [2020 ACS 1-Year Public Use Microdata Sample with Experimental Weights](https://www.census.gov/programs-surveys/acs/data/experimental-data/2020-1-year-pums.html), so this indicator will not have any data for 2020.
+
 ### income-inequality.csv
 
 Header | Definition

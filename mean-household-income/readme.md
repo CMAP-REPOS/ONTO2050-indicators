@@ -2,6 +2,8 @@
 
 This indicator measures change in mean household income since 2006 by quintile in the Chicago metropolitan statistical area. The degree to which regional prosperity is shared among all segments of the population drives long-term economic success of regional economies. To meet its potential, the region's economy requires opportunities for all residents to contribute to and benefit from its growth. Promoting an inclusive model of economic growth can improve outcomes for lower-quintile households and increase the size of the overall economy.
 
+**Note about 2020 data:** Due to data quality concerns arising from the COVID-19 pandemic, the Census Bureau will not publish 1-year ACS summary tables for 2020. To obtain a 2020 estimate, CMAP instead used the [2020 ACS 1-Year Public Use Microdata Sample with Experimental Weights](https://www.census.gov/programs-surveys/acs/data/experimental-data/2020-1-year-pums.html). Since this data is only available for Public Use Microdata Areas (PUMAs), the 2020 estimate represents the closest possible approximation of the Chicago-Naperville-Elgin, IL-IN-WI Metropolitan Statistical Area (MSA): the Illinois and Wisconsin portions are accurately represented, but the Indiana counties of Jasper and Newton were omitted because they share a PUMA with the slightly more populous counties of Fulton, Pulaski and Starke, which are not part of the MSA.
+
 ### mean-household-income.csv
 
 Header | Definition
