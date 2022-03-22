@@ -2,6 +2,8 @@
 
 Encouraging multimodal travel makes the best use of the system, reduces greenhouse gas emissions, and improves quality of life. This measure tracks the share of trips to work by non-single occupancy vehicle (non-SOV) modes for trips to work. These modes include carpool, public transportation, walking, bicycling and telecommuting. Higher levels of non-SOV travel would yield numerous benefits: reduced congestion, better air quality, and healthier residents, to name a few.
 
+**Note about 2020 data:** Due to data quality concerns arising from the COVID-19 pandemic, the Census Bureau will not publish 1-year ACS summary tables for 2020. To obtain a 2020 estimate, CMAP instead used the [2020 ACS 1-Year Public Use Microdata Sample with Experimental Weights](https://www.census.gov/programs-surveys/acs/data/experimental-data/2020-1-year-pums.html). Since this data is only available for Public Use Microdata Areas (PUMAs), the 2020 estimate represents the seven counties in the CMAP region plus Grundy County (which shares a PUMA with Kendall County).
+
 ### non-single-occupancy-modes.csv
 
 Header | Definition
