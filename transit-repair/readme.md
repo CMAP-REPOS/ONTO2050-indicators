@@ -13,7 +13,7 @@ This measures the percent of active revenue public transit buses that have excee
 Header | Definition
 -------|-----------
 `YEAR` | Year of observation
-`CTA_BUSES_PAST_ULB` | Number of CTA buses that have met or exceeded their useful life (15 years)
+`CTA_BUSES_PAST_ULB` | Number of CTA buses that have met or exceeded their useful life (12-15 years)
 `CTA_BUSES_TOTAL` | Total number of CTA buses
 `PACE_BUSES_PAST_ULB` | Number of Pace buses that have met or exceeded their useful life (12 years)
 `PACE_BUSES_TOTAL` | Total number of Pace buses
@@ -60,6 +60,6 @@ Header | Definition
 `PCT_SLOW_ZONES` | Percentage of directional rail route miles with track performance restrictions
 `ACTUAL_OR_TARGET` | `Actual` if the record is from observed data; `Target` if it is an ON TO 2050 target
 
-**Source:** Chicago Transit Authority and Metra
+**Source:** CMAP analysis of Federal Transit Administration (FTA) National Transit Database (NTD)
 
 **Geography:** Seven-county CMAP region
