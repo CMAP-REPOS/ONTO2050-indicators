@@ -20,7 +20,7 @@ Header | Definition
 
 # [Share of Post-2015 Infill Development Occurring in Disinvested and Economically Disconnected Areas](https://www.cmap.illinois.gov/2050/indicators/infill-development#InclusiveGrowth)
 
-Infill development and land use patterns are crucial to promoting economic growth in many [economically disconnected and disinvested areas (EDAs)](https://www.cmap.illinois.gov/2050/maps/eda) and in connecting the region’s EDA residents to economic opportunity. As a kindred indicator, ON TO 2050 will track the share of new infill development occurring in EDAs. Roughly forty percent of the region’s population lives in EDAs. However, EDAs received a disproportionately low share of new infill development between 2000 and 2015. CMAP recommends increased infill development in EDAs to increase efficient use of limited resources and help these communities grow.
+Infill development and land use patterns are crucial to promoting economic growth in many [economically disconnected and disinvested areas (EDAs)](https://www.cmap.illinois.gov/2050/maps/eda) and in connecting the region’s EDA residents to economic opportunity. As a secondary indicator, ON TO 2050 also tracks the share of new infill development occurring in EDAs. In 2010, approximately 37 percent of the region’s housing units and 30 percent of its non-residential square footage were located in EDAs. However, EDAs accounted for only 15 percent of new infill residential units and 21 percent of new infill non-residential square footage between 2000 and 2015. CMAP recommends increased infill development in EDAs to increase efficient use of limited resources and help these communities grow.
 
 ### infill-development-in-edas.csv
 
@@ -36,4 +36,4 @@ Header | Definition
 
 **Source:** CMAP’s Northeastern Illinois Development Database (NDD)
 
-**Geography:** Seven-county CMAP region (divided into EDAs vs. the rest of the region)
+**Geography:** Highly and partially infill supportive areas within the seven-county CMAP region (divided into EDAs vs. non-EDAs)
