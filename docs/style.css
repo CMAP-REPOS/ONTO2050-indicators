@@ -4,7 +4,7 @@ html, body {
   padding: 0;
   width: 100%;
   font: 400 15px 'Open Sans';
-  color: #181f22;
+  color: #020000;
 }
 html {
   -webkit-text-size-adjust: 100%;
@@ -24,11 +24,11 @@ p {
   text-align: left;
 }
 p > a {
-  color: #00ac9c;
+  color: #008fd5;
   text-decoration: none;
 }
 p > a:hover {
-  color: #008c7e;
+  color: #008fd5;
   text-decoration: underline;
 }
 
@@ -44,15 +44,15 @@ h1#page-title {
 }
 p.intro {
   line-height: 1.6;
-  color: #475c66;
+  color: #2d4147;
 }
 
 .toggle-intro {
-  color: #00ac9c;
+  color: #008fd5;
   text-align: right;
   margin: 4px 0px;
 }
-.toggle-intro:hover { color: #008c7e; }
+.toggle-intro:hover { color: #008fd5; }
 
 /* Indicator selection dropdowns */
 #chapters {
