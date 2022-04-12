@@ -105,11 +105,11 @@
             "targetColor": "#e5a872"
         }
     ],
-    "yRangeManual": [0.2, 0.6],
+    "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "targetBaseYear": 2015,
+    "targetBaseYear": 2019,
     "targetType": "minimum",
     "planRecs": [
         {
@@ -225,7 +225,7 @@
             "targetColor": "#e5d072"
         }
     ],
-    "yRangeManual": [0, 0.08],
+    "yRangeManual": [0, 0.05],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".2%",
@@ -341,7 +341,7 @@
             "targetColor": "#b7e572"
         }
     ],
-    "yRangeManual": [0.4, 0.8],
+    "yRangeManual": [0.4, 0.7],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".2%",
@@ -752,7 +752,7 @@
             "targetColor": "#aa72e5"
         }
     ],
-    "yRangeManual": [0, 0.26],
+    "yRangeManual": [0, 0.3],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
@@ -781,7 +781,7 @@
             "targetColor": "#aa72e5"
         }
     ],
-    "yRangeManual": [0, 0.30],
+    "yRangeManual": [0, 0.40],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
@@ -955,7 +955,7 @@
             "targetColor": "#aa72e5"
         }
     ],
-    "yRangeManual": [0, 12000],
+    "yRangeManual": [0, 50000],
     "yIsPercent": false,
     "yFormat": ".3~s",
     "labFormat": ",.0f",
