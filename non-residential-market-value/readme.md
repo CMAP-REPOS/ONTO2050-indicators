@@ -1,4 +1,4 @@
-# [Change in Non-Residential Market Value in Disinvested and Economically Disconnected Areas](https://www.cmap.illinois.gov/2050/indicators/non-residential-market-value)
+# [Change in Non-Residential Market Value in Disinvested and Economically Disconnected Areas Since 2010](https://www.cmap.illinois.gov/2050/indicators/non-residential-market-value)
 
 This kindred indicator measures percent change in aggregate non-residential market value in [economically disconnected and disinvested areas (EDAs)](https://www.cmap.illinois.gov/2050/maps/eda) versus the remaining parts of the region since 2010. Non-residential land uses include: commercial, industrial, institutional, mixed use, and vacant. ON TO 2050 highlights reinvestment in disinvested areas—such as building on existing community assets, identifying unique and regulatory tax solutions to persistent vacancy and abandonment, and building municipal and private sector capacity—as a key strategy for improving outcomes and revitalizing communities.
 

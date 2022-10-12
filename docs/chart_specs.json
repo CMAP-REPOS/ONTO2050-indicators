@@ -2,21 +2,21 @@
 {
     "chartId": "infill-development",
     "chapterId": "community",
-    "mainTitle": "Share of new development occurring in highly and partially infill supportive areas",
+    "mainTitle": "Share of post-2015 development occurring in infill supportive areas",
     "xTitle": "Year",
     "xVar": "END_YEAR",
-    "yTitle": "Percentage of all development since 2015",
+    "yTitle": "Percentage of all post-2015 development",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/infill-development/infill-development.csv",
     "yVars": [
         {
             "name": "Residential units",
-            "yVar": "PCT_SUPPORTIVE_RES_INFILL",
+            "yVar": "PCT_RES_UNITS_INFILL",
             "actualColor": "#006b8c",
             "targetColor": "#72cae5"
         },
         {
             "name": "Non-residential sq. ft.",
-            "yVar": "PCT_SUPPORTIVE_NONRES_INFILL",
+            "yVar": "PCT_NONRES_SQFT_INFILL",
             "actualColor": "#8c4100",
             "targetColor": "#e5a872"
         }
@@ -24,7 +24,7 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".0%",
+    "labFormat": ".2%",
     "targetBaseYear": 2016,
     "targetType": "minimum",
     "planRecs": [
@@ -41,7 +41,7 @@
 {
     "chartId": "housing-transportation-percent-income",
     "chapterId": "community",
-    "mainTitle": "Percentage of income spent on housing and transportation by moderate- and low-income residents",
+    "mainTitle": "Percentage of income spent on housing and transportation by moderate- and low-income households",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "Average share of household income",
@@ -105,11 +105,11 @@
             "targetColor": "#e5a872"
         }
     ],
-    "yRangeManual": [0.2, 0.6],
+    "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "targetBaseYear": 2015,
+    "targetBaseYear": 2019,
     "targetType": "minimum",
     "planRecs": [
         {
@@ -225,7 +225,7 @@
             "targetColor": "#e5d072"
         }
     ],
-    "yRangeManual": [0, 0.08],
+    "yRangeManual": [0, 0.05],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".2%",
@@ -341,7 +341,7 @@
             "targetColor": "#b7e572"
         }
     ],
-    "yRangeManual": [0.4, 0.8],
+    "yRangeManual": [0.4, 0.7],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".2%",
@@ -690,38 +690,44 @@
     ]
 },
 {
-    "chartId": "nhs-pavement",
+    "chartId": "pavement-condition",
     "chapterId": "mobility",
-    "mainTitle": "Percentage of NHS pavement in poor condition",
+    "mainTitle": "Percentage of highway pavement in “not acceptable” condition",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage of NHS lane-miles",
-    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/nhs-pavement/nhs-pavement.csv",
+    "yTitle": "Percentage of lane miles",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/pavement-condition/pavement-condition.csv",
     "yVars": [
         {
-            "name": "Interstate + non-Interstate",
-            "yVar": "PCT_NHS_PAVEMENT_POOR_ALL",
+            "name": "All IDOT-jurisdiction roads",
+            "yVar": "PCT_PAVEMENT_NA_ALL",
             "actualColor": "#44008c",
             "targetColor": "#aa72e5"
         },
         {
-            "name": "Interstate only",
-            "yVar": "PCT_NHS_PAVEMENT_POOR_INTER",
+            "name": "Interstate NHS roads",
+            "yVar": "PCT_PAVEMENT_NA_INTER",
             "actualColor": "#cca600",
-            "targetColor": "#e5d072"
+            "targetColor": null
         },
         {
-            "name": "Non-Interstate only",
-            "yVar": "PCT_NHS_PAVEMENT_POOR_NONINT",
+            "name": "Non-Interstate NHS roads",
+            "yVar": "PCT_PAVEMENT_NA_NHS",
             "actualColor": "#7acc00",
-            "targetColor": "#b7e572"
+            "targetColor": null
+        },
+        {
+            "name": "Non-NHS IDOT-jurisdiction roads",
+            "yVar": "PCT_PAVEMENT_NA_IDOT",
+            "actualColor": "#cc5f00",
+            "targetColor": null
         }
     ],
     "yRangeManual": null,
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "targetBaseYear": 2016,
+    "targetBaseYear": 2020,
     "targetType": "maximum",
     "planRecs": [
         {
@@ -731,26 +737,26 @@
     ]
 },
 {
-    "chartId": "nhs-bridges",
+    "chartId": "bridge-condition",
     "chapterId": "mobility",
-    "mainTitle": "Percentage of NHS bridge area in poor condition",
+    "mainTitle": "Percentage of roadway bridge area in “poor” condition",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage of NHS bridge area",
-    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/nhs-bridges/nhs-bridges.csv",
+    "yTitle": "Percentage of bridge area",
+    "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/bridge-condition/bridge-condition.csv",
     "yVars": [
         {
             "name": null,
-            "yVar": "PCT_NHS_BRIDGE_AREA_POOR",
+            "yVar": "PCT_BRIDGE_AREA_POOR",
             "actualColor": "#44008c",
             "targetColor": "#aa72e5"
         }
     ],
-    "yRangeManual": [0, 0.14],
+    "yRangeManual": [0, 0.3],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
-    "targetBaseYear": 2017,
+    "targetBaseYear": 2020,
     "targetType": "maximum",
     "planRecs": [
         {
@@ -762,7 +768,7 @@
 {
     "chartId": "transit-repair-a",
     "chapterId": "mobility",
-    "mainTitle": "Transit asset state of good repair: percent of fixed-route buses that have met or exceeded their useful life",
+    "mainTitle": "Transit asset state of good repair: percentage of fixed-route buses that have met or exceeded their useful life",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "CTA & Pace buses",
@@ -775,7 +781,7 @@
             "targetColor": "#aa72e5"
         }
     ],
-    "yRangeManual": [0, 0.30],
+    "yRangeManual": [0, 0.25],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
@@ -791,7 +797,7 @@
 {
     "chartId": "transit-repair-b",
     "chapterId": "mobility",
-    "mainTitle": "Transit asset state of good repair: percent of rail vehicles that have met or exceeded their useful life",
+    "mainTitle": "Transit asset state of good repair: percentage of rail vehicles that have met or exceeded their useful life",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "CTA & Metra rail vehicles",
@@ -804,7 +810,7 @@
             "targetColor": "#aa72e5"
         }
     ],
-    "yRangeManual": [0, 0.60],
+    "yRangeManual": [0, 0.50],
     "yIsPercent": true,
     "yFormat": ".0%",
     "labFormat": ".1%",
@@ -820,7 +826,7 @@
 {
     "chartId": "transit-repair-c",
     "chapterId": "mobility",
-    "mainTitle": "Transit asset state of good repair: percent of directional rail route miles with track performance restrictions",
+    "mainTitle": "Transit asset state of good repair: percentage of directional rail route miles with track performance restrictions",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "CTA & Metra directional rail route miles",
@@ -949,11 +955,11 @@
             "targetColor": "#aa72e5"
         }
     ],
-    "yRangeManual": [0, 12000],
+    "yRangeManual": [0, 50000],
     "yIsPercent": false,
     "yFormat": ".3~s",
     "labFormat": ",.0f",
-    "targetBaseYear": 2017,
+    "targetBaseYear": 2018,
     "targetType": "maximum",
     "planRecs": [
         {
@@ -1023,10 +1029,10 @@
 {
     "chartId": "population-jobs-transit-availability",
     "chapterId": "mobility",
-    "mainTitle": "Population and jobs with at least moderately high transit availability",
+    "mainTitle": "Population and jobs with at least “moderately high” transit availability",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage with moderately high transit availability",
+    "yTitle": "Percentage with “moderately high” transit availability",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/population-jobs-transit-availability/population-jobs-transit-availability.csv",
     "yVars": [
         {
@@ -1058,7 +1064,7 @@
 {
     "chartId": "non-single-occupancy-modes",
     "chapterId": "mobility",
-    "mainTitle": "Percent of trips to work via non-SOV modes",
+    "mainTitle": "Percentage of trips to work via non-SOV modes",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "Percentage of trips to work",
@@ -1125,15 +1131,15 @@
 {
     "chartId": "traffic-signals",
     "chapterId": "mobility",
-    "mainTitle": "Number of traffic signals with transit priority and/or queue jumping",
+    "mainTitle": "Number of intersections with transit priority or queue jumping",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Number of traffic signals",
+    "yTitle": "Number of intersections",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/traffic-signals/traffic-signals.csv",
     "yVars": [
         {
             "name": null,
-            "yVar": "SIGNALS_TP_QJ",
+            "yVar": "INTERSECTIONS_TP_QJ",
             "actualColor": "#44008c",
             "targetColor": "#aa72e5"
         }
@@ -1232,33 +1238,33 @@
 {
     "chartId": "infill-development-in-edas",
     "chapterId": "inclusive-growth",
-    "mainTitle": "Share of new infill development occurring in Economically Disconnected Areas",
+    "mainTitle": "Share of post-2015 infill development occurring in disinvested and economically disconnected areas",
     "xTitle": "Year",
     "xVar": "END_YEAR",
-    "yTitle": "Percentage of infill development since 2015",
+    "yTitle": "Percentage of post-2015 infill development",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/infill-development/infill-development-in-edas.csv",
     "yVars": [
         {
             "name": "Residential units (EDA)",
-            "yVar": "PCT_RES_INFILL_EDA",
+            "yVar": "PCT_RES_UNITS_INFILL_EDA",
             "actualColor": "#006b8c",
             "targetColor": null
         },
         {
             "name": "Residential units (non-EDA)",
-            "yVar": "PCT_RES_INFILL_NOT_EDA",
+            "yVar": "PCT_RES_UNITS_INFILL_NOT_EDA",
             "actualColor": "#72cae5",
             "targetColor": null
         },
         {
             "name": "Non-residential sq. ft. (EDA)",
-            "yVar": "PCT_NONRES_INFILL_EDA",
+            "yVar": "PCT_NONRES_SQFT_INFILL_EDA",
             "actualColor": "#8c4100",
             "targetColor": null
         },
         {
             "name": "Non-residential sq. ft. (non-EDA)",
-            "yVar": "PCT_NONRES_INFILL_NOT_EDA",
+            "yVar": "PCT_NONRES_SQFT_INFILL_NOT_EDA",
             "actualColor": "#e5a872",
             "targetColor": null
         }
@@ -1266,7 +1272,7 @@
     "yRangeManual": [0, 1],
     "yIsPercent": true,
     "yFormat": ".0%",
-    "labFormat": ".0%",
+    "labFormat": ".2%",
     "targetBaseYear": null,
     "targetType": null,
     "planRecs": [
@@ -1283,7 +1289,7 @@
 {
     "chartId": "housing-transportation-percent-income-race-ethnicity",
     "chapterId": "inclusive-growth",
-    "mainTitle": "Percent of income spent on housing and transportation by moderate- and low-income households, by race and ethnicity",
+    "mainTitle": "Percentage of income spent on housing and transportation by moderate- and low-income households, by race and ethnicity",
     "xTitle": "Year",
     "xVar": "YEAR",
     "yTitle": "Average share of household income",
@@ -1334,10 +1340,10 @@
 {
     "chartId": "access-to-parks-in-edas",
     "chapterId": "inclusive-growth",
-    "mainTitle": "Access to parks in Economically Disconnected Areas",
+    "mainTitle": "Access to parks in disinvested and economically disconnected areas",
     "xTitle": "Year",
     "xVar": "YEAR",
-    "yTitle": "Percentage of region's population",
+    "yTitle": "Percentage of population",
     "csvUrl": "https://raw.githubusercontent.com/CMAP-REPOS/ONTO2050-indicators/master/access-to-parks/access-to-parks-in-edas.csv",
     "yVars": [
         {

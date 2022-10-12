@@ -16,8 +16,9 @@ This repository's `docs` folder includes code for a [dashboard website](https://
 
 Folder | Indicator(s)
 ---|---
-[`access-to-parks`](access-to-parks) | &bull; Access to Parks<br />&bull; *Access to Parks in Economically Disconnected Areas*
+[`access-to-parks`](access-to-parks) | &bull; Access to Parks<br />&bull; *Access to Parks in Disinvested and Economically Disconnected Areas*
 [`board-member-training`](board-member-training) | &bull; Local Governments That Train Appointed Board Members
+[`bridge-condition`](bridge-condition) | &bull; Percentage of Roadway Bridge Area in “Poor” Condition
 [`commute-time-race-ethnicity`](commute-time-race-ethnicity) | &bull; *Average Journey to Work Time by Race and Ethnicity*
 [`conserved-land-acres`](conserved-land-acres) | &bull; Acres of Conserved Land<br />&bull; *Protected Share of CMAP Conservation Areas Layer*
 [`educational-attainment`](educational-attainment) | &bull; Educational Attainment<br />&bull; *Educational Attainment by Race and Ethnicity*
@@ -25,19 +26,17 @@ Folder | Indicator(s)
 [`greenhouse-gas-emissions`](greenhouse-gas-emissions) | &bull; Greenhouse Gas Emissions
 [`highway-congestion-hours`](highway-congestion-hours) | &bull; Average Congested Hours of Weekday Travel for Limited Access Highways
 [`household-income-race-ethnicity`](household-income-race-ethnicity) | &bull; *Real Median Household Income by Race and Ethnicity*
-[`housing-transportation-percent-income`](housing-transportation-percent-income) | &bull; Percentage of Income Spent on Housing and Transportation by Moderate- and Low-Income Residents<br />&bull; *Percent of Income Spent on Housing and Transportation by Moderate- and Low-Income Households by Race and Ethnicity*
+[`housing-transportation-percent-income`](housing-transportation-percent-income) | &bull; Percentage of Income Spent on Housing and Transportation by Moderate- and Low-Income Households<br />&bull; *Percentage of Income Spent on Housing and Transportation by Moderate- and Low-Income Households, by Race and Ethnicity*
 [`impervious-area`](impervious-area) | &bull; Acres of Impervious Area
 [`income-inequality`](income-inequality) | &bull; *Gini Coefficient*
-[`infill-development`](infill-development) | &bull; Share of New Development Occurring in Highly and Partially Infill Supportive Areas<br />&bull; *Share of New Infill Development Occurring in Economically Disconnected Areas*
+[`infill-development`](infill-development) | &bull; Share of Post-2015 Development Occurring in Infill Supportive Areas<br />&bull; *Share of Post-2015 Infill Development Occurring in Disinvested and Economically Disconnected Areas*
 [`manufacturing-exports`](manufacturing-exports) | &bull; *Manufacturing Exports*
 [`mean-household-income`](mean-household-income) | &bull; *Change in Mean Household Income Since 2006 by Quintile*
-[`nhs-bridges`](nhs-bridges) | &bull; Percentage of NHS Bridge Area in Poor Condition
-[`nhs-pavement`](nhs-pavement) | &bull; Percentage of NHS Pavement in Poor Condition
-[`non-residential-market-value`](non-residential-market-value) | &bull; *Change in Non-Residential Market Value in Disinvested and Economically Disconnected Areas*
-[`non-single-occupancy-modes`](non-single-occupancy-modes) | &bull; Percent of Trips to Work via Non-SOV Modes
+[`non-residential-market-value`](non-residential-market-value) | &bull; *Change in Non-Residential Market Value in Disinvested and Economically Disconnected Areas Since 2010*
+[`non-single-occupancy-modes`](non-single-occupancy-modes) | &bull; Percentage of Trips to Work via Non-SOV Modes
 [`patenting-activity`](patenting-activity) | &bull; Patenting Activity
-[`population-jobs-transit-availability`](population-jobs-transit-availability) | &bull; Population and Jobs with at Least Moderately High Transit Availability
-[`preventable-hospitalizations-race-ethnicity`](preventable-hospitalizations-race-ethnicity) | &bull; *Preventable Hospitalizations by Race and Ethnicity*
+[`pavement-condition`](pavement-condition) | &bull; Percentage of Highway Pavement in “Not Acceptable” Condition
+[`population-jobs-transit-availability`](population-jobs-transit-availability) | &bull; Population and Jobs with at Least “Moderately High” Transit Availability
 [`rail-crossing-delay`](rail-crossing-delay) | &bull; Motorist Delay at Highway-Rail Grade Crossings
 [`regional-trails`](regional-trails) | &bull; Percentage of Regional Greenways and Trails Plan Completed
 [`reliable-interstate-travel`](reliable-interstate-travel) | &bull; Percentage of Person-Miles Traveled on the Interstate System with Reliable Travel Time
@@ -45,7 +44,7 @@ Folder | Indicator(s)
 [`stem-employment`](stem-employment) | &bull; Employment in STEM Occupations
 [`terminal-carload-transit`](terminal-carload-transit) | &bull; Chicago Terminal Carload Transit Time
 [`traffic-fatalities`](traffic-fatalities) | &bull; Number of Traffic Fatalities
-[`traffic-signals`](traffic-signals) | &bull; Number of Traffic Signals with Transit Priority and/or Queue Jumping
+[`traffic-signals`](traffic-signals) | &bull; Number of Intersections with Transit Priority or Queue Jumping
 [`transit-preference`](transit-preference) | &bull; Miles of Roadway with Transit Preference
 [`transit-repair`](transit-repair) | &bull; Transit Asset State of Good Repair
 [`unemployment-race-ethnicity`](unemployment-race-ethnicity) | &bull; *Unemployment by Race and Ethnicity*

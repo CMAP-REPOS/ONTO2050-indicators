@@ -4,7 +4,7 @@ Maintaining the existing transportation network and improving state of good repa
 
 ---
 
-## a) [Percent of fixed-route buses that have met or exceeded their useful life](https://www.cmap.illinois.gov/2050/indicators/transit-repair#Buses)
+## a) [Percentage of fixed-route buses that have met or exceeded their useful life](https://www.cmap.illinois.gov/2050/indicators/transit-repair#Buses)
 
 This measures the percent of active revenue public transit buses that have exceeded their useful life. This represents the number of vehicles that have reached an age where maintenance cost and vehicle performance issues are likely to increase.
 
@@ -13,7 +13,7 @@ This measures the percent of active revenue public transit buses that have excee
 Header | Definition
 -------|-----------
 `YEAR` | Year of observation
-`CTA_BUSES_PAST_ULB` | Number of CTA buses that have met or exceeded their useful life (15 years)
+`CTA_BUSES_PAST_ULB` | Number of CTA buses that have met or exceeded their useful life (12-15 years)
 `CTA_BUSES_TOTAL` | Total number of CTA buses
 `PACE_BUSES_PAST_ULB` | Number of Pace buses that have met or exceeded their useful life (12 years)
 `PACE_BUSES_TOTAL` | Total number of Pace buses
@@ -26,7 +26,7 @@ Header | Definition
 
 ---
 
-## b) [Percent of rail vehicles that have met or exceeded their useful life](https://www.cmap.illinois.gov/2050/indicators/transit-repair#Railvehicles)
+## b) [Percentage of rail vehicles that have met or exceeded their useful life](https://www.cmap.illinois.gov/2050/indicators/transit-repair#Railvehicles)
 
 This measures the percent of active revenue public transit rail vehicles that have exceeded their useful life. This represents the number of vehicles that have reached an age where maintenance cost and vehicle performance issues are likely to increase.
 
@@ -48,7 +48,7 @@ Header | Definition
 
 ---
 
-## c) [Percent of directional rail route miles with track performance restrictions](https://www.cmap.illinois.gov/2050/indicators/transit-repair#Directionalrailroute)
+## c) [Percentage of directional rail route miles with track performance restrictions](https://www.cmap.illinois.gov/2050/indicators/transit-repair#Directionalrailroute)
 
 This measures the percent of transit rail track with performance restrictions. The CTA refers to these as “slow zones”, where trains are required to operate at slower than normal speeds. This could be the result of construction, power systems, signals, or other issues. Elimination of slow zones can help to make transit more competitive by decreasing travel times and improving reliability.
 
@@ -60,6 +60,6 @@ Header | Definition
 `PCT_SLOW_ZONES` | Percentage of directional rail route miles with track performance restrictions
 `ACTUAL_OR_TARGET` | `Actual` if the record is from observed data; `Target` if it is an ON TO 2050 target
 
-**Source:** Chicago Transit Authority and Metra
+**Source:** CMAP analysis of Federal Transit Administration (FTA) National Transit Database (NTD)
 
 **Geography:** Seven-county CMAP region

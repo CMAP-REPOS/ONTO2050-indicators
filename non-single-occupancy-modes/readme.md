@@ -1,4 +1,4 @@
-# [Percent of Trips to Work via Non-SOV Modes](https://www.cmap.illinois.gov/2050/indicators/non-single-occupancy-modes)
+# [Percentage of Trips to Work via Non-SOV Modes](https://www.cmap.illinois.gov/2050/indicators/non-single-occupancy-modes)
 
 Encouraging multimodal travel makes the best use of the system, reduces greenhouse gas emissions, and improves quality of life. This measure tracks the share of trips to work by non-single occupancy vehicle (non-SOV) modes for trips to work. These modes include carpool, public transportation, walking, bicycling and telecommuting. Higher levels of non-SOV travel would yield numerous benefits: reduced congestion, better air quality, and healthier residents, to name a few.
 

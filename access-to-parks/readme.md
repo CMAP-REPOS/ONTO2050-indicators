@@ -17,7 +17,7 @@ Header | Definition
 
 ---
 
-# [Access to Parks in Economically Disconnected Areas](https://www.cmap.illinois.gov/2050/indicators/access-to-parks#InclusiveGrowth)
+# [Access to Parks in Disinvested or Economically Disconnected Areas](https://www.cmap.illinois.gov/2050/indicators/access-to-parks#InclusiveGrowth)
 
 As a kindred indicator, ON TO 2050 will track access to parks for residents in [economically disconnected areas and disinvested areas (EDAs)](https://www.cmap.illinois.gov/2050/maps/eda). Disparities exist in access to parks between residents in EDAs and those in the remaining parts of the region. Residents in EDAs have lower access to parks regardless of development density.
 

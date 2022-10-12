@@ -1,4 +1,4 @@
-# [Number of Traffic Signals with Transit Priority and/or Queue Jumping](https://www.cmap.illinois.gov/2050/indicators/traffic-signals)
+# [Number of Intersections with Transit Priority or Queue Jumping](https://www.cmap.illinois.gov/2050/indicators/traffic-signals)
 
 Road infrastructure and technology affect the speed, frequency, and reliability of transit ridership, but lie outside the control of the transit agencies themselves. Closer partnerships between transit and agencies responsible for roadways hold promise to create integrated, multimodal corridors. These approaches support transit ridership at relatively modest cost. This indicator tracks the implementation of projects that give priority to transit service.
 
@@ -9,7 +9,7 @@ Transit Signal Priority (TSP) utilizes vehicle location and wireless communicati
 Header | Definition
 -------|-----------
 `YEAR` | Year of observation
-`SIGNALS_TP_QJ` | Number of traffic signals with transit priority and/or queue jumping
+`INTERSECTIONS_TP_QJ` | Number of intersections with transit priority or queue jumping
 `ACTUAL_OR_TARGET` | `Actual` if the record is from observed data; `Target` if it is an ON TO 2050 target
 
 **Source:** Chicago Metropolitan Agency for Planning

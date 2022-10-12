@@ -10,6 +10,6 @@ Header | Definition
 `IL_PCT_VC_DEALS` | Illinois' percentage of all U.S. venture capital deals
 `ACTUAL_OR_TARGET` | `Actual` if the record is from observed data; `Target` if it is an ON TO 2050 target
 
-**Source:** CMAP analysis of data in PricewaterhouseCoopers’ Moneytree report
+**Source:** CMAP analysis of data in PitchBook-NVCA's Venture Monitor report
 
 **Geography:** State of Illinois
