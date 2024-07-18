@@ -1,20 +1,37 @@
-### This script is a fully-automated tool for updating the ON TO 2050 indicators
-### that are based solely on data from the American Community Survey. It uses
-### the tidycensus library to download the relevant tables using the Census API
-### and produces plots of each indicator over time.
 
-### NOTE: Sometimes the API requests fail for no apparent reason, so it is strongly
-### recommended that each chart be manually reviewed before exporting CSVs to
-### verify that the data is correct and complete (i.e. all years are present.)
 
+
+# 1. Setup ----------------------------------------------------------------
+
+## 1a. Background -----
+
+# This script is a fully-automated tool for updating the ON TO 2050 indicators that are based solely on data from the American Community Survey. It uses the tidycensus library to download the relevant tables using the Census API and produces plots of each indicator over time.
+
+# NOTE: Sometimes the API requests fail for no apparent reason, so it is strongly recommended that each chart be manually reviewed before exporting CSVs to verify that the data is correct and complete (i.e. all years are present.)
+
+# Author(s): Claire Conzelmann, Sean Connelly
+
+
+
+## 1b. Libraries and options -----
+
+# Libraries
 library(tidyverse)
 library(tidycensus)
 library(ggplot2)
 library(ggrepel)
 library(blscrapeR)  # For obtaining inflation adjustment factors
 library(xts)
+library(here) # For relative file paths
 
-# Set Global Variables ----------------------------------------------------
+# Options
+options(scipen = 1000, stringsAsFactors = FALSE, tigris_use_cache = TRUE)
+
+
+
+## 1c. Global variables -----
+
+### 1c1. ACS and geographic variables -----
 
 ## IMPORTANT!!! 1-year ACS is NOT AVAILABLE FOR 2020, so post-2020 updates cannot
 ## use a continuous range (e.g. 2012:2021) for ACS_YEARS. Use c(2012:2019, 2021:20XX) instead.
@@ -40,16 +57,19 @@ MSA_PUMAS <- list(  # PUMAs whose majority population lives within 2013 OMB defi
   WI="10000"
 )  # ^^^ UPDATE THIS LIST FOR THE 2022 ACS TO USE THE 2020 PUMAS!!!!!! ^^^
 
-#set directories 
-SCRIPT_DIR <- "S:/Projects/Regional_Indicators/ONTO2050_Indicators/Indicator_Updates/automated_updates/"
-OUT_DIR <- paste0(SCRIPT_DIR, "output/")
+
+
+### 1c2. Export location -----
+
+# Output file paths
+OUT_DIR <- here("02_script_outputs", "01_data", "development")
 OUT_CSV_SUFFIX <- paste0("_", min(ACS_YEARS), "_", max(ACS_YEARS), ".csv")
 
-#set api key (replace txt file with a txt file containing your own api key)
-key <- read.table(paste0(SCRIPT_DIR, "census_api_cc.txt"), header=FALSE)
-census_api_key(key, overwrite=TRUE, install = TRUE)
 
-# Non-SOV Travel (ACS table B08006) ---------------------------------------
+
+# 2. ACS download and clean -----------------------------------------------
+
+## 2a. Non-SOV Travel (ACS table B08006) ---------------------------------------
 
 #create empty table to append each year to
 nonsov_travel <- tibble()
@@ -108,7 +128,7 @@ for(ACS_YEAR in ACS_YEARS){
 
 print(nonsov_travel)  # Inspect final table (regional data by year)
 
-# Workforce Participation (ACS table B23001) ------------------------------
+## 2b. Workforce Participation (ACS table B23001) ------------------------------
 
 #create empty table to append all the years to
 workforce_participation <- tibble()
@@ -152,7 +172,7 @@ for(ACS_YEAR in ACS_YEARS){
 # Inspect final table with all years
 print(workforce_participation) 
 
-# Workforce Participation by Race & Ethnicity (ACS table S2301) -----------
+## 2c. Workforce Participation by Race & Ethnicity (ACS table S2301) -----------
 
 #create empty table to append years to
 workforce_participation_re <- tibble()
@@ -217,7 +237,7 @@ for(ACS_YEAR in ACS_YEARS){
 # Inspect final table with all years
 print(workforce_participation_re) 
 
-# Unemployment Rate by Race & Ethnicity (ACS table S2301) -----------------
+## 2d. Unemployment Rate by Race & Ethnicity (ACS table S2301) -----------------
 
 #create empty table to append years to
 unemployment_re <- tibble()
@@ -282,7 +302,7 @@ for(ACS_YEAR in ACS_YEARS){
 # Inspect final table
 print(unemployment_re)  
 
-# Educational Attainment (ACS table B15003) -------------------------------
+## 2e. Educational Attainment (ACS table B15003) -------------------------------
 
 #create empty table to append each year to
 educational_attainment <- tibble()
@@ -325,7 +345,7 @@ for(ACS_YEAR in ACS_YEARS){
 # Inspect final table with all years
 print(educational_attainment)  
 
-# Educational Attainment by Race & Ethnicity (ACS B15002 tables) ----------
+## 2f. Educational Attainment by Race & Ethnicity (ACS B15002 tables) ----------
 
 #create empty table to append each year to
 educational_attainment_re <- tibble()
@@ -433,14 +453,14 @@ educational_attainment_re <- educational_attainment_re[, c(1,2,5,4,7,6,3)]
 # Inspect final table
 print(educational_attainment_re)
 
-# Median Household Income by Race & Ethnicity (ACS B19013 tables) ----------
-
-# #get inflation adjustment data
-# base_date <- "2016-01-01" 
+# ## 2g. Median Household Income by Race & Ethnicity (ACS B19013 tables) ----------
+# 
+# # Get inflation adjustment data
+# base_date <- "2016-01-01"
 # base_year <- 2016
 # inflation_data <- inflation_adjust(base_date)
 # 
-# #calculate average cpi by year
+# # Calculate average cpi by year
 # avg_cpi <- apply.yearly(inflation_data, mean)
 # 
 # #set base year index
@@ -451,7 +471,7 @@ print(educational_attainment_re)
 # for(ACS_YEAR in ACS_YEARS){
 #   data_year_index <- filter(avg_cpi, year == ACS_YEAR) %>% .$value
 #   inflation_adj_factor <- base_year_index / data_year_index
-#   
+# 
 #   # Get 1-year MSA-level data for each race/ethnicity category of interest -- these are stored in separate tables
 #   # and need to be combined. Note the partial lack of mutual exclusivity: black/Asian tables could include
 #   # Hispanic/Latino people, and Hispanic/Latino table includes people of any race (including white).
@@ -463,7 +483,7 @@ print(educational_attainment_re)
 #       nominal_med_hh_inc = B19013_001E
 #     ) %>%
 #     select(NAME, race_eth, nominal_med_hh_inc)
-#   
+# 
 #   annual_data_raw_blk <- get_acs(geography="metropolitan statistical area/micropolitan statistical area",
 #                                  table="B19013B", survey="acs1", year=ACS_YEAR, output="wide", cache_table=TRUE) %>%
 #     filter(GEOID == MSA) %>%
@@ -472,7 +492,7 @@ print(educational_attainment_re)
 #       nominal_med_hh_inc = B19013B_001E
 #     ) %>%
 #     select(NAME, race_eth, nominal_med_hh_inc)
-#   
+# 
 #   annual_data_raw_asn <- get_acs(geography="metropolitan statistical area/micropolitan statistical area",
 #                                  table="B19013D", survey="acs1", year=ACS_YEAR, output="wide", cache_table=TRUE) %>%
 #     filter(GEOID == MSA) %>%
@@ -481,7 +501,7 @@ print(educational_attainment_re)
 #       nominal_med_hh_inc = B19013D_001E
 #     ) %>%
 #     select(NAME, race_eth, nominal_med_hh_inc)
-#   
+# 
 #   annual_data_raw_wht <- get_acs(geography="metropolitan statistical area/micropolitan statistical area",
 #                                  table="B19013H", survey="acs1", year=ACS_YEAR, output="wide", cache_table=TRUE) %>%
 #     filter(GEOID == MSA) %>%
@@ -490,7 +510,7 @@ print(educational_attainment_re)
 #       nominal_med_hh_inc = B19013H_001E
 #     ) %>%
 #     select(NAME, race_eth, nominal_med_hh_inc)
-#   
+# 
 #   annual_data_raw_hsp <- get_acs(geography="metropolitan statistical area/micropolitan statistical area",
 #                                  table="B19013I", survey="acs1", year=ACS_YEAR, output="wide", cache_table=TRUE) %>%
 #     filter(GEOID == MSA) %>%
@@ -499,7 +519,7 @@ print(educational_attainment_re)
 #       nominal_med_hh_inc = B19013I_001E
 #     ) %>%
 #     select(NAME, race_eth, nominal_med_hh_inc)
-#   
+# 
 #   annual_data_cleaned <- bind_rows(
 #     annual_data_raw_all, annual_data_raw_blk, annual_data_raw_asn, annual_data_raw_wht, annual_data_raw_hsp
 #   ) %>%
@@ -513,8 +533,15 @@ print(educational_attainment_re)
 #   print(annual_data_cleaned)  # Inspect derived data for current year
 # }
 # print(med_hh_inc_re)  # Inspect final table
+# 
+# # Reshape for export
+# med_hh_inc_re_export <- med_hh_inc_re %>%
+#   select(year, race_eth, real_med_hh_inc) %>%
+#   spread(key=race_eth, value = real_med_hh_inc)
+# 
+# 
 
-# Change in Real Mean HH Income of Quintiles (ACS table B19081) -----------
+## 2h. Change in Real Mean HH Income of Quintiles (ACS table B19081) -----------
 
 ### 2006 mean incomes by quintile can be found at:
 ### <https://factfinder.census.gov/bkmk/table/1.0/en/ACS/06_EST/B19081/3100000US16980>
@@ -573,7 +600,7 @@ for(ACS_YEAR in ACS_YEARS){
 # Inspect final table
 print(hh_inc_quintiles)  
 
-# Gini Coefficient of Chicago and Peer MSAs (ACS table B19083) ------------
+## 2i. Gini Coefficient of Chicago and Peer MSAs (ACS table B19083) ------------
 
 #create empty table to append each year to
 gini <- tibble()
@@ -617,7 +644,7 @@ gini <- gini[, c(1,3,2,4,5,6,7)]
 # Inspect final table
 print(gini)  
 
-# Commute Time by Race & Ethnicity (ACS PUMS) -----------------------------
+## 2j. Commute Time by Race & Ethnicity (ACS PUMS) -----------------------------
 
 #create empty table to append years to
 commute_time_re <- tibble()
@@ -694,27 +721,32 @@ commute_time_re <- commute_time_re[, c(1,3,4,5,6,2)]
 # Inspect final table
 print(commute_time_re)  
 
-# Write CSVs (AFTER REVIEWING CHARTS FOR COMPLETENESS/ACCURACY) -----------
 
-# write_csv(nonsov_travel, paste0(OUT_DIR, "nonsov_travel", OUT_CSV_SUFFIX))
-# 
-# write_csv(workforce_participation, paste0(OUT_DIR, "workforce_participation", OUT_CSV_SUFFIX))
-# 
-# write_csv(workforce_participation_re, paste0(OUT_DIR, "workforce_participation_by_race_eth", OUT_CSV_SUFFIX))
-# 
-# write_csv(unemployment_re, paste0(OUT_DIR, "unemployment_by_race_eth", OUT_CSV_SUFFIX))
-# 
-# write_csv(educational_attainment, paste0(OUT_DIR, "educational_attainment", OUT_CSV_SUFFIX))
-# 
-# write_csv(educational_attainment_re, paste0(OUT_DIR, "educational_attainment_by_race_eth", OUT_CSV_SUFFIX))
-# 
-# med_hh_inc_re2 <- med_hh_inc_re %>%
-#   select(year, race_eth, real_med_hh_inc) %>%
-#   spread(key=race_eth, value=real_med_hh_inc)
-# write_csv(med_hh_inc_re2, paste0(OUT_DIR, "median_hh_income_by_race_eth", OUT_CSV_SUFFIX))
-# 
-# write_csv(hh_inc_quintiles, paste0(OUT_DIR, "mean_hh_income_by_quintile", OUT_CSV_SUFFIX))
-# 
-# write_csv(gini, paste0(OUT_DIR, "gini_coefficient", OUT_CSV_SUFFIX))
-# 
-# write_csv(commute_time_re, paste0(OUT_DIR, "commute_time_by_race_eth", OUT_CSV_SUFFIX))
+# 3. Export data ----------------------------------------------------------
+
+
+# Write to script output before overwriting dashboard inputs
+
+# Non-SOV trips to work
+write_csv(nonsov_travel, paste0(OUT_DIR, "/", "nonsov_travel", OUT_CSV_SUFFIX))
+
+# Commute times by race/ethnicity
+write_csv(commute_time_re, paste0(OUT_DIR, "/", "commute_time_by_race_eth", OUT_CSV_SUFFIX))
+
+# Workforce participation
+write_csv(workforce_participation, paste0(OUT_DIR, "/", "workforce_participation", OUT_CSV_SUFFIX))
+write_csv(workforce_participation_re, paste0(OUT_DIR, "/", "workforce_participation_by_race_eth", OUT_CSV_SUFFIX))
+
+# Unemployment
+write_csv(unemployment_re, paste0(OUT_DIR, "/", "unemployment_by_race_eth", OUT_CSV_SUFFIX))
+
+# Educational attainment
+write_csv(educational_attainment, paste0(OUT_DIR, "/", "educational_attainment", OUT_CSV_SUFFIX))
+write_csv(educational_attainment_re, paste0(OUT_DIR, "/", "educational_attainment_by_race_eth", OUT_CSV_SUFFIX))
+
+# Median household income, change since 2006
+# write_csv(med_hh_inc_re_export, paste0(OUT_DIR, "/", "median_hh_income_by_race_eth", OUT_CSV_SUFFIX))
+write_csv(hh_inc_quintiles, paste0(OUT_DIR, "/", "mean_hh_income_by_quintile", OUT_CSV_SUFFIX))
+
+# Gini coefficient
+write_csv(gini, paste0(OUT_DIR, "/", "gini_coefficient", OUT_CSV_SUFFIX))
