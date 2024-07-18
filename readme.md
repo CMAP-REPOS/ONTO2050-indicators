@@ -14,7 +14,7 @@ This repository's `docs` folder includes code for a [dashboard website](https://
 
 Folder | Indicator(s)
 ---|---
-[`01_data_automation_scripts`](01_data_automation_scripts) | Code for downloading and cleaning indicator data
+[`01_scripts`](01_scripts) | Code for downloading, cleaning, and visualizing indicator data
 [`02_script_outputs`](02_script_outputs) | Script outputs, mainly the exported CSVs from scripts stored in [`01_data/development`](02_script_outputs/01_data/development).<br><br>Once these are reviewed, these data are copied to [`01_data/production`](02_script_outputs/01_data/production) and then used to overwrite the final, production data in the indicator sub-folders.<br><br>Static plots used for presentations and other forums are saved in [`02_plots`](02_script_outputs/02_plots).
 [`docs`](docs) | Code for the [indicator dashboard](https://cmap-repos.github.io/ONTO2050-indicators/)
 
