@@ -4,13 +4,23 @@ With its many partners and stakeholders, the Chicago Metropolitan Agency for Pla
 
 Where possible, each ON TO 2050 recommendation is tracked by one or more [indicators](https://www.cmap.illinois.gov/2050/indicators) to set targets and monitor progress. Because changes to patterns of development or mobility take time, the plan designates targets for both 2025 and 2050. Most important, these targets are not simple forecasts of current trends; they instead represent optimistic, but achievable, outcomes that assume the implementation of ON TO 2050. To provide consistency over time, many indicators have been carried forward from [GO TO 2040](https://www.cmap.illinois.gov/about/2040), the predecessor to this plan, with some improved data sources or analytical approaches. Read more in the [ON TO 2050 Indicators Appendix](https://www.cmap.illinois.gov/documents/10180/905585/FINAL+Indicators+Appendix.pdf/ae234d88-74c0-7a94-f70d-ea350c999810).
 
-This repository includes the ON TO 2050 indicator data in CSV format. Each CSV is in a folder with a `readme.md` file containing relevant context and metadata. The data provided is generally only the final indicator values, not any underlying source data (which is often very large and/or restricted). Each indicator will be updated as new source data becomes available, in order to track the implementation progress of the plan. Unless othwerwise noted, each indicator represents the seven Illinois counties composing the CMAP region: Cook, DuPage, Kane, Kendall, Lake, McHenry and Will.
+This repository includes subfolders with the ON TO 2050 indicator final data in CSV format. Each CSV is in a folder with a `readme.md` file containing relevant context and metadata. The data provided is generally only the final indicator values, not any underlying source data (which is often very large and/or restricted). Each indicator will be updated as new source data becomes available, in order to track the implementation progress of the plan. Unless otherwise noted, each indicator represents the seven Illinois counties composing the CMAP region: Cook, DuPage, Kane, Kendall, Lake, McHenry and Will.
 
 This repository's `docs` folder includes code for a [dashboard website](https://cmap-repos.github.io/ONTO2050-indicators/) that dynamically generates charts for each indicator directly from their CSV files.
 
 ---
 
-### List of folders and the indicators they contain
+### List of data, script, and dashboard folders
+
+Folder | Indicator(s)
+---|---
+[`01_data_automation_scripts`](01_data_automation_scripts) | Code for downloading and cleaning indicator data
+[`02_script_outputs`](02_script_outputs) | Script outputs, mainly the exported CSVs from scripts stored in [`01_data/development`](02_script_outputs/01_data/development).<br><br>Once these are reviewed, these data are copied to [`01_data/production`](02_script_outputs/01_data/production) and then used to overwrite the final, production data in the indicator sub-folders.<br><br>Static plots used for presentations and other forums are saved in [`02_plots`](02_script_outputs/02_plots).
+[`docs`](docs) | Code for the [indicator dashboard](https://cmap-repos.github.io/ONTO2050-indicators/)
+
+---
+
+### List of indicator folders
 
 **Note:** Indicators in *italics* are secondary indicators, which do not have any future targets associated with them.
 
@@ -54,4 +64,4 @@ Folder | Indicator(s)
 [`water-demand`](water-demand) | &bull; Water Demand<br />&bull; *Lake Michigan Withdrawals*<br />&bull; *Deep Bedrock Aquifer Withdrawals*
 [`watersheds-low-imperviousness`](watersheds-low-imperviousness) | &bull; Regional Land in Watersheds Below 25 Percent Impervious Coverage
 [`workforce-participation`](workforce-participation) | &bull; Workforce Participation<br />&bull; *Workforce Participation by Race and Ethnicity*
-[`docs`](docs) | **Not an indicator** -- code for the [indicator dashboard](https://cmap-repos.github.io/ONTO2050-indicators/)
+
