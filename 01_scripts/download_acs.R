@@ -18,9 +18,11 @@
 # Libraries
 library(tidyverse)
 library(tidycensus)
+library(purrr)
 library(ggplot2)
 library(ggrepel)
 library(blscrapeR)  # For obtaining inflation adjustment factors
+library(blsR)
 library(xts)
 library(here) # For relative file paths
 
@@ -28,6 +30,7 @@ library(here) # For relative file paths
 options(scipen = 1000, stringsAsFactors = FALSE, tigris_use_cache = TRUE)
 
 
+bls_set_key("91638f97841d4dbaa1042bd47fad3e4f")
 
 ## 1c. Global variables -----
 
@@ -67,9 +70,24 @@ OUT_CSV_SUFFIX <- paste0("_", min(ACS_YEARS), "_", max(ACS_YEARS), ".csv")
 
 
 
-# 2. ACS download and clean -----------------------------------------------
+# 2. BLS CPI data ---------------------------------------------------------
 
-## 2a. Non-SOV Travel (ACS table B08006) ---------------------------------------
+# Download CPI data from API
+bls_set_key("91638f97841d4dbaa1042bd47fad3e4f")
+cpi_raw_series <- get_n_series(series_ids = c("CUUR0000SA0"),
+                               start_year = 2005,
+                               end_year = 2024,
+                               annualaverage = TRUE)
+
+# Pull out data, restrict to annual average (month 13), format
+cpi_clean <- data_as_tidy_table(cpi_raw_series$CUUR0000SA0$data) %>% 
+  filter(month == 13) %>% 
+  select(year, "cpi_ann_avg" = value)
+
+
+# 3. ACS download and clean -----------------------------------------------
+
+## 3a. Non-SOV Travel (ACS table B08006) ---------------------------------------
 
 #create empty table to append each year to
 nonsov_travel <- tibble()
@@ -128,7 +146,7 @@ for(ACS_YEAR in ACS_YEARS){
 
 print(nonsov_travel)  # Inspect final table (regional data by year)
 
-## 2b. Workforce Participation (ACS table B23001) ------------------------------
+## 3b. Workforce Participation (ACS table B23001) ------------------------------
 
 #create empty table to append all the years to
 workforce_participation <- tibble()
@@ -172,7 +190,7 @@ for(ACS_YEAR in ACS_YEARS){
 # Inspect final table with all years
 print(workforce_participation) 
 
-## 2c. Workforce Participation by Race & Ethnicity (ACS table S2301) -----------
+## 3c. Workforce Participation by Race & Ethnicity (ACS table S2301) -----------
 
 #create empty table to append years to
 workforce_participation_re <- tibble()
@@ -237,7 +255,7 @@ for(ACS_YEAR in ACS_YEARS){
 # Inspect final table with all years
 print(workforce_participation_re) 
 
-## 2d. Unemployment Rate by Race & Ethnicity (ACS table S2301) -----------------
+## 3d. Unemployment Rate by Race & Ethnicity (ACS table S2301) -----------------
 
 #create empty table to append years to
 unemployment_re <- tibble()
@@ -302,7 +320,7 @@ for(ACS_YEAR in ACS_YEARS){
 # Inspect final table
 print(unemployment_re)  
 
-## 2e. Educational Attainment (ACS table B15003) -------------------------------
+## 3e. Educational Attainment (ACS table B15003) -------------------------------
 
 #create empty table to append each year to
 educational_attainment <- tibble()
@@ -345,7 +363,7 @@ for(ACS_YEAR in ACS_YEARS){
 # Inspect final table with all years
 print(educational_attainment)  
 
-## 2f. Educational Attainment by Race & Ethnicity (ACS B15002 tables) ----------
+## 3f. Educational Attainment by Race & Ethnicity (ACS B15002 tables) ----------
 
 #create empty table to append each year to
 educational_attainment_re <- tibble()
@@ -453,154 +471,178 @@ educational_attainment_re <- educational_attainment_re[, c(1,2,5,4,7,6,3)]
 # Inspect final table
 print(educational_attainment_re)
 
-# ## 2g. Median Household Income by Race & Ethnicity (ACS B19013 tables) ----------
-# 
-# # Get inflation adjustment data
-# base_date <- "2016-01-01"
-# base_year <- 2016
-# inflation_data <- inflation_adjust(base_date)
-# 
-# # Calculate average cpi by year
-# avg_cpi <- apply.yearly(inflation_data, mean)
-# 
-# #set base year index
-# base_year_index <- filter(avg_cpi, year == base_year) %>% .$value
-# 
-# med_hh_inc_re <- tibble()
-# 
-# for(ACS_YEAR in ACS_YEARS){
-#   data_year_index <- filter(avg_cpi, year == ACS_YEAR) %>% .$value
-#   inflation_adj_factor <- base_year_index / data_year_index
-# 
-#   # Get 1-year MSA-level data for each race/ethnicity category of interest -- these are stored in separate tables
-#   # and need to be combined. Note the partial lack of mutual exclusivity: black/Asian tables could include
-#   # Hispanic/Latino people, and Hispanic/Latino table includes people of any race (including white).
-#   annual_data_raw_all <- get_acs(geography="metropolitan statistical area/micropolitan statistical area",
-#                                  table="B19013", survey="acs1", year=ACS_YEAR, output="wide", cache_table=TRUE) %>%
-#     filter(GEOID == MSA) %>%
-#     mutate(
-#       race_eth = "All",
-#       nominal_med_hh_inc = B19013_001E
-#     ) %>%
-#     select(NAME, race_eth, nominal_med_hh_inc)
-# 
-#   annual_data_raw_blk <- get_acs(geography="metropolitan statistical area/micropolitan statistical area",
-#                                  table="B19013B", survey="acs1", year=ACS_YEAR, output="wide", cache_table=TRUE) %>%
-#     filter(GEOID == MSA) %>%
-#     mutate(
-#       race_eth = "Black",
-#       nominal_med_hh_inc = B19013B_001E
-#     ) %>%
-#     select(NAME, race_eth, nominal_med_hh_inc)
-# 
-#   annual_data_raw_asn <- get_acs(geography="metropolitan statistical area/micropolitan statistical area",
-#                                  table="B19013D", survey="acs1", year=ACS_YEAR, output="wide", cache_table=TRUE) %>%
-#     filter(GEOID == MSA) %>%
-#     mutate(
-#       race_eth = "Asian",
-#       nominal_med_hh_inc = B19013D_001E
-#     ) %>%
-#     select(NAME, race_eth, nominal_med_hh_inc)
-# 
-#   annual_data_raw_wht <- get_acs(geography="metropolitan statistical area/micropolitan statistical area",
-#                                  table="B19013H", survey="acs1", year=ACS_YEAR, output="wide", cache_table=TRUE) %>%
-#     filter(GEOID == MSA) %>%
-#     mutate(
-#       race_eth = "White (non-Hispanic)",
-#       nominal_med_hh_inc = B19013H_001E
-#     ) %>%
-#     select(NAME, race_eth, nominal_med_hh_inc)
-# 
-#   annual_data_raw_hsp <- get_acs(geography="metropolitan statistical area/micropolitan statistical area",
-#                                  table="B19013I", survey="acs1", year=ACS_YEAR, output="wide", cache_table=TRUE) %>%
-#     filter(GEOID == MSA) %>%
-#     mutate(
-#       race_eth = "Hispanic/Latino",
-#       nominal_med_hh_inc = B19013I_001E
-#     ) %>%
-#     select(NAME, race_eth, nominal_med_hh_inc)
-# 
-#   annual_data_cleaned <- bind_rows(
-#     annual_data_raw_all, annual_data_raw_blk, annual_data_raw_asn, annual_data_raw_wht, annual_data_raw_hsp
-#   ) %>%
-#     mutate(
-#       inflation_factor = inflation_adj_factor,
-#       real_med_hh_inc = round(nominal_med_hh_inc * inflation_factor, 0),
-#       year = ACS_YEAR
-#     ) %>%
-#     select(year, race_eth, nominal_med_hh_inc, inflation_factor, real_med_hh_inc)
-#   med_hh_inc_re <- bind_rows(med_hh_inc_re, annual_data_cleaned)
-#   print(annual_data_cleaned)  # Inspect derived data for current year
-# }
-# print(med_hh_inc_re)  # Inspect final table
-# 
-# # Reshape for export
-# med_hh_inc_re_export <- med_hh_inc_re %>%
-#   select(year, race_eth, real_med_hh_inc) %>%
-#   spread(key=race_eth, value = real_med_hh_inc)
-# 
-# 
 
-## 2h. Change in Real Mean HH Income of Quintiles (ACS table B19081) -----------
+
+## 3g. Median Household Income by Race & Ethnicity (ACS B19013 tables) ----------
+
+# Median HH income CPI
+# Set base year index
+med_hh_base_year_index <- cpi_clean %>% filter(year == 2016) %>% pull(cpi_ann_avg)
+
+# Calculate adjustment rate
+cpi_clean <- cpi_clean %>% 
+  mutate("med_hh_inflation_adj_factor" =  med_hh_base_year_index / cpi_ann_avg)
+
+# Loop through ACS years
+med_hh_inc_re <- map_df(
+  .x = ACS_YEARS,
+  .f = ~{
+    # Get 1-year MSA-level data for each ,race/ethnicity category of interest -- these are stored in separate tables and need to be combined. Note the partial lack of mutual exclusivity: black/Asian tables could include Hispanic/Latino people, and Hispanic/Latino table includes people of any race (including white).
+    
+    # All populations
+    annual_data_raw_all <- get_acs(geography = "metropolitan statistical area/micropolitan statistical area",
+                                   table = "B19013",
+                                   survey = "acs1",
+                                   year = .x, 
+                                   output = "wide",
+                                   cache_table = TRUE) %>%
+      filter(GEOID == MSA) %>%
+      mutate("race_eth" = "All",
+             "nominal_med_hh_inc" = B19013_001E) %>%
+      select(NAME, race_eth, nominal_med_hh_inc)
+    
+    # Black/African-American
+    annual_data_raw_blk <- get_acs(geography = "metropolitan statistical area/micropolitan statistical area",
+                                   table = "B19013B",
+                                   survey = "acs1", 
+                                   year = .x,
+                                   output = "wide",
+                                   cache_table = TRUE) %>%
+      filter(GEOID == MSA) %>%
+      mutate("race_eth" = "Black",
+             "nominal_med_hh_inc" = B19013B_001E) %>%
+      select(NAME, race_eth, nominal_med_hh_inc)
+    
+    # Asian
+    annual_data_raw_asn <- get_acs(geography = "metropolitan statistical area/micropolitan statistical area",
+                                   table = "B19013D",
+                                   survey = "acs1",
+                                   year = .x,
+                                   output = "wide",
+                                   cache_table = TRUE) %>%
+      filter(GEOID == MSA) %>%
+      mutate("race_eth" = "Asian",
+             "nominal_med_hh_inc" = B19013D_001E) %>%
+      select(NAME, race_eth, nominal_med_hh_inc)
+    
+    # White
+    annual_data_raw_wht <- get_acs(geography = "metropolitan statistical area/micropolitan statistical area",
+                                   table = "B19013H",
+                                   survey = "acs1",
+                                   year = .x,
+                                   output = "wide",
+                                   cache_table = TRUE) %>%
+      filter(GEOID == MSA) %>%
+      mutate("race_eth" = "White (non-Hispanic)",
+             "nominal_med_hh_inc" = B19013H_001E) %>%
+      select(NAME, race_eth, nominal_med_hh_inc)
+    
+    # Hispanic
+    annual_data_raw_hsp <- get_acs(geography = "metropolitan statistical area/micropolitan statistical area",
+                                   table = "B19013I",
+                                   survey = "acs1",
+                                   year = .x,
+                                   output = "wide",
+                                   cache_table = TRUE) %>%
+      filter(GEOID == MSA) %>%
+      mutate("race_eth" = "Hispanic/Latino",
+             "nominal_med_hh_inc" = B19013I_001E) %>%
+      select(NAME, race_eth, nominal_med_hh_inc)
+    
+    # Combined data
+    annual_data_cleaned <- bind_rows(annual_data_raw_all,
+                                     annual_data_raw_blk,
+                                     annual_data_raw_asn,
+                                     annual_data_raw_wht,
+                                     annual_data_raw_hsp) %>%
+      # Join CPI data, adjust dollar values
+      mutate("year" = .x) %>% 
+      left_join(cpi_clean %>% 
+                  select(year, 
+                         "inflation_factor" = med_hh_inflation_adj_factor),
+                by = "year") %>% 
+      mutate("real_med_hh_inc" = round(nominal_med_hh_inc * inflation_factor, 0)) %>%
+      select(year, race_eth, nominal_med_hh_inc, inflation_factor, real_med_hh_inc)
+    
+    # Output dataframe
+    return(annual_data_cleaned)
+    
+  }
+)
+
+# Reshape, rename columns for export
+med_hh_inc_re_export <- med_hh_inc_re %>%
+  select(year, race_eth, real_med_hh_inc) %>%
+  pivot_wider(names_from = race_eth,
+              values_from = real_med_hh_inc) %>% 
+  # Rename columns
+  select("YEAR" = year,
+         "MED_HH_INC_ALL" = All,
+         "MED_HH_INC_ASIAN" = Asian,
+         "MED_HH_INC_BLACK" = Black,
+         "MED_HH_INC_HISPANIC" = `Hispanic/Latino`,
+         "MED_HH_INC_WHITE" = `White (non-Hispanic)`) %>% 
+  mutate("ACTUAL_OR_TARGET" = "Actual")
+
+
+
+## 3h. Change in Real Mean HH Income of Quintiles (ACS table B19081) -----------
 
 ### 2006 mean incomes by quintile can be found at:
 ### <https://factfinder.census.gov/bkmk/table/1.0/en/ACS/06_EST/B19081/3100000US16980>
 
-#set base year/date
-base_date <- "2006-01-01" 
-base_year <- 2006
+# Set base year index
+hh_quintiles_base_year_index <- cpi_clean %>% filter(year == 2006) %>% pull(cpi_ann_avg)
 
-#get inflation adjustment data
-inflation_data <- inflation_adjust(base_date)
+# Calculate adjustment rate
+cpi_clean <- cpi_clean %>% 
+  mutate("hh_quintiles_inflation_adj_factor" =  hh_quintiles_base_year_index / cpi_ann_avg)
 
-#calculate average cpi by year
-avg_cpi <- apply.yearly(inflation_data, mean)
-
-#set base year index
-base_year_index <- filter(avg_cpi, year == base_year) %>% .$value
-
-#create empty table to append years to
-hh_inc_quintiles <- tibble()
-
-#loop through each year and generate data
-for(ACS_YEAR in ACS_YEARS){
-  data_year_index <- filter(avg_cpi, year == ACS_YEAR) %>% .$value
-  inflation_adj_factor <- base_year_index / data_year_index
+# Loop through years
+hh_inc_quintiles <- map_df(
+  .x = ACS_YEARS,
+  .f = ~{
   
   # Get 1-year MSA-level data for each MSA.
   annual_data_raw <- get_acs(geography = "metropolitan statistical area/micropolitan statistical area",
-                             table="B19081", survey="acs1", year=ACS_YEAR, output="wide", cache_table=TRUE) %>%
+                             table = "B19081",
+                             survey="acs1", 
+                             year = .x,
+                             output = "wide",
+                             cache_table = TRUE) %>%
     filter(GEOID == MSA)
+  
+  # Clean, adjust to real dollars
   annual_data_cleaned <- annual_data_raw %>%
-    mutate(
-      YEAR = ACS_YEAR,
-      # Convert mean HH income into real 2006 dollars
-      mean_hh_inc_q1_2006d = B19081_001E * inflation_adj_factor,
-      mean_hh_inc_q2_2006d = B19081_002E * inflation_adj_factor,
-      mean_hh_inc_q3_2006d = B19081_003E * inflation_adj_factor,
-      mean_hh_inc_q4_2006d = B19081_004E * inflation_adj_factor,
-      mean_hh_inc_q5_2006d = B19081_005E * inflation_adj_factor,
-      MEAN_INC_REL2006_QUINT1 = (mean_hh_inc_q1_2006d / 12594),  # Q1 2006 mean was $12,594
-      MEAN_INC_REL2006_QUINT2 = (mean_hh_inc_q2_2006d / 34594),  # Q2 2006 mean was $34,594
-      MEAN_INC_REL2006_QUINT3 = (mean_hh_inc_q3_2006d / 57316),  # Q3 2006 mean was $57,316
-      MEAN_INC_REL2006_QUINT4 = (mean_hh_inc_q4_2006d / 86906),  # Q4 2006 mean was $86,906
-      MEAN_INC_REL2006_QUINT5 = (mean_hh_inc_q5_2006d / 190120),  # Q5 2006 mean was $190,120
+    # Join CPI data, adjust dollar values
+    mutate("year" = .x) %>% 
+    left_join(cpi_clean %>% 
+                select(year, 
+                       "inflation_factor" = hh_quintiles_inflation_adj_factor),
+              by = "year") %>% 
+    # Convert mean HH income into real 2006 dollars
+    mutate("mean_hh_inc_q1_2006d" = B19081_001E * inflation_factor,
+           
+      "mean_hh_inc_q2_2006d" = B19081_002E * inflation_factor,
+      "mean_hh_inc_q3_2006d" = B19081_003E * inflation_factor,
+      "mean_hh_inc_q4_2006d" = B19081_004E * inflation_factor,
+      "mean_hh_inc_q5_2006d" = B19081_005E * inflation_factor,
+      "MEAN_INC_REL2006_QUINT1" = (mean_hh_inc_q1_2006d / 12594),  # Q1 2006 mean was $12,594
+      "MEAN_INC_REL2006_QUINT2" = (mean_hh_inc_q2_2006d / 34594),  # Q2 2006 mean was $34,594
+      "MEAN_INC_REL2006_QUINT3" = (mean_hh_inc_q3_2006d / 57316),  # Q3 2006 mean was $57,316
+      "MEAN_INC_REL2006_QUINT4" = (mean_hh_inc_q4_2006d / 86906),  # Q4 2006 mean was $86,906
+      "MEAN_INC_REL2006_QUINT5" = (mean_hh_inc_q5_2006d / 190120),  # Q5 2006 mean was $190,120
       ACTUAL_OR_TARGET = "Actual") %>%
-    
-    #keep only variables in the github file
-    select(-NAME, -GEOID, -starts_with("B19081"), -ends_with("2006d"))
+    # Keep only variables in the github file
+    select(-NAME, -GEOID, -inflation_factor,
+           -starts_with("B19081"), -ends_with("2006d"))
   
-  #append current year to all years
-  hh_inc_quintiles <- bind_rows(hh_inc_quintiles, annual_data_cleaned)
-  
-  # Inspect derived data for current year
-  print(annual_data_cleaned)  
-}
+  }
+)
 
-# Inspect final table
-print(hh_inc_quintiles)  
 
-## 2i. Gini Coefficient of Chicago and Peer MSAs (ACS table B19083) ------------
+
+## 3i. Gini Coefficient of Chicago and Peer MSAs (ACS table B19083) ------------
 
 #create empty table to append each year to
 gini <- tibble()
@@ -610,7 +652,11 @@ for(ACS_YEAR in ACS_YEARS){
   
   # Get 1-year MSA-level data for each MSA.
   annual_data_raw <- get_acs(geography = "metropolitan statistical area/micropolitan statistical area",
-                             table="B19083", survey="acs1", year=ACS_YEAR, output="wide", cache_table=TRUE) %>%
+                             table = "B19083",
+                             survey = "acs1",
+                             year = ACS_YEAR,
+                             output = "wide",
+                             cache_table = TRUE) %>%
     filter(GEOID %in% PEER_MSAS)
   
   #rename variables
@@ -644,7 +690,7 @@ gini <- gini[, c(1,3,2,4,5,6,7)]
 # Inspect final table
 print(gini)  
 
-## 2j. Commute Time by Race & Ethnicity (ACS PUMS) -----------------------------
+## 3j. Commute Time by Race & Ethnicity (ACS PUMS) -----------------------------
 
 #create empty table to append years to
 commute_time_re <- tibble()
@@ -722,7 +768,7 @@ commute_time_re <- commute_time_re[, c(1,3,4,5,6,2)]
 print(commute_time_re)  
 
 
-# 3. Export data ----------------------------------------------------------
+# 4. Export data ----------------------------------------------------------
 
 
 # Write to script output before overwriting dashboard inputs
@@ -745,7 +791,7 @@ write_csv(educational_attainment, paste0(OUT_DIR, "/", "educational_attainment",
 write_csv(educational_attainment_re, paste0(OUT_DIR, "/", "educational_attainment_by_race_eth", OUT_CSV_SUFFIX))
 
 # Median household income, change since 2006
-# write_csv(med_hh_inc_re_export, paste0(OUT_DIR, "/", "median_hh_income_by_race_eth", OUT_CSV_SUFFIX))
+write_csv(med_hh_inc_re_export, paste0(OUT_DIR, "/", "median_hh_income_by_race_eth", OUT_CSV_SUFFIX))
 write_csv(hh_inc_quintiles, paste0(OUT_DIR, "/", "mean_hh_income_by_quintile", OUT_CSV_SUFFIX))
 
 # Gini coefficient
