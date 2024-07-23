@@ -19,8 +19,6 @@
 library(tidyverse)
 library(tidycensus)
 library(purrr)
-library(ggplot2)
-library(ggrepel)
 library(blscrapeR)  # For obtaining inflation adjustment factors
 library(blsR)
 library(xts)
@@ -73,16 +71,18 @@ OUT_CSV_SUFFIX <- paste0("_", min(ACS_YEARS), "_", max(ACS_YEARS), ".csv")
 # 2. BLS CPI data ---------------------------------------------------------
 
 # Download CPI data from API
-bls_set_key("91638f97841d4dbaa1042bd47fad3e4f")
+# bls_set_key("91638f97841d4dbaa1042bd47fad3e4f")
+# Chicago MSA series is CUUSS23ASA0, but historically this project has used the national CPI-U series of CUUR0000SA0
 cpi_raw_series <- get_n_series(series_ids = c("CUUR0000SA0"),
                                start_year = 2005,
                                end_year = 2024,
                                annualaverage = TRUE)
 
 # Pull out data, restrict to annual average (month 13), format
-cpi_clean <- data_as_tidy_table(cpi_raw_series$CUUR0000SA0$data) %>% 
-  filter(month == 13) %>% 
+cpi_clean <- data_as_table(cpi_raw_series[[1]]$data) %>% 
+  filter(periodName == "Annual") %>% 
   select(year, "cpi_ann_avg" = value)
+  
 
 
 # 3. ACS download and clean -----------------------------------------------

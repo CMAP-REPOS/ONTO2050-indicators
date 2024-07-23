@@ -1,4 +1,135 @@
-##NONSOV TRAVEL PLOTS
+
+
+# 1. Setup ----------------------------------------------------------------
+
+## 1a. Load libraries -----
+
+# Basics
+library(tidyverse);library(lubridate)
+# Spatial
+library(sf);library(mapview)
+# Data viz
+library(ggplot2);library(ggrepel)
+# CMAP packages
+library(cmapgeo);library(cmapplot)
+# Utility
+library(here);library(janitor);library(purrr)
+
+
+
+## 1b. Options -----
+
+# Options, call stored Census API key, load fonts
+options(scipen = 1000, stringsAsFactors = FALSE, tigris_use_cache = TRUE)
+mapviewOptions(basemaps = c("CartoDb.Positron",
+                            "OpenStreetMap"))
+invisible(Sys.getenv("CENSUS_API_KEY"))
+# Prevent RPlots empty PDF
+if(!interactive()) pdf(NULL)
+
+# CMAP theme/aesthetic defaults
+apply_cmap_default_aes()
+
+
+
+# 2. Ingest data ----------------------------------------------------------
+
+# Data directory
+DATA_DIR <- here("02_script_outputs", "01_data", "development")
+
+# Read in development data
+med_hh_inc_re <- read_csv(paste0(DATA_DIR, "/", "median_hh_income_by_race_eth_2012_2022.csv"))
+
+
+
+# 3. Plots ----------------------------------------------------------------
+
+
+## 3a. Median household income -----
+
+# Plot indicator values over time
+med_hh_inc_re_latest <- med_hh_inc_re %>%
+  pivot_longer(cols = -c(YEAR, ACTUAL_OR_TARGET),
+               names_to = c("temp", "race_eth"),
+               names_pattern = "^(.*)_(.*)$",
+               values_to = "MED_HH_INC") %>% 
+  select(-temp) %>% 
+  filter(YEAR == max(med_hh_inc_re$YEAR))  # Get only latest data points for labeling
+
+# Reshape for plotting
+plot_med_hh_inc_re <- med_hh_inc_re %>% 
+  pivot_longer(cols = -c(YEAR, ACTUAL_OR_TARGET),
+               names_to = c("temp", "race_eth"),
+               names_pattern = "^(.*)_(.*)$",
+               values_to = "MED_HH_INC") %>% 
+  select(-temp) %>% 
+  # Plot code
+  ggplot(aes(x = YEAR, y = MED_HH_INC,
+                color = race_eth,
+                label = paste0("$", format(MED_HH_INC, big.mark = ",")))) +
+  geom_line() +
+  ggtitle("Median household income by race & ethnicity",
+          subtitle = paste0("in 2016 dollars, for households in the Chicago MSA")) +
+  scale_x_continuous("Year",
+                     breaks = med_hh_inc_re$YEAR) +
+  scale_y_continuous("Real median household income",
+                     minor_breaks = NULL,
+                     labels = scales::dollar) +
+  labs(caption = "Source: American Community Survey (tables B19013, B19013B, B19013D, B19013H, B19013I)",
+       color = "Race/ethnicity") +
+  # Additional styling
+  guides(color = guide_legend(override.aes = list(label = ""))) +
+  theme_minimal() +
+  scale_color_brewer(palette = "Set1") +
+  coord_cartesian(ylim = c(0, 100000)) +
+  geom_hline(yintercept = 0, color = "#888888") +  # Emphasize y=0 for reference (if in plot)
+  geom_line(size = 1) +
+  # Add text to most recent data point
+  geom_point(data = med_hh_inc_re_latest) +
+  geom_text_repel(data = med_hh_inc_re_latest, direction="y", fontface="bold")
+
+
+plot_med_hh_inc_re
+
+
+## 3b. Mean household income ratio compared to 2006  -----
+
+# Plot indicator values over time
+hh_inc_quintiles2 <- hh_inc_quintiles %>%
+  gather(mean_hh_inc_change_q1, mean_hh_inc_change_q2, mean_hh_inc_change_q3, mean_hh_inc_change_q4, mean_hh_inc_change_q5, mean_hh_inc_change_top5pct,
+         key="quintile", value="mean_hh_inc_change") %>%
+  filter(quintile != "mean_hh_inc_change_top5pct") %>%
+  mutate(quintile = case_when(
+    quintile == "mean_hh_inc_change_q1" ~ "1st quintile (lowest income)",
+    quintile == "mean_hh_inc_change_q2" ~ "2nd quintile",
+    quintile == "mean_hh_inc_change_q3" ~ "3rd quintile",
+    quintile == "mean_hh_inc_change_q4" ~ "4th quintile",
+    quintile == "mean_hh_inc_change_q5" ~ "5th quintile (highest income)"
+  )) %>%
+  select(year, quintile, mean_hh_inc_change)
+
+hh_inc_quintiles2_latest <- hh_inc_quintiles2 %>%
+  filter(year == max(ACS_YEARS))  # Get only latest data points for labeling
+
+ggplot(hh_inc_quintiles2, aes(x=year, y=mean_hh_inc_change, color=quintile, label=sprintf("%+.1f%%", 100*mean_hh_inc_change))) +
+  ggtitle(paste("Real mean household income by quintile relative to", base_year),
+          subtitle="among households in the Chicago MSA") +
+  scale_x_continuous("Year", minor_breaks=NULL, breaks=ACS_YEARS) +
+  scale_y_continuous("Real mean household income relative to 2006", minor_breaks=NULL, labels=scales::percent) +
+  labs(caption="Source: American Community Survey (table B19081)",
+       color="Income quintile") +
+  guides(color=guide_legend(override.aes=list(label=""))) +
+  theme_minimal() +
+  scale_color_brewer(palette="Set1") +
+  coord_cartesian(ylim=c(-0.2, 0.1)) +
+  geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
+  geom_line(size=1) +
+  geom_point(data=hh_inc_quintiles2_latest) +
+  geom_text_repel(data=hh_inc_quintiles2_latest, direction="y", fontface="bold")
+
+
+
+##NONSOV TRAVEL PLOTS ----
 
 # Plot indicator values over time
 nonsov_travel_latest <- nonsov_travel %>%
@@ -239,61 +370,7 @@ ggplot(educational_attainment_re, aes(x=year, y=assoc_plus_pct, color=race_eth, 
   geom_point(data=educational_attainment_re_latest) +
   geom_text_repel(data=educational_attainment_re_latest, direction="y", fontface="bold")
 
-##MEDIAN HHOLD INCOME PLOTS 
-# Plot indicator values over time
-med_hh_inc_re_latest <- med_hh_inc_re %>%
-  filter(year == max(ACS_YEARS))  # Get only latest data points for labeling
 
-ggplot(med_hh_inc_re, aes(x=year, y=real_med_hh_inc, color=race_eth, label=paste0("$", format(real_med_hh_inc, big.mark=",")))) +
-  ggtitle("Median household income by race & ethnicity",
-          subtitle=paste0("in ", base_year, " dollars, for households in the Chicago MSA")) +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=ACS_YEARS) +
-  scale_y_continuous("Real median household income", minor_breaks=NULL, labels=scales::dollar) +
-  labs(caption="Source: American Community Survey (tables B19013, B19013B, B19013D, B19013H, B19013I)",
-       color="Race/ethnicity") +
-  guides(color=guide_legend(override.aes=list(label=""))) +
-  theme_minimal() +
-  scale_color_brewer(palette="Set1") +
-  coord_cartesian(ylim=c(0, 100000)) +
-  geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
-  geom_line(size=1) +
-  geom_point(data=med_hh_inc_re_latest) +
-  geom_text_repel(data=med_hh_inc_re_latest, direction="y", fontface="bold")
-
-## MEAN HHOLD INCOME PLOTS
-
-# Plot indicator values over time
-hh_inc_quintiles2 <- hh_inc_quintiles %>%
-  gather(mean_hh_inc_change_q1, mean_hh_inc_change_q2, mean_hh_inc_change_q3, mean_hh_inc_change_q4, mean_hh_inc_change_q5, mean_hh_inc_change_top5pct,
-         key="quintile", value="mean_hh_inc_change") %>%
-  filter(quintile != "mean_hh_inc_change_top5pct") %>%
-  mutate(quintile = case_when(
-    quintile == "mean_hh_inc_change_q1" ~ "1st quintile (lowest income)",
-    quintile == "mean_hh_inc_change_q2" ~ "2nd quintile",
-    quintile == "mean_hh_inc_change_q3" ~ "3rd quintile",
-    quintile == "mean_hh_inc_change_q4" ~ "4th quintile",
-    quintile == "mean_hh_inc_change_q5" ~ "5th quintile (highest income)"
-  )) %>%
-  select(year, quintile, mean_hh_inc_change)
-
-hh_inc_quintiles2_latest <- hh_inc_quintiles2 %>%
-  filter(year == max(ACS_YEARS))  # Get only latest data points for labeling
-
-ggplot(hh_inc_quintiles2, aes(x=year, y=mean_hh_inc_change, color=quintile, label=sprintf("%+.1f%%", 100*mean_hh_inc_change))) +
-  ggtitle(paste("Real mean household income by quintile relative to", base_year),
-          subtitle="among households in the Chicago MSA") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=ACS_YEARS) +
-  scale_y_continuous("Real mean household income relative to 2006", minor_breaks=NULL, labels=scales::percent) +
-  labs(caption="Source: American Community Survey (table B19081)",
-       color="Income quintile") +
-  guides(color=guide_legend(override.aes=list(label=""))) +
-  theme_minimal() +
-  scale_color_brewer(palette="Set1") +
-  coord_cartesian(ylim=c(-0.2, 0.1)) +
-  geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
-  geom_line(size=1) +
-  geom_point(data=hh_inc_quintiles2_latest) +
-  geom_text_repel(data=hh_inc_quintiles2_latest, direction="y", fontface="bold")
 
 ## GINI COEFF PLOTS
 # Plot indicator values over time
