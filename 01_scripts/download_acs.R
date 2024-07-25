@@ -621,8 +621,8 @@ hh_inc_quintiles <- map_df(
                        "inflation_factor" = hh_quintiles_inflation_adj_factor),
               by = "year") %>% 
     # Convert mean HH income into real 2006 dollars
-    mutate("mean_hh_inc_q1_2006d" = B19081_001E * inflation_factor,
-           
+    mutate(YEAR = .x,
+      "mean_hh_inc_q1_2006d" = B19081_001E * inflation_factor,
       "mean_hh_inc_q2_2006d" = B19081_002E * inflation_factor,
       "mean_hh_inc_q3_2006d" = B19081_003E * inflation_factor,
       "mean_hh_inc_q4_2006d" = B19081_004E * inflation_factor,
@@ -634,7 +634,7 @@ hh_inc_quintiles <- map_df(
       "MEAN_INC_REL2006_QUINT5" = (mean_hh_inc_q5_2006d / 190120),  # Q5 2006 mean was $190,120
       ACTUAL_OR_TARGET = "Actual") %>%
     # Keep only variables in the github file
-    select(-NAME, -GEOID, -inflation_factor,
+    select(-NAME, -GEOID, -inflation_factor, - year,
            -starts_with("B19081"), -ends_with("2006d"))
   
   }

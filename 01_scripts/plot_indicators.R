@@ -30,6 +30,8 @@ if(!interactive()) pdf(NULL)
 # CMAP theme/aesthetic defaults
 apply_cmap_default_aes()
 
+# Sequence of year labels for charts showing targets.
+TARGET_YEARS <- seq(2010, 2050, 5) 
 
 
 # 2. Ingest data ----------------------------------------------------------
@@ -39,8 +41,12 @@ DATA_DIR <- here("02_script_outputs", "01_data", "development")
 
 # Read in development data
 med_hh_inc_re <- read_csv(paste0(DATA_DIR, "/", "median_hh_income_by_race_eth_2012_2022.csv"))
-
-
+hh_inc_quintiles <- read_csv(paste0(DATA_DIR, "/", "mean_hh_income_by_quintile_2012_2022.csv"))
+nonsov_travel <- read_csv(paste0(DATA_DIR, "/", "nonsov_travel_2012_2022.csv"))
+workforce_participation <- read_csv(paste0(DATA_DIR, "/", "workforce_participation_2012_2022.csv"))
+workforce_participation_re <- read_csv(paste0(DATA_DIR, "/", "workforce_participation_by_race_eth_2012_2022.csv"))
+unemployment_re <- read_csv(paste0(DATA_DIR, "/", "unemployment_by_race_eth_2012_2022.csv"))
+educational_attainment <- read_csv(paste0(DATA_DIR, "/", "educational_attainment_2012_2022.csv"))
 
 # 3. Plots ----------------------------------------------------------------
 
@@ -94,221 +100,228 @@ plot_med_hh_inc_re
 
 ## 3b. Mean household income ratio compared to 2006  -----
 
-# Plot indicator values over time
-hh_inc_quintiles2 <- hh_inc_quintiles %>%
-  gather(mean_hh_inc_change_q1, mean_hh_inc_change_q2, mean_hh_inc_change_q3, mean_hh_inc_change_q4, mean_hh_inc_change_q5, mean_hh_inc_change_top5pct,
-         key="quintile", value="mean_hh_inc_change") %>%
-  filter(quintile != "mean_hh_inc_change_top5pct") %>%
+# reshape data for plotting
+hh_inc_quintiles <- hh_inc_quintiles %>%
+  gather(MEAN_INC_REL2006_QUINT1, MEAN_INC_REL2006_QUINT2, MEAN_INC_REL2006_QUINT3, MEAN_INC_REL2006_QUINT4, MEAN_INC_REL2006_QUINT5,
+         key="quintile", value="MEAN_INC_REL2006") %>%
   mutate(quintile = case_when(
-    quintile == "mean_hh_inc_change_q1" ~ "1st quintile (lowest income)",
-    quintile == "mean_hh_inc_change_q2" ~ "2nd quintile",
-    quintile == "mean_hh_inc_change_q3" ~ "3rd quintile",
-    quintile == "mean_hh_inc_change_q4" ~ "4th quintile",
-    quintile == "mean_hh_inc_change_q5" ~ "5th quintile (highest income)"
+    quintile == "MEAN_INC_REL2006_QUINT1" ~ "1st quintile (lowest income)",
+    quintile == "MEAN_INC_REL2006_QUINT2" ~ "2nd quintile",
+    quintile == "MEAN_INC_REL2006_QUINT3" ~ "3rd quintile",
+    quintile == "MEAN_INC_REL2006_QUINT4" ~ "4th quintile",
+    quintile == "MEAN_INC_REL2006_QUINT5" ~ "5th quintile (highest income)"
   )) %>%
-  select(year, quintile, mean_hh_inc_change)
+  select(YEAR, quintile, MEAN_INC_REL2006)
 
-hh_inc_quintiles2_latest <- hh_inc_quintiles2 %>%
-  filter(year == max(ACS_YEARS))  # Get only latest data points for labeling
+# Get only latest data points for labeling
+hh_inc_quintiles_latest <- hh_inc_quintiles %>%
+  filter(YEAR == max(YEAR)) %>%
+  mutate(MEAN_INC_REL2006 = round(MEAN_INC_REL2006, 3))
 
-ggplot(hh_inc_quintiles2, aes(x=year, y=mean_hh_inc_change, color=quintile, label=sprintf("%+.1f%%", 100*mean_hh_inc_change))) +
-  ggtitle(paste("Real mean household income by quintile relative to", base_year),
+#plot code
+ggplot(hh_inc_quintiles, aes(x=YEAR, y=MEAN_INC_REL2006, color=quintile, label=MEAN_INC_REL2006)) + 
+  ggtitle("Real mean household income by quintile relative to 2006",
           subtitle="among households in the Chicago MSA") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=ACS_YEARS) +
+  scale_x_continuous("Year", minor_breaks=NULL, breaks=hh_inc_quintiles$YEAR) +
   scale_y_continuous("Real mean household income relative to 2006", minor_breaks=NULL, labels=scales::percent) +
   labs(caption="Source: American Community Survey (table B19081)",
        color="Income quintile") +
+  
+  #additional styling
   guides(color=guide_legend(override.aes=list(label=""))) +
   theme_minimal() +
   scale_color_brewer(palette="Set1") +
-  coord_cartesian(ylim=c(-0.2, 0.1)) +
-  geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
   geom_line(size=1) +
-  geom_point(data=hh_inc_quintiles2_latest) +
-  geom_text_repel(data=hh_inc_quintiles2_latest, direction="y", fontface="bold")
+  geom_hline(yintercept=1, color="#888888") +  # Emphasize y=100% for reference (if in plot)
+  geom_point(data=hh_inc_quintiles_latest) +
+  geom_text_repel(data=hh_inc_quintiles_latest, direction="y", fontface="bold")
 
 
+## 3c. Non-SOV Travel  -----
 
-##NONSOV TRAVEL PLOTS ----
-
-# Plot indicator values over time
+# Get only latest data points for labeling
 nonsov_travel_latest <- nonsov_travel %>%
-  filter(year == max(ACS_YEARS))  # Get only latest data points for labeling
+  filter(YEAR == max(YEAR))  
 
+#set nonsov targets
 nonsov_travel_targets <- tribble(
-  ~year, ~nonsov_pct,
-  2025,  0.324,
-  2050,  0.373
+  ~YEAR, ~PCT_NONSOV_TOTAL,
+  2025,  32.4,
+  2050,  37.3
 )
+
+#bind targets to latest year data
 nonsov_travel_targets <- bind_rows(nonsov_travel_latest, nonsov_travel_targets)
 
-# Without targets
-ggplot(nonsov_travel, aes(x=year, y=nonsov_pct, label=sprintf("%.1f%%", 100*nonsov_pct))) +
+# create plot Without targets
+ggplot(nonsov_travel, aes(x=YEAR, y=PCT_NONSOV_TOTAL, label=sprintf("%.1f%%", PCT_NONSOV_TOTAL))) +
   ggtitle("Share of trips to work via non-SOV modes",
           subtitle="among workers aged 16 and over in the CMAP region") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=ACS_YEARS) +
-  scale_y_continuous("Share of trips to work", minor_breaks=NULL, labels=scales::percent) +
+  scale_x_continuous("Year", minor_breaks=NULL, breaks=nonsov_travel$YEAR) +
+  scale_y_continuous("Share of trips to work", minor_breaks=NULL) +
   labs(caption="Source: American Community Survey (table B08006)") +
   theme_minimal() +
-  coord_cartesian(ylim=c(0.25, 0.35)) +
   geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
   geom_line(size=1) +
   geom_point(data=nonsov_travel_latest) +
   geom_text_repel(data=nonsov_travel_latest, direction="y", fontface="bold")
 
-# With targets
-ggplot(nonsov_travel, aes(x=year, y=nonsov_pct, label=sprintf("%.1f%%", 100*nonsov_pct))) +
+# plot With targets
+ggplot(nonsov_travel, aes(x=YEAR, y=PCT_NONSOV_TOTAL, label=sprintf("%.1f%%", PCT_NONSOV_TOTAL))) +
   ggtitle("Share of trips to work via non-SOV modes, with targets",
           subtitle="among workers aged 16 and over in the CMAP region") +
   scale_x_continuous("Year", minor_breaks=NULL, breaks=TARGET_YEARS) +
-  scale_y_continuous("Share of trips to work", minor_breaks=NULL, labels=scales::percent) +
+  scale_y_continuous("Share of trips to work (%)", minor_breaks=NULL) +
   labs(caption="Source: American Community Survey (table B08006)") +
   theme_minimal() +
-  coord_cartesian(ylim=c(0.25, 0.40)) +
   geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
   geom_line(size=1) +
   geom_line(data=nonsov_travel_targets, linetype="dashed") +
   geom_point(data=nonsov_travel_targets) +
   geom_text_repel(data=nonsov_travel_targets, direction="y", fontface="bold")
 
-# Plot share of specific modes over time
-nonsov_travel2 <- nonsov_travel %>%
-  gather(carpool_pct, pub_trans_pct, bike_pct, walk_pct, work_home_pct,
-         key="mode", value="share") %>%
+#reshape data to plot share of specific modes
+nonsov_travel <- nonsov_travel %>%
+  gather(PCT_NONSOV_CARPOOL, PCT_NONSOV_TRANSIT, PCT_NONSOV_BIKE, PCT_NONSOV_WALK, PCT_NONSOV_HOME,
+         key="mode", value="PCT_NONSOV") %>%
   mutate(mode = case_when(
-    mode == "carpool_pct" ~ "Carpool",
-    mode == "pub_trans_pct" ~ "Public transportation",
-    mode == "bike_pct" ~ "Bicycle",
-    mode == "walk_pct" ~ "Walk",
-    mode == "work_home_pct" ~ "Work at home"
-  )) %>%
-  select(year, mode, share, nonsov_pct)
+    mode == "PCT_NONSOV_CARPOOL" ~ "Carpool",
+    mode == "PCT_NONSOV_TRANSIT" ~ "Public transportation",
+    mode == "PCT_NONSOV_BIKE" ~ "Bicycle",
+    mode == "PCT_NONSOV_WALK" ~ "Walk",
+    mode == "PCT_NONSOV_HOME" ~ "Work at home")) %>%
+  select(YEAR, mode, PCT_NONSOV, PCT_NONSOV_TOTAL)
 
-ggplot(nonsov_travel2, aes(x=year, y=share, fill=mode)) +
+# plot share of specific modes
+ggplot(nonsov_travel, aes(x=YEAR, y=PCT_NONSOV, fill=mode)) +
   ggtitle("Share of trips to work via specific non-SOV modes",
           subtitle="among workers aged 16 and over in the CMAP region") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=ACS_YEARS) +
-  scale_y_continuous("Share of trips to work", minor_breaks=NULL, labels=scales::percent) +
+  scale_x_continuous("Year", minor_breaks=NULL, breaks=nonsov_travel$YEAR) +
+  scale_y_continuous("Share of trips to work (%)", minor_breaks=NULL) +
   labs(caption="Source: American Community Survey (table B08006)",
        fill="Mode") +
   theme_minimal() +
   scale_fill_brewer(palette="Set1") +
-  coord_cartesian(ylim=c(0, 0.35)) +
   geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
   geom_bar(stat="identity") +
-  geom_text(aes(label=sprintf("%.1f%%", 100*share)), position=position_stack(vjust=0.5), color="white", size=3.5) +
-  geom_text(aes(y=nonsov_pct, label=sprintf("%.1f%%", 100*nonsov_pct)), vjust=-1, fontface="bold")
+  geom_text(aes(label=sprintf("%.1f%%", PCT_NONSOV)), position=position_stack(vjust=0.5), color="white", size=3.5) +
+  geom_text(aes(y=PCT_NONSOV_TOTAL, label=sprintf("%.1f%%", PCT_NONSOV_TOTAL)), vjust=-1, fontface="bold")
 
-## WORKFORCE PARTICIPATION PLOTS
+## 3d. Workforce Participation -----
 
-# Plot indicator values over time
+# Get only latest data points for labeling
 workforce_participation_latest <- workforce_participation %>%
-  filter(year == max(ACS_YEARS))  # Get only latest data points for labeling
+  filter(YEAR == max(YEAR))  
 
+#set targets
 workforce_participation_targets <- tribble(
-  ~year, ~lbr_frc_pct,
-  2025,  0.809,
-  2050,  0.834
-)
+  ~YEAR, ~WORKFORCE_PARTIC_RATE,
+  2025,  80.9,
+  2050,  83.4)
+
+#bind targets to latest dataframe
 workforce_participation_targets <- bind_rows(workforce_participation_latest, workforce_participation_targets)
 
-# Without targets
-ggplot(workforce_participation, aes(x=year, y=lbr_frc_pct, label=sprintf("%.1f%%", 100*lbr_frc_pct))) +
+# plot Without targets
+ggplot(workforce_participation, aes(x=YEAR, y=WORKFORCE_PARTIC_RATE, label=sprintf("%.1f%%", WORKFORCE_PARTIC_RATE))) +
   ggtitle("Workforce participation rate",
           subtitle="among people aged 20-64 in the CMAP region") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=ACS_YEARS) +
-  scale_y_continuous("Workforce participation rate", minor_breaks=NULL, labels=scales::percent) +
+  scale_x_continuous("Year", minor_breaks=NULL, breaks=workforce_participation$YEAR) +
+  scale_y_continuous("Workforce participation rate", minor_breaks=NULL) +
   labs(caption="Source: American Community Survey (table B23001)") +
   theme_minimal() +
-  coord_cartesian(ylim=c(0.75, 0.85)) +
-  geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
+  coord_cartesian(ylim=c(75, 90)) +
   geom_line(size=1) +
   geom_point(data=workforce_participation_latest) +
   geom_text_repel(data=workforce_participation_latest, direction="y", fontface="bold")
 
-# With targets
-ggplot(workforce_participation, aes(x=year, y=lbr_frc_pct, label=sprintf("%.1f%%", 100*lbr_frc_pct))) +
+# plot With targets
+ggplot(workforce_participation, aes(x=YEAR, y=WORKFORCE_PARTIC_RATE, label=sprintf("%.1f%%", WORKFORCE_PARTIC_RATE))) +
   ggtitle("Workforce participation rate, with targets",
           subtitle="among people aged 20-64 in the CMAP region") +
   scale_x_continuous("Year", minor_breaks=NULL, breaks=TARGET_YEARS) +
-  scale_y_continuous("Workforce participation rate", minor_breaks=NULL, labels=scales::percent) +
+  scale_y_continuous("Workforce participation rate", minor_breaks=NULL) +
   labs(caption="Source: American Community Survey (table B23001)") +
   theme_minimal() +
-  coord_cartesian(ylim=c(0.75, 0.9)) +
-  geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
+  coord_cartesian(ylim=c(75, 90)) +
   geom_line(size=1) +
   geom_line(data=workforce_participation_targets, linetype="dashed") +
   geom_point(data=workforce_participation_targets) +
   geom_text_repel(data=workforce_participation_targets, direction="y", fontface="bold")
 
-## WORKFORCE PARTICIPATION RATE BY RACE/ETHNICITY PLOTS 
-# Plot indicator values over time
-workforce_participation_re2 <- workforce_participation_re %>%
-  gather(lbr_frc_pct_all, lbr_frc_pct_blk, lbr_frc_pct_asn, lbr_frc_pct_hsp, lbr_frc_pct_wht,
-         key="race_eth", value="lbr_frc_pct") %>%
+## 3e.Workforce Participation by Race and Ethnicity  -----
+
+# reshape data for plotting
+workforce_participation_re <- workforce_participation_re %>%
+  gather(WORKFORCE_PARTIC_RATE_ALL, WORKFORCE_PARTIC_RATE_BLACK, WORKFORCE_PARTIC_RATE_ASIAN, WORKFORCE_PARTIC_RATE_HISPANIC, WORKFORCE_PARTIC_RATE_WHITE,
+         key="race_eth", value="WORKFORCE_PARTIC_RATE") %>%
   mutate(race_eth = case_when(
-    race_eth == "lbr_frc_pct_all" ~ "All",
-    race_eth == "lbr_frc_pct_blk" ~ "Black",
-    race_eth == "lbr_frc_pct_asn" ~ "Asian",
-    race_eth == "lbr_frc_pct_hsp" ~ "Hispanic/Latino",
-    race_eth == "lbr_frc_pct_wht" ~ "White (non-Hispanic)"
-  )) %>%
-  select(year, race_eth, lbr_frc_pct)
+    race_eth == "WORKFORCE_PARTIC_RATE_ALL" ~ "All",
+    race_eth == "WORKFORCE_PARTIC_RATE_BLACK" ~ "Black",
+    race_eth == "WORKFORCE_PARTIC_RATE_ASIAN" ~ "Asian",
+    race_eth == "WORKFORCE_PARTIC_RATE_HISPANIC" ~ "Hispanic/Latino",
+    race_eth == "WORKFORCE_PARTIC_RATE_WHITE" ~ "White (non-Hispanic)")) %>%
+  select(YEAR, race_eth, WORKFORCE_PARTIC_RATE)
 
-workforce_participation_re2_latest <- workforce_participation_re2 %>%
-  filter(year == max(ACS_YEARS))  # Get only latest data points for labeling
+# Get only latest data points for labeling
+workforce_participation_re_latest <- workforce_participation_re %>%
+  filter(YEAR == max(YEAR))  
 
-ggplot(workforce_participation_re2, aes(x=year, y=lbr_frc_pct, color=race_eth, label=sprintf("%.1f%%", 100*lbr_frc_pct))) +
+#create plot
+ggplot(workforce_participation_re, 
+       aes(x=YEAR, y=WORKFORCE_PARTIC_RATE, color=race_eth, label=sprintf("%.1f%%", WORKFORCE_PARTIC_RATE))) +
   ggtitle("Workforce participation rate by race & ethnicity",
           subtitle="among people aged 16 and over in the Chicago MSA") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=ACS_YEARS) +
-  scale_y_continuous("Workforce participation rate", minor_breaks=NULL, labels=scales::percent) +
+  scale_x_continuous("Year", minor_breaks=NULL, breaks=workforce_participation_re$YEAR) +
+  scale_y_continuous("Workforce participation rate (%)", minor_breaks=NULL) +
   labs(caption="Source: American Community Survey (table S2301)",
        color="Race/ethnicity") +
   guides(color=guide_legend(override.aes=list(label=""))) +
   theme_minimal() +
   scale_color_brewer(palette="Set1") +
-  coord_cartesian(ylim=c(0.55, 0.75)) +
-  geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
+  coord_cartesian(ylim=c(55, 75)) +
   geom_line(size=1) +
-  geom_point(data=workforce_participation_re2_latest) +
-  geom_text_repel(data=workforce_participation_re2_latest, direction="y", fontface="bold")
+  geom_point(data=workforce_participation_re_latest) +
+  geom_text_repel(data=workforce_participation_re_latest, direction="y", fontface="bold")
 
 
-## UNEMPLOYMENT BY RACE/ETHNICITY PLOTS 
-# Plot indicator values over time
-unemployment_re2 <- unemployment_re %>%
-  gather(unemp_pct_all, unemp_pct_blk, unemp_pct_asn, unemp_pct_hsp, unemp_pct_wht,
-         key="race_eth", value="unemp_pct") %>%
+## 3f. Unemployment by race and ethnicity -----
+
+#reshape data for plotting
+unemployment_re <- unemployment_re %>%
+  gather(PCT_UNEMPLOYED_ALL, PCT_UNEMPLOYED_BLACK, PCT_UNEMPLOYED_ASIAN, PCT_UNEMPLOYED_HISPANIC, PCT_UNEMPLOYED_WHITE,
+         key="race_eth", value="PCT_UNEMPLOYED") %>%
   mutate(race_eth = case_when(
-    race_eth == "unemp_pct_all" ~ "All",
-    race_eth == "unemp_pct_blk" ~ "Black",
-    race_eth == "unemp_pct_asn" ~ "Asian",
-    race_eth == "unemp_pct_hsp" ~ "Hispanic/Latino",
-    race_eth == "unemp_pct_wht" ~ "White (non-Hispanic)"
-  )) %>%
-  select(year, race_eth, unemp_pct)
+    race_eth == "PCT_UNEMPLOYED_ALL" ~ "All",
+    race_eth == "PCT_UNEMPLOYED_BLACK" ~ "Black",
+    race_eth == "PCT_UNEMPLOYED_ASIAN" ~ "Asian",
+    race_eth == "PCT_UNEMPLOYED_HISPANIC" ~ "Hispanic/Latino",
+    race_eth == "PCT_UNEMPLOYED_WHITE" ~ "White (non-Hispanic)")) %>%
+  select(YEAR, race_eth, PCT_UNEMPLOYED)
 
-unemployment_re2_latest <- unemployment_re2 %>%
-  filter(year == max(ACS_YEARS))  # Get only latest data points for labeling
+# Get only latest data points for labeling
+unemployment_re_latest <- unemployment_re %>%
+  filter(YEAR == max(YEAR))  
 
-ggplot(unemployment_re2, aes(x=year, y=unemp_pct, color=race_eth, label=sprintf("%.1f%%", 100*unemp_pct))) +
+#create plot
+ggplot(unemployment_re, aes(x=YEAR, y=PCT_UNEMPLOYED, color=race_eth, label=sprintf("%.1f%%", PCT_UNEMPLOYED))) +
   ggtitle("Unemployment rate by race & ethnicity",
           subtitle="among people aged 16 and over in the Chicago MSA") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=ACS_YEARS) +
-  scale_y_continuous("Unemployment rate", minor_breaks=NULL, labels=scales::percent) +
+  scale_x_continuous("Year", minor_breaks=NULL, breaks=unemployment_re$YEAR) +
+  scale_y_continuous("Unemployment rate", minor_breaks=NULL) +
   labs(caption="Source: American Community Survey (table S2301)",
        color="Race/ethnicity") +
   guides(color=guide_legend(override.aes=list(label=""))) +
   theme_minimal() +
   scale_color_brewer(palette="Set1") +
-  coord_cartesian(ylim=c(0, 0.25)) +
+  coord_cartesian(ylim=c(0, 25)) +
   geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
   geom_line(size=1) +
-  geom_point(data=unemployment_re2_latest) +
-  geom_text_repel(data=unemployment_re2_latest, direction="y", fontface="bold")
+  geom_point(data=unemployment_re_latest) +
+  geom_text_repel(data=unemployment_re_latest, direction="y", fontface="bold")
 
-## EDUCATIONAL ATTAINMENT PLOTS
+## 3g. Educational attainment -----
+
 # Plot indicator values over time
 educational_attainment_latest <- educational_attainment %>%
   filter(year == max(ACS_YEARS))  # Get only latest data points for labeling
@@ -316,8 +329,8 @@ educational_attainment_latest <- educational_attainment %>%
 educational_attainment_targets <- tribble(
   ~year, ~assoc_plus_pct,
   2025,  0.502,
-  2050,  0.649
-)
+  2050,  0.649)
+
 educational_attainment_targets <- bind_rows(educational_attainment_latest, educational_attainment_targets)
 
 # Without targets
