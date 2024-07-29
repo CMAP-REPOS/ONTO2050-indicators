@@ -47,6 +47,9 @@ workforce_participation <- read_csv(paste0(DATA_DIR, "/", "workforce_participati
 workforce_participation_re <- read_csv(paste0(DATA_DIR, "/", "workforce_participation_by_race_eth_2012_2022.csv"))
 unemployment_re <- read_csv(paste0(DATA_DIR, "/", "unemployment_by_race_eth_2012_2022.csv"))
 educational_attainment <- read_csv(paste0(DATA_DIR, "/", "educational_attainment_2012_2022.csv"))
+educational_attainment_re <- read_csv(paste0(DATA_DIR, "/", "educational_attainment_by_race_eth_2012_2022.csv"))
+gini <- read_csv(paste0(DATA_DIR, "/", "gini_coefficient_2012_2022.csv"))
+commute_time_re <- read_csv(paste0(DATA_DIR, "/", "commute_time_by_race_eth_2012_2022.csv"))
 
 # 3. Plots ----------------------------------------------------------------
 
@@ -109,8 +112,7 @@ hh_inc_quintiles <- hh_inc_quintiles %>%
     quintile == "MEAN_INC_REL2006_QUINT2" ~ "2nd quintile",
     quintile == "MEAN_INC_REL2006_QUINT3" ~ "3rd quintile",
     quintile == "MEAN_INC_REL2006_QUINT4" ~ "4th quintile",
-    quintile == "MEAN_INC_REL2006_QUINT5" ~ "5th quintile (highest income)"
-  )) %>%
+    quintile == "MEAN_INC_REL2006_QUINT5" ~ "5th quintile (highest income)")) %>%
   select(YEAR, quintile, MEAN_INC_REL2006)
 
 # Get only latest data points for labeling
@@ -322,78 +324,106 @@ ggplot(unemployment_re, aes(x=YEAR, y=PCT_UNEMPLOYED, color=race_eth, label=spri
 
 ## 3g. Educational attainment -----
 
-# Plot indicator values over time
+# Get only latest data points for labeling
 educational_attainment_latest <- educational_attainment %>%
-  filter(year == max(ACS_YEARS))  # Get only latest data points for labeling
+  filter(YEAR == max(YEAR))  
 
+#set targets
 educational_attainment_targets <- tribble(
-  ~year, ~assoc_plus_pct,
-  2025,  0.502,
-  2050,  0.649)
+  ~YEAR, ~PCT_ASSOC_DEG_PLUS,
+  2025,  50.2,
+  2050,  64.9)
 
+#bind targets to most recent year's data
 educational_attainment_targets <- bind_rows(educational_attainment_latest, educational_attainment_targets)
 
-# Without targets
-ggplot(educational_attainment, aes(x=year, y=assoc_plus_pct, label=sprintf("%.1f%%", 100*assoc_plus_pct))) +
+#plot without targets
+ggplot(educational_attainment, aes(x=YEAR, y=PCT_ASSOC_DEG_PLUS, label=sprintf("%.1f%%", PCT_ASSOC_DEG_PLUS))) +
   ggtitle("Share of population with an associate's degree or higher",
           subtitle="among people aged 25 and over in the CMAP region") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=ACS_YEARS) +
-  scale_y_continuous("Share of population", minor_breaks=NULL, labels=scales::percent) +
+  scale_x_continuous("Year", minor_breaks=NULL, breaks=educational_attainment$YEAR) +
+  scale_y_continuous("Share of population (%)", minor_breaks=NULL) +
   labs(caption="Source: American Community Survey (table B15003)") +
   theme_minimal() +
-  coord_cartesian(ylim=c(0.4, 0.5)) +
+  coord_cartesian(ylim=c(40, 50)) +
   geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
   geom_line(size=1) +
   geom_point(data=educational_attainment_latest) +
   geom_text_repel(data=educational_attainment_latest, direction="y", fontface="bold")
 
-# With targets
-ggplot(educational_attainment, aes(x=year, y=assoc_plus_pct, label=sprintf("%.1f%%", 100*assoc_plus_pct))) +
+#plot with targets
+ggplot(educational_attainment, aes(x=YEAR, y=PCT_ASSOC_DEG_PLUS, label=sprintf("%.1f%%", PCT_ASSOC_DEG_PLUS))) +
   ggtitle("Share of population with an associate's degree or higher, with targets",
           subtitle="among people aged 25 and over in the CMAP region") +
   scale_x_continuous("Year", minor_breaks=NULL, breaks=TARGET_YEARS) +
-  scale_y_continuous("Share of population", minor_breaks=NULL, labels=scales::percent) +
+  scale_y_continuous("Share of population (%)", minor_breaks=NULL) +
   labs(caption="Source: American Community Survey (table B15003)") +
   theme_minimal() +
-  coord_cartesian(ylim=c(0.3, 0.7)) +
+  coord_cartesian(ylim=c(30, 70)) +
   geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
   geom_line(size=1) +
   geom_line(data=educational_attainment_targets, linetype="dashed") +
   geom_point(data=educational_attainment_targets) +
   geom_text_repel(data=educational_attainment_targets, direction="y", fontface="bold")
 
-##EDUCATIONAL ATTAINMENT BY RACE/ETHNICITY PLOTS
-# Plot indicator values over time
-educational_attainment_re_latest <- educational_attainment_re %>%
-  filter(year == max(ACS_YEARS))  # Get only latest data points for labeling
+## 3h. Educational attainment by Race/Ethnicity -----
 
-ggplot(educational_attainment_re, aes(x=year, y=assoc_plus_pct, color=race_eth, label=sprintf("%.1f%%", 100*assoc_plus_pct))) +
+#reshape data for plotting each individual race as its own line
+educational_attainment_re <- educational_attainment_re %>%
+  gather(PCT_ASSOC_DEG_PLUS_ALL, PCT_ASSOC_DEG_PLUS_BLACK, PCT_ASSOC_DEG_PLUS_ASIAN, PCT_ASSOC_DEG_PLUS_HISPANIC, PCT_ASSOC_DEG_PLUS_WHITE,
+         key="race_eth", value="PCT_ASSOC_DEG_PLUS") %>%
+  mutate(race_eth = case_when(
+    race_eth == "PCT_ASSOC_DEG_PLUS_ALL" ~ "All",
+    race_eth == "PCT_ASSOC_DEG_PLUS_BLACK" ~ "Black",
+    race_eth == "PCT_ASSOC_DEG_PLUS_ASIAN" ~ "Asian",
+    race_eth == "PCT_ASSOC_DEG_PLUS_HISPANIC" ~ "Hispanic/Latino",
+    race_eth == "PCT_ASSOC_DEG_PLUS_WHITE" ~ "White (non-Hispanic)")) %>%
+  select(YEAR, race_eth, PCT_ASSOC_DEG_PLUS)
+
+# Get only latest data points for labeling
+educational_attainment_re_latest <- educational_attainment_re %>%
+  filter(YEAR == max(YEAR))  
+
+#create plot
+ggplot(educational_attainment_re, aes(x=YEAR, y=PCT_ASSOC_DEG_PLUS, color=race_eth, label=sprintf("%.1f%%", PCT_ASSOC_DEG_PLUS))) +
   ggtitle("Share of population with an associate's degree or higher by race & ethnicity",
           subtitle="among people aged 25 and over in the Chicago MSA") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=ACS_YEARS) +
-  scale_y_continuous("Share of population", minor_breaks=NULL, labels=scales::percent) +
+  scale_x_continuous("Year", minor_breaks=NULL, breaks=educational_attainment_re$YEAR) +
+  scale_y_continuous("Share of population (%)", minor_breaks=NULL) +
   labs(caption="Source: American Community Survey (tables B15002, B15002B, B15002D, B15002H, B15002I)",
        color="Race/ethnicity") +
   guides(color=guide_legend(override.aes=list(label=""))) +
   theme_minimal() +
   scale_color_brewer(palette="Set1") +
-  coord_cartesian(ylim=c(0.0, 1.0)) +
-  geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
   geom_line(size=1) +
   geom_point(data=educational_attainment_re_latest) +
   geom_text_repel(data=educational_attainment_re_latest, direction="y", fontface="bold")
 
 
 
-## GINI COEFF PLOTS
-# Plot indicator values over time
-gini_latest <- gini %>%
-  filter(year == max(ACS_YEARS))  # Get only latest data points for labeling
+## 3i. Gini Coefficient/Income Inequality -----
 
-ggplot(gini, aes(x=year, y=gini_coeff, color=region, label=sprintf("%.3f", gini_coeff))) +
+#reshape data for plotting each individual peer MSA as its own line
+gini <- gini %>%
+  gather(GINI_COEFF_CHI, GINI_COEFF_BOS, GINI_COEFF_LA, GINI_COEFF_NY, GINI_COEFF_WAS,
+         key="region", value="GINI_COEFF") %>%
+  mutate(region = case_when(
+    region == "GINI_COEFF_CHI" ~ "Chicago",
+    region == "GINI_COEFF_BOS" ~ "Boston",
+    region == "GINI_COEFF_LA" ~ "Los Angeles",
+    region == "GINI_COEFF_NY" ~ "NYC",
+    region == "GINI_COEFF_WAS" ~ "Washington, D.C.")) %>%
+  select(YEAR, region, GINI_COEFF)
+
+# Get only latest data points for labeling
+gini_latest <- gini %>%
+  filter(YEAR == max(YEAR))  
+
+#create plot
+ggplot(gini, aes(x=YEAR, y=GINI_COEFF, color=region, label=sprintf("%.3f", GINI_COEFF))) +
   ggtitle("Gini coefficient",
           subtitle="for the Chicago MSA and selected peer regions") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=ACS_YEARS) +
+  scale_x_continuous("Year", minor_breaks=NULL, breaks=gini$YEAR) +
   scale_y_continuous("Gini coefficient", minor_breaks=NULL) +
   labs(caption="Source: American Community Survey (table B19083)",
        color="Metropolitan Statistical Area") +
@@ -406,37 +436,34 @@ ggplot(gini, aes(x=year, y=gini_coeff, color=region, label=sprintf("%.3f", gini_
   geom_point(data=gini_latest) +
   geom_text_repel(data=gini_latest, direction="y", fontface="bold")
 
-## COMMUTE TIME BY RACE/ETHNICITY PLOTS
-# Plot indicator values over time
-commute_time_re2 <- commute_time_re %>%
-  pivot_longer(cols = starts_with("COMMUTE_MINS_"), names_to = "race_eth",
-               names_prefix = "COMMUTE_MINS_", values_to = "commute_time") %>%
+## 3j. Commute Time by Race/Ethnicity -----
+
+#reshape data for plotting each individual race as its own line
+commute_time_re <- commute_time_re %>%
+  gather(COMMUTE_MINS_ASIAN, COMMUTE_MINS_BLACK, COMMUTE_MINS_HISPANIC, COMMUTE_MINS_WHITE,
+         key="race_eth", value="COMMUTE_MINS") %>%
   mutate(race_eth = case_when(
-    race_eth == "BLACK" ~ "Black",
-    race_eth == "ASIAN" ~ "Asian",
-    race_eth == "HISPANIC" ~ "Hispanic/Latino",
-    race_eth == "WHITE" ~ "White (non-Hispanic)"
-  )) %>%
-  select(YEAR, race_eth, commute_time)
+    race_eth == "COMMUTE_MINS_ASIAN" ~ "Asian",
+    race_eth == "COMMUTE_MINS_BLACK" ~ "Black",
+    race_eth == "COMMUTE_MINS_HISPANIC" ~ "Hispanic/Latino",
+    race_eth == "COMMUTE_MINS_WHITE" ~ "White (non-Hispanic)")) %>%
+  select(YEAR, race_eth, COMMUTE_MINS)
 
-commute_time_re2_latest <- commute_time_re2 %>%
-  filter(YEAR == max(ACS_YEARS))  # Get only latest data points for labeling
+# Get only latest data points for labeling
+commute_time_re_latest <- commute_time_re %>%
+  filter(YEAR == max(YEAR)) 
 
-ggplot(commute_time_re2, aes(x=YEAR, y=commute_time, color=race_eth, label=sprintf("%.1f", commute_time))) +
+#create plot
+ggplot(commute_time_re, aes(x=YEAR, y=COMMUTE_MINS, color=race_eth, label=sprintf("%.1f", COMMUTE_MINS))) +
   ggtitle("Commute time by race & ethnicity",
           subtitle="among workers in the (PUMA-approximated) Chicago MSA") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=ACS_YEARS) +
+  scale_x_continuous("Year", minor_breaks=NULL, breaks=commute_time_re$YEAR) +
   scale_y_continuous("Commute time (minutes)", minor_breaks=NULL) +
   labs(caption="Source: American Community Survey Public Use Microdata Sample (PUMS)",
        color="Race/ethnicity") +
   guides(color=guide_legend(override.aes=list(label=""))) +
   theme_minimal() +
   scale_color_brewer(palette="Set1") +
-  coord_cartesian(ylim=c(25, 40)) +
   geom_line(size=1) +
-  geom_point(data=commute_time_re2_latest) +
-  geom_text_repel(data=commute_time_re2_latest, direction="y", fontface="bold")
-
-
-
-
+  geom_point(data=commute_time_re_latest) +
+  geom_text_repel(data=commute_time_re_latest, direction="y", fontface="bold")
