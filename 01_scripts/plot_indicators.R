@@ -51,54 +51,61 @@ educational_attainment_re <- read_csv(paste0(DATA_DIR, "/", "educational_attainm
 gini <- read_csv(paste0(DATA_DIR, "/", "gini_coefficient_2012_2022.csv"))
 commute_time_re <- read_csv(paste0(DATA_DIR, "/", "commute_time_by_race_eth_2012_2022.csv"))
 
-# 3. Plots ----------------------------------------------------------------
 
+
+# 3. Plots ----------------------------------------------------------------
 
 ## 3a. Median household income -----
 
-# Plot indicator values over time
-med_hh_inc_re_latest <- med_hh_inc_re %>%
-  pivot_longer(cols = -c(YEAR, ACTUAL_OR_TARGET),
-               names_to = c("temp", "race_eth"),
-               names_pattern = "^(.*)_(.*)$",
-               values_to = "MED_HH_INC") %>% 
-  select(-temp) %>% 
-  filter(YEAR == max(med_hh_inc_re$YEAR))  # Get only latest data points for labeling
-
-# Reshape for plotting
+# CMAP ggplot object
 plot_med_hh_inc_re <- med_hh_inc_re %>% 
+  # Reshape data for plotting
   pivot_longer(cols = -c(YEAR, ACTUAL_OR_TARGET),
                names_to = c("temp", "race_eth"),
                names_pattern = "^(.*)_(.*)$",
                values_to = "MED_HH_INC") %>% 
+  mutate("race_eth" = str_to_title(race_eth)) %>% 
   select(-temp) %>% 
-  # Plot code
+  # Plot basics
   ggplot(aes(x = YEAR, y = MED_HH_INC,
-                color = race_eth,
-                label = paste0("$", format(MED_HH_INC, big.mark = ",")))) +
-  geom_line() +
+             color = race_eth,
+             label = paste0("$", format(MED_HH_INC, big.mark = ",")))) +
+  geom_line(size = 1) +
+  # Axes details (X, Y labels set in theme_cmap)
+  scale_x_continuous(breaks = scales::breaks_pretty(),
+                     expand = expansion(mult = c(0.05, 0.15))) +
+  scale_y_continuous(minor_breaks = NULL,
+                     labels = scales::dollar,
+                     limits = c(-1, 100000),
+                     expand = c(0, 0)) +
+  # Chart title/legend
   ggtitle("Median household income by race & ethnicity",
           subtitle = paste0("in 2016 dollars, for households in the Chicago MSA")) +
-  scale_x_continuous("Year",
-                     breaks = med_hh_inc_re$YEAR) +
-  scale_y_continuous("Real median household income",
-                     minor_breaks = NULL,
-                     labels = scales::dollar) +
   labs(caption = "Source: American Community Survey (tables B19013, B19013B, B19013D, B19013H, B19013I)",
        color = "Race/ethnicity") +
-  # Additional styling
   guides(color = guide_legend(override.aes = list(label = ""))) +
-  theme_minimal() +
-  scale_color_brewer(palette = "Set1") +
-  coord_cartesian(ylim = c(0, 100000)) +
-  geom_hline(yintercept = 0, color = "#888888") +  # Emphasize y=0 for reference (if in plot)
-  geom_line(size = 1) +
+  # CMAP styling
+  theme_cmap(xlab = "Year", 
+             ylab = "Median Household Income (2016 $)",
+             axisticks = "x") +
+  cmap_color_race(white = "White",
+                  black = "Black",
+                  hispanic = "Hispanic",
+                  asian = "Asian",
+                  other = "All") +
   # Add text to most recent data point
-  geom_point(data = med_hh_inc_re_latest) +
-  geom_text_repel(data = med_hh_inc_re_latest, direction="y", fontface="bold")
+  geom_text_lastonly(mapping = aes(label = scales::dollar(MED_HH_INC)), 
+                     add_points = TRUE) +
+  coord_cartesian(clip = "off")
 
-
+# View
 plot_med_hh_inc_re
+
+# Finalize
+finalize_plot(plot = plot_med_hh_inc_re,
+              title = "Median household income by race & ethnicity in 2016 dollars, for households in the Chicago MSA",
+              caption = "Source: American Community Survey (tables B19013, B19013B, B19013D, B19013H, B19013I)")
+
 
 
 ## 3b. Mean household income ratio compared to 2006  -----
