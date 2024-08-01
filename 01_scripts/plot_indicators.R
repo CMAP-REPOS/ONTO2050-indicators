@@ -102,9 +102,20 @@ plot_med_hh_inc_re <- med_hh_inc_re %>%
 plot_med_hh_inc_re
 
 # Finalize
-finalize_plot(plot = plot_med_hh_inc_re,
-              title = "Median household income by race & ethnicity in 2016 dollars, for households in the Chicago MSA",
-              caption = "Source: American Community Survey (tables B19013, B19013B, B19013D, B19013H, B19013I)")
+plot_med_hh_inc_re_export <- finalize_plot(
+  plot = plot_med_hh_inc_re,
+  title = "Median household income by race & ethnicity in 2016 dollars, for households in the Chicago MSA",
+  caption = "Source: American Community Survey (tables B19013, B19013B, B19013D, B19013H, B19013I)")
+
+# Save as image to plots output subfolder
+# Ratio of height to width for pptx slide (aspect ratio) is 5 in x 7 in, so play around with needed width (9.5 inches here) to capture the full image. This makes copy and paste into slides easier.
+ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
+                         "/", "01_median_household_income_race_ethnicity.png"),
+       plot = plot_med_hh_inc_re_export,
+       height = 300 * (5/ 7) * 9.5,
+       width = 300 * 9.5,
+       units = "px", # Pixels
+       dpi = 300)
 
 
 
