@@ -64,7 +64,12 @@ plot_med_hh_inc_re <- med_hh_inc_re %>%
                names_to = c("temp", "race_eth"),
                names_pattern = "^(.*)_(.*)$",
                values_to = "MED_HH_INC") %>% 
-  mutate("race_eth" = str_to_title(race_eth)) %>% 
+  mutate("race_eth" = str_to_title(race_eth) %>% 
+           factor(., levels = c("White",
+                                "Black",
+                                "Hispanic",
+                                "Asian",
+                                "All"))) %>% 
   select(-temp) %>% 
   # Plot basics
   ggplot(aes(x = YEAR, y = MED_HH_INC,
@@ -104,7 +109,7 @@ plot_med_hh_inc_re
 # Finalize
 plot_med_hh_inc_re_export <- finalize_plot(
   plot = plot_med_hh_inc_re,
-  title = "Median household income by race & ethnicity in 2016 dollars, for households in the Chicago MSA",
+  title = "Median household income (2016 dollars) by race & ethnicity",
   caption = "Source: American Community Survey (tables B19013, B19013B, B19013D, B19013H, B19013I)")
 
 # Save as image to plots output subfolder
@@ -454,34 +459,68 @@ ggplot(gini, aes(x=YEAR, y=GINI_COEFF, color=region, label=sprintf("%.3f", GINI_
   geom_point(data=gini_latest) +
   geom_text_repel(data=gini_latest, direction="y", fontface="bold")
 
+
+
 ## 3j. Commute Time by Race/Ethnicity -----
 
 #reshape data for plotting each individual race as its own line
-commute_time_re <- commute_time_re %>%
-  gather(COMMUTE_MINS_ASIAN, COMMUTE_MINS_BLACK, COMMUTE_MINS_HISPANIC, COMMUTE_MINS_WHITE,
-         key="race_eth", value="COMMUTE_MINS") %>%
-  mutate(race_eth = case_when(
-    race_eth == "COMMUTE_MINS_ASIAN" ~ "Asian",
-    race_eth == "COMMUTE_MINS_BLACK" ~ "Black",
-    race_eth == "COMMUTE_MINS_HISPANIC" ~ "Hispanic/Latino",
-    race_eth == "COMMUTE_MINS_WHITE" ~ "White (non-Hispanic)")) %>%
-  select(YEAR, race_eth, COMMUTE_MINS)
+plot_commute_time_re <- commute_time_re %>%
+  # Reshape data for plotting
+  pivot_longer(cols = -c(YEAR, ACTUAL_OR_TARGET),
+               names_to = c("temp", "race_eth"),
+               names_pattern = "^(.*)_(.*)$",
+               values_to = "COMMUTE_MINS") %>% 
+  mutate("race_eth" = str_to_title(race_eth) %>% 
+           factor(., levels = c("White",
+                                "Black",
+                                "Hispanic",
+                                "Asian"))) %>%
+  select(-temp) %>% 
+  # Plot basics
+  ggplot(aes(x = YEAR, y = COMMUTE_MINS,
+             color = race_eth)) +
+  geom_line(size = 1) +
+  # Axes details (X, Y labels set in theme_cmap)
+  scale_x_continuous(breaks = scales::breaks_pretty(),
+                     expand = expansion(mult = c(0.05, 0.15))) +
+  scale_y_continuous(minor_breaks = NULL,
+                     limits = c(-1, 40),
+                     expand = c(0, 0)) +
+  # Chart title/legend
+  ggtitle("Average journey to work time (minutes) by race & ethnicity",
+          subtitle = paste0("in 2016 dollars, for households in the Chicago MSA")) +
+  labs(caption = "Source: American Community Survey Public Use Microdata Sample (PUMS)",
+       color = "Race/ethnicity") +
+  guides(color = guide_legend(override.aes = list(label = ""))) +
+  # CMAP styling
+  theme_cmap(xlab = "Year", 
+             ylab = "Average Journey to Work Time (Minutes)",
+             axisticks = "x") +
+  cmap_color_race(white = "White",
+                  black = "Black",
+                  hispanic = "Hispanic",
+                  asian = "Asian") +
+  # Add text to most recent data point
+  geom_text_lastonly(mapping = aes(label = paste0(round(COMMUTE_MINS, 1),
+                                                  " min")), 
+                     add_points = TRUE) +
+  coord_cartesian(clip = "off")
 
-# Get only latest data points for labeling
-commute_time_re_latest <- commute_time_re %>%
-  filter(YEAR == max(YEAR)) 
+# View
+plot_commute_time_re
 
-#create plot
-ggplot(commute_time_re, aes(x=YEAR, y=COMMUTE_MINS, color=race_eth, label=sprintf("%.1f", COMMUTE_MINS))) +
-  ggtitle("Commute time by race & ethnicity",
-          subtitle="among workers in the (PUMA-approximated) Chicago MSA") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=commute_time_re$YEAR) +
-  scale_y_continuous("Commute time (minutes)", minor_breaks=NULL) +
-  labs(caption="Source: American Community Survey Public Use Microdata Sample (PUMS)",
-       color="Race/ethnicity") +
-  guides(color=guide_legend(override.aes=list(label=""))) +
-  theme_minimal() +
-  scale_color_brewer(palette="Set1") +
-  geom_line(size=1) +
-  geom_point(data=commute_time_re_latest) +
-  geom_text_repel(data=commute_time_re_latest, direction="y", fontface="bold")
+# Finalize
+plot_commute_time_re_export <- finalize_plot(
+  plot = plot_commute_time_re,
+  title = "Average journey to work time (minutes) by race & ethnicity",
+  caption = "Source: American Community Survey Public Use Microdata Sample (PUMS)")
+
+# Save as image to plots output subfolder
+# Ratio of height to width for pptx slide (aspect ratio) is 5 in x 7 in, so play around with needed width (9.5 inches here) to capture the full image. This makes copy and paste into slides easier.
+ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
+                         "/", "010_commute_time_race_ethnicity.png"),
+       plot = plot_commute_time_re_export,
+       height = 300 * (5/ 7) * 9.5,
+       width = 300 * 9.5,
+       units = "px", # Pixels
+       dpi = 300)
