@@ -234,45 +234,52 @@ ggplot(nonsov_travel, aes(x=YEAR, y=PCT_NONSOV, fill=mode)) +
 
 ## 3d. Workforce Participation -----
 
-# Get only latest data points for labeling
-workforce_participation_latest <- workforce_participation %>%
-  filter(YEAR == max(YEAR))  
-
 #set targets
 workforce_participation_targets <- tribble(
   ~YEAR, ~WORKFORCE_PARTIC_RATE,
   2025,  80.9,
   2050,  83.4)
 
-#bind targets to latest dataframe
-workforce_participation_targets <- bind_rows(workforce_participation_latest, workforce_participation_targets)
+# CMAP ggplot object
+plot_workforce_participation <-
+  # Plot basics
+  ggplot(workforce_participation, 
+         aes(x = YEAR, y = WORKFORCE_PARTIC_RATE,
+             label = "%")) +
+  geom_line(size = 1) +
+  # Axes details (X, Y labels set in theme_cmap)
+  scale_x_continuous(breaks = scales::breaks_pretty(),
+                     expand = expansion(mult = c(0.05, 0.15))) +
+  scale_y_continuous(minor_breaks = NULL,
+                     limits = c(75, 85),
+                     expand = c(0, 0)) +
+  # CMAP styling
+  theme_cmap(xlab = "Year", 
+             ylab = "Workforce Participation Rate (%)",
+             axisticks = "x") +
+# Add text to most recent data point
+  geom_text_lastonly(mapping = aes(label = round(WORKFORCE_PARTIC_RATE, 2)), 
+                     add_points = TRUE) +
+  coord_cartesian(clip = "off")
 
-# plot Without targets
-ggplot(workforce_participation, aes(x=YEAR, y=WORKFORCE_PARTIC_RATE, label=sprintf("%.1f%%", WORKFORCE_PARTIC_RATE))) +
-  ggtitle("Workforce participation rate",
-          subtitle="among people aged 20-64 in the CMAP region") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=workforce_participation$YEAR) +
-  scale_y_continuous("Workforce participation rate", minor_breaks=NULL) +
-  labs(caption="Source: American Community Survey (table B23001)") +
-  theme_minimal() +
-  coord_cartesian(ylim=c(75, 90)) +
-  geom_line(size=1) +
-  geom_point(data=workforce_participation_latest) +
-  geom_text_repel(data=workforce_participation_latest, direction="y", fontface="bold")
+# View
+plot_workforce_participation
 
-# plot With targets
-ggplot(workforce_participation, aes(x=YEAR, y=WORKFORCE_PARTIC_RATE, label=sprintf("%.1f%%", WORKFORCE_PARTIC_RATE))) +
-  ggtitle("Workforce participation rate, with targets",
-          subtitle="among people aged 20-64 in the CMAP region") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=TARGET_YEARS) +
-  scale_y_continuous("Workforce participation rate", minor_breaks=NULL) +
-  labs(caption="Source: American Community Survey (table B23001)") +
-  theme_minimal() +
-  coord_cartesian(ylim=c(75, 90)) +
-  geom_line(size=1) +
-  geom_line(data=workforce_participation_targets, linetype="dashed") +
-  geom_point(data=workforce_participation_targets) +
-  geom_text_repel(data=workforce_participation_targets, direction="y", fontface="bold")
+# Finalize
+plot_workforce_participation <- finalize_plot(
+  plot = plot_workforce_participation,
+  title = "Workforce Participation Rate (%)",
+  caption = "Source: American Community Survey (table B23001)")
+
+# Save as image to plots output subfolder
+# Ratio of height to width for pptx slide (aspect ratio) is 5 in x 7 in, so play around with needed width (9.5 inches here) to capture the full image. This makes copy and paste into slides easier.
+ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
+                         "/", "04_workforce_participation.png"),
+       plot = plot_workforce_participation,
+       height = 300 * (5/ 7) * 9.5,
+       width = 300 * 9.5,
+       units = "px", # Pixels
+       dpi = 300)
 
 ## 3e.Workforce Participation by Race and Ethnicity  -----
 
@@ -284,31 +291,57 @@ workforce_participation_re <- workforce_participation_re %>%
     race_eth == "WORKFORCE_PARTIC_RATE_ALL" ~ "All",
     race_eth == "WORKFORCE_PARTIC_RATE_BLACK" ~ "Black",
     race_eth == "WORKFORCE_PARTIC_RATE_ASIAN" ~ "Asian",
-    race_eth == "WORKFORCE_PARTIC_RATE_HISPANIC" ~ "Hispanic/Latino",
-    race_eth == "WORKFORCE_PARTIC_RATE_WHITE" ~ "White (non-Hispanic)")) %>%
+    race_eth == "WORKFORCE_PARTIC_RATE_HISPANIC" ~ "Hispanic",
+    race_eth == "WORKFORCE_PARTIC_RATE_WHITE" ~ "White")) %>%
   select(YEAR, race_eth, WORKFORCE_PARTIC_RATE)
 
-# Get only latest data points for labeling
-workforce_participation_re_latest <- workforce_participation_re %>%
-  filter(YEAR == max(YEAR))  
+# CMAP ggplot object
+plot_workforce_participation_re <-
+  ggplot(workforce_participation_re, aes(x = YEAR, y = WORKFORCE_PARTIC_RATE,
+             color = race_eth,
+             label = "%")) +
+  geom_line(size = 1) +
+  # Axes details (X, Y labels set in theme_cmap)
+  scale_x_continuous(breaks = scales::breaks_pretty(),
+                     expand = expansion(mult = c(0.05, 0.15))) +
+  scale_y_continuous(minor_breaks = NULL,
+                     limits = c(57, 75),
+                     expand = c(0, 0)) +
+  # Chart title/legend
+  labs(color = "Race/ethnicity") +
+  guides(color = guide_legend(override.aes = list(label = ""))) +
+  # CMAP styling
+  theme_cmap(xlab = "Year", 
+             ylab = "Workforce Participation Rate (%)",
+             axisticks = "x") +
+  cmap_color_race(white = "White",
+                  black = "Black",
+                  hispanic = "Hispanic",
+                  asian = "Asian",
+                  other = "All") +
+  # Add text to most recent data point
+  geom_text_lastonly(mapping = aes(label = round(WORKFORCE_PARTIC_RATE, 2)), 
+                     add_points = TRUE) +
+  coord_cartesian(clip = "off")
 
-#create plot
-ggplot(workforce_participation_re, 
-       aes(x=YEAR, y=WORKFORCE_PARTIC_RATE, color=race_eth, label=sprintf("%.1f%%", WORKFORCE_PARTIC_RATE))) +
-  ggtitle("Workforce participation rate by race & ethnicity",
-          subtitle="among people aged 16 and over in the Chicago MSA") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=workforce_participation_re$YEAR) +
-  scale_y_continuous("Workforce participation rate (%)", minor_breaks=NULL) +
-  labs(caption="Source: American Community Survey (table S2301)",
-       color="Race/ethnicity") +
-  guides(color=guide_legend(override.aes=list(label=""))) +
-  theme_minimal() +
-  scale_color_brewer(palette="Set1") +
-  coord_cartesian(ylim=c(55, 75)) +
-  geom_line(size=1) +
-  geom_point(data=workforce_participation_re_latest) +
-  geom_text_repel(data=workforce_participation_re_latest, direction="y", fontface="bold")
+# View
+plot_workforce_participation_re
 
+# Finalize
+plot_workforce_participation_re <- finalize_plot(
+  plot = plot_workforce_participation_re,
+  title = "Workforce Participation Rate by race & ethnicity",
+  caption = "Source: American Community Survey (table S2301)")
+
+# Save as image to plots output subfolder
+# Ratio of height to width for pptx slide (aspect ratio) is 5 in x 7 in, so play around with needed width (9.5 inches here) to capture the full image. This makes copy and paste into slides easier.
+ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
+                         "/", "05_workforce_participation_race_ethnicity.png"),
+       plot = plot_workforce_participation_re,
+       height = 300 * (5/ 7) * 9.5,
+       width = 300 * 9.5,
+       units = "px", # Pixels
+       dpi = 300)
 
 ## 3f. Unemployment by race and ethnicity -----
 
