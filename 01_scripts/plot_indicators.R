@@ -353,36 +353,58 @@ unemployment_re <- unemployment_re %>%
     race_eth == "PCT_UNEMPLOYED_ALL" ~ "All",
     race_eth == "PCT_UNEMPLOYED_BLACK" ~ "Black",
     race_eth == "PCT_UNEMPLOYED_ASIAN" ~ "Asian",
-    race_eth == "PCT_UNEMPLOYED_HISPANIC" ~ "Hispanic/Latino",
-    race_eth == "PCT_UNEMPLOYED_WHITE" ~ "White (non-Hispanic)")) %>%
+    race_eth == "PCT_UNEMPLOYED_HISPANIC" ~ "Hispanic",
+    race_eth == "PCT_UNEMPLOYED_WHITE" ~ "White")) %>%
   select(YEAR, race_eth, PCT_UNEMPLOYED)
 
-# Get only latest data points for labeling
-unemployment_re_latest <- unemployment_re %>%
-  filter(YEAR == max(YEAR))  
+# CMAP ggplot object
+plot_unemployment_re <-
+  ggplot(unemployment_re, aes(x = YEAR, y = PCT_UNEMPLOYED,
+                              color = race_eth)) +
+  geom_line(size = 1) +
+  # Axes details (X, Y labels set in theme_cmap)
+  scale_x_continuous(breaks = scales::breaks_pretty(),
+                     expand = expansion(mult = c(0.05, 0.15))) +
+  scale_y_continuous(minor_breaks = NULL,
+                     limits = c(0, 25),
+                     expand = c(0, 0)) +
+  # Chart title/legend
+  labs(color = "Race/ethnicity") +
+  guides(color = guide_legend(override.aes = list(label = ""))) +
+  # CMAP styling
+  theme_cmap(xlab = "Year", 
+             ylab = "Unemployment Rate (%)",
+             axisticks = "x") +
+  cmap_color_race(white = "White",
+                  black = "Black",
+                  hispanic = "Hispanic",
+                  asian = "Asian",
+                  other = "All") +
+  # Add text to most recent data point
+  geom_text_lastonly(mapping = aes(label = round(PCT_UNEMPLOYED, 2)), 
+                     add_points = TRUE) +
+  coord_cartesian(clip = "off")
 
-#create plot
-ggplot(unemployment_re, aes(x=YEAR, y=PCT_UNEMPLOYED, color=race_eth, label=sprintf("%.1f%%", PCT_UNEMPLOYED))) +
-  ggtitle("Unemployment rate by race & ethnicity",
-          subtitle="among people aged 16 and over in the Chicago MSA") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=unemployment_re$YEAR) +
-  scale_y_continuous("Unemployment rate", minor_breaks=NULL) +
-  labs(caption="Source: American Community Survey (table S2301)",
-       color="Race/ethnicity") +
-  guides(color=guide_legend(override.aes=list(label=""))) +
-  theme_minimal() +
-  scale_color_brewer(palette="Set1") +
-  coord_cartesian(ylim=c(0, 25)) +
-  geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
-  geom_line(size=1) +
-  geom_point(data=unemployment_re_latest) +
-  geom_text_repel(data=unemployment_re_latest, direction="y", fontface="bold")
+# View
+plot_unemployment_re
+
+# Finalize
+plot_unemployment_re <- finalize_plot(
+  plot = plot_unemployment_re,
+  title = "Unemployment Rate by race & ethnicity",
+  caption = "Source: American Community Survey (table S2301)")
+
+# Save as image to plots output subfolder
+# Ratio of height to width for pptx slide (aspect ratio) is 5 in x 7 in, so play around with needed width (9.5 inches here) to capture the full image. This makes copy and paste into slides easier.
+ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
+                         "/", "06_unemployment_race_ethnicity.png"),
+       plot = plot_unemployment_re,
+       height = 300 * (5/ 7) * 9.5,
+       width = 300 * 9.5,
+       units = "px", # Pixels
+       dpi = 300)
 
 ## 3g. Educational attainment -----
-
-# Get only latest data points for labeling
-educational_attainment_latest <- educational_attainment %>%
-  filter(YEAR == max(YEAR))  
 
 #set targets
 educational_attainment_targets <- tribble(
@@ -390,37 +412,45 @@ educational_attainment_targets <- tribble(
   2025,  50.2,
   2050,  64.9)
 
-#bind targets to most recent year's data
-educational_attainment_targets <- bind_rows(educational_attainment_latest, educational_attainment_targets)
+# CMAP ggplot object
+plot_educational_attainment <-
+  # Plot basics
+  ggplot(educational_attainment, 
+         aes(x = YEAR, y = PCT_ASSOC_DEG_PLUS)) +
+  geom_line(size = 1) +
+  # Axes details (X, Y labels set in theme_cmap)
+  scale_x_continuous(breaks = scales::breaks_pretty(),
+                     expand = expansion(mult = c(0.05, 0.15))) +
+  scale_y_continuous(minor_breaks = NULL,
+                     limits = c(40, 51),
+                     expand = c(0, 0)) +
+  # CMAP styling
+  theme_cmap(xlab = "Year", 
+             ylab = "% with an Associate Degree or Higher",
+             axisticks = "x") +
+  # Add text to most recent data point
+  geom_text_lastonly(mapping = aes(label = round(PCT_ASSOC_DEG_PLUS, 2)), 
+                     add_points = TRUE) +
+  coord_cartesian(clip = "off")
 
-#plot without targets
-ggplot(educational_attainment, aes(x=YEAR, y=PCT_ASSOC_DEG_PLUS, label=sprintf("%.1f%%", PCT_ASSOC_DEG_PLUS))) +
-  ggtitle("Share of population with an associate's degree or higher",
-          subtitle="among people aged 25 and over in the CMAP region") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=educational_attainment$YEAR) +
-  scale_y_continuous("Share of population (%)", minor_breaks=NULL) +
-  labs(caption="Source: American Community Survey (table B15003)") +
-  theme_minimal() +
-  coord_cartesian(ylim=c(40, 50)) +
-  geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
-  geom_line(size=1) +
-  geom_point(data=educational_attainment_latest) +
-  geom_text_repel(data=educational_attainment_latest, direction="y", fontface="bold")
+# View
+plot_educational_attainment
 
-#plot with targets
-ggplot(educational_attainment, aes(x=YEAR, y=PCT_ASSOC_DEG_PLUS, label=sprintf("%.1f%%", PCT_ASSOC_DEG_PLUS))) +
-  ggtitle("Share of population with an associate's degree or higher, with targets",
-          subtitle="among people aged 25 and over in the CMAP region") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=TARGET_YEARS) +
-  scale_y_continuous("Share of population (%)", minor_breaks=NULL) +
-  labs(caption="Source: American Community Survey (table B15003)") +
-  theme_minimal() +
-  coord_cartesian(ylim=c(30, 70)) +
-  geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
-  geom_line(size=1) +
-  geom_line(data=educational_attainment_targets, linetype="dashed") +
-  geom_point(data=educational_attainment_targets) +
-  geom_text_repel(data=educational_attainment_targets, direction="y", fontface="bold")
+# Finalize
+plot_educational_attainment <- finalize_plot(
+  plot = plot_educational_attainment,
+  title = "Educational Attainment",
+  caption = "Source: American Community Survey (table B15003)")
+
+# Save as image to plots output subfolder
+# Ratio of height to width for pptx slide (aspect ratio) is 5 in x 7 in, so play around with needed width (9.5 inches here) to capture the full image. This makes copy and paste into slides easier.
+ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
+                         "/", "07_educational_attainment.png"),
+       plot = plot_educational_attainment,
+       height = 300 * (5/ 7) * 9.5,
+       width = 300 * 9.5,
+       units = "px", # Pixels
+       dpi = 300)
 
 ## 3h. Educational attainment by Race/Ethnicity -----
 
@@ -432,30 +462,56 @@ educational_attainment_re <- educational_attainment_re %>%
     race_eth == "PCT_ASSOC_DEG_PLUS_ALL" ~ "All",
     race_eth == "PCT_ASSOC_DEG_PLUS_BLACK" ~ "Black",
     race_eth == "PCT_ASSOC_DEG_PLUS_ASIAN" ~ "Asian",
-    race_eth == "PCT_ASSOC_DEG_PLUS_HISPANIC" ~ "Hispanic/Latino",
-    race_eth == "PCT_ASSOC_DEG_PLUS_WHITE" ~ "White (non-Hispanic)")) %>%
+    race_eth == "PCT_ASSOC_DEG_PLUS_HISPANIC" ~ "Hispanic",
+    race_eth == "PCT_ASSOC_DEG_PLUS_WHITE" ~ "White")) %>%
   select(YEAR, race_eth, PCT_ASSOC_DEG_PLUS)
 
-# Get only latest data points for labeling
-educational_attainment_re_latest <- educational_attainment_re %>%
-  filter(YEAR == max(YEAR))  
+# CMAP ggplot object
+plot_educational_attainment_re <-
+  ggplot(educational_attainment_re, aes(x = YEAR, y = PCT_ASSOC_DEG_PLUS,
+                              color = race_eth)) +
+  geom_line(size = 1) +
+  # Axes details (X, Y labels set in theme_cmap)
+  scale_x_continuous(breaks = scales::breaks_pretty(),
+                     expand = expansion(mult = c(0.05, 0.15))) +
+  scale_y_continuous(minor_breaks = NULL,
+                     limits = c(10, 80),
+                     expand = c(0, 0)) +
+  # Chart title/legend
+  labs(color = "Race/ethnicity") +
+  guides(color = guide_legend(override.aes = list(label = ""))) +
+  # CMAP styling
+  theme_cmap(xlab = "Year", 
+             ylab = "% with an Associate Degree or Higher",
+             axisticks = "x") +
+  cmap_color_race(white = "White",
+                  black = "Black",
+                  hispanic = "Hispanic",
+                  asian = "Asian",
+                  other = "All") +
+  # Add text to most recent data point
+  geom_text_lastonly(mapping = aes(label = round(PCT_ASSOC_DEG_PLUS, 2)), 
+                     add_points = TRUE) +
+  coord_cartesian(clip = "off")
 
-#create plot
-ggplot(educational_attainment_re, aes(x=YEAR, y=PCT_ASSOC_DEG_PLUS, color=race_eth, label=sprintf("%.1f%%", PCT_ASSOC_DEG_PLUS))) +
-  ggtitle("Share of population with an associate's degree or higher by race & ethnicity",
-          subtitle="among people aged 25 and over in the Chicago MSA") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=educational_attainment_re$YEAR) +
-  scale_y_continuous("Share of population (%)", minor_breaks=NULL) +
-  labs(caption="Source: American Community Survey (tables B15002, B15002B, B15002D, B15002H, B15002I)",
-       color="Race/ethnicity") +
-  guides(color=guide_legend(override.aes=list(label=""))) +
-  theme_minimal() +
-  scale_color_brewer(palette="Set1") +
-  geom_line(size=1) +
-  geom_point(data=educational_attainment_re_latest) +
-  geom_text_repel(data=educational_attainment_re_latest, direction="y", fontface="bold")
+# View
+plot_educational_attainment_re
 
+# Finalize
+plot_educational_attainment_re <- finalize_plot(
+  plot = plot_educational_attainment_re,
+  title = "Educational Attainment",
+  caption = "Source: American Community Survey (table B15002)")
 
+# Save as image to plots output subfolder
+# Ratio of height to width for pptx slide (aspect ratio) is 5 in x 7 in, so play around with needed width (9.5 inches here) to capture the full image. This makes copy and paste into slides easier.
+ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
+                         "/", "08_educational_attainment_race_ethnicity.png"),
+       plot = plot_educational_attainment_re,
+       height = 300 * (5/ 7) * 9.5,
+       width = 300 * 9.5,
+       units = "px", # Pixels
+       dpi = 300)
 
 ## 3i. Gini Coefficient/Income Inequality -----
 
@@ -471,28 +527,49 @@ gini <- gini %>%
     region == "GINI_COEFF_WAS" ~ "Washington, D.C.")) %>%
   select(YEAR, region, GINI_COEFF)
 
-# Get only latest data points for labeling
-gini_latest <- gini %>%
-  filter(YEAR == max(YEAR))  
 
-#create plot
-ggplot(gini, aes(x=YEAR, y=GINI_COEFF, color=region, label=sprintf("%.3f", GINI_COEFF))) +
-  ggtitle("Gini coefficient",
-          subtitle="for the Chicago MSA and selected peer regions") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=gini$YEAR) +
-  scale_y_continuous("Gini coefficient", minor_breaks=NULL) +
-  labs(caption="Source: American Community Survey (table B19083)",
-       color="Metropolitan Statistical Area") +
-  guides(color=guide_legend(override.aes=list(label=""))) +
-  theme_minimal() +
-  scale_color_brewer(palette="Set1") +
-  coord_cartesian(ylim=c(0.4, 0.55)) +
-  geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
-  geom_line(size=1) +
-  geom_point(data=gini_latest) +
-  geom_text_repel(data=gini_latest, direction="y", fontface="bold")
+# CMAP ggplot object
+plot_gini <-
+  ggplot(gini, aes(x = YEAR, y = GINI_COEFF,
+                                        color = region)) +
+  geom_line(size = 1) +
+  # Axes details (X, Y labels set in theme_cmap)
+  scale_x_continuous(breaks = scales::breaks_pretty(),
+                     expand = expansion(mult = c(0.05, 0.15))) +
+  scale_y_continuous(minor_breaks = NULL,
+                     limits = c(0.4, 0.6),
+                     expand = c(0, 0)) +
+  # Chart title/legend
+  labs(color = "Peer Region") +
+  guides(color = guide_legend(override.aes = list(label = ""))) +
+  # CMAP styling
+  theme_cmap(xlab = "Year", 
+             ylab = "Gini Coefficient",
+             axisticks = "x") +
+  cmap_color_discrete(palette = "community") +
+# Add text to most recent data point
+  geom_text_lastonly(mapping = aes(label = round(GINI_COEFF, 2)), 
+                     add_points = TRUE) +
+  coord_cartesian(clip = "off")
 
+# View
+plot_gini
 
+# Finalize
+plot_gini <- finalize_plot(
+  plot = plot_gini,
+  title = "Income Inequality in Peer MSAs",
+  caption = "Source: American Community Survey (table B19083)")
+
+# Save as image to plots output subfolder
+# Ratio of height to width for pptx slide (aspect ratio) is 5 in x 7 in, so play around with needed width (9.5 inches here) to capture the full image. This makes copy and paste into slides easier.
+ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
+                         "/", "09_gini_coefficient.png"),
+       plot = plot_gini,
+       height = 300 * (5/ 7) * 9.5,
+       width = 300 * 9.5,
+       units = "px", # Pixels
+       dpi = 300)
 
 ## 3j. Commute Time by Race/Ethnicity -----
 
