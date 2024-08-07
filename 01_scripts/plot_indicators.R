@@ -138,35 +138,52 @@ hh_inc_quintiles <- hh_inc_quintiles %>%
     quintile == "MEAN_INC_REL2006_QUINT5" ~ "5th quintile (highest income)")) %>%
   select(YEAR, quintile, MEAN_INC_REL2006)
 
-# Get only latest data points for labeling
-hh_inc_quintiles_latest <- hh_inc_quintiles %>%
-  filter(YEAR == max(YEAR)) %>%
-  mutate(MEAN_INC_REL2006 = round(MEAN_INC_REL2006, 3))
-
-#plot code
-ggplot(hh_inc_quintiles, aes(x=YEAR, y=MEAN_INC_REL2006, color=quintile, label=MEAN_INC_REL2006)) + 
+# CMAP ggplot object
+plot_hh_inc_quintiles <-
+  ggplot(hh_inc_quintiles, 
+         aes(x=YEAR, y=MEAN_INC_REL2006, color=quintile, label=MEAN_INC_REL2006)) + 
+  geom_line(size=1) +
+  # Axes details (X, Y labels set in theme_cmap)
+  scale_x_continuous(breaks=hh_inc_quintiles$YEAR) +
+  scale_y_continuous(minor_breaks = NULL,
+                     limits = c(0.8, 1.15)) +
+  # Chart title and legend
   ggtitle("Real mean household income by quintile relative to 2006",
           subtitle="among households in the Chicago MSA") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=hh_inc_quintiles$YEAR) +
-  scale_y_continuous("Real mean household income relative to 2006", minor_breaks=NULL, labels=scales::percent) +
   labs(caption="Source: American Community Survey (table B19081)",
        color="Income quintile") +
-  
-  #additional styling
-  guides(color=guide_legend(override.aes=list(label=""))) +
-  theme_minimal() +
-  scale_color_brewer(palette="Set1") +
-  geom_line(size=1) +
-  geom_hline(yintercept=1, color="#888888") +  # Emphasize y=100% for reference (if in plot)
-  geom_point(data=hh_inc_quintiles_latest) +
-  geom_text_repel(data=hh_inc_quintiles_latest, direction="y", fontface="bold")
+  # CMAP Styling
+  theme_cmap(xlab = "Year",
+             ylab = "Real mean household income relative to 2006",
+             axisticks= "x",
+             legend.max.columns = 3) +
+  cmap_color_discrete(palette = "prosperity") +
+  # Add text to most recent data point
+  geom_text_lastonly(mapping = aes(label = round(MEAN_INC_REL2006, 2)), 
+                     add_points = TRUE) +
+  coord_cartesian(clip = "off")
+
+# view 
+plot_hh_inc_quintiles
+
+# finalize
+plot_hh_inc_quintiles_export <- finalize_plot(
+  plot = plot_hh_inc_quintiles,
+  title = "Change in Mean Household Income Since 2006 by Quintile",
+  caption = "Source: American Community Survey (table B19081)")
+
+# Save as image to plots output subfolder
+# Ratio of height to width for pptx slide (aspect ratio) is 5 in x 7 in, so play around with needed width (9.5 inches here) to capture the full image. This makes copy and paste into slides easier.
+ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
+                         "/", "02_change_median_income_2006.png"),
+       plot = plot_hh_inc_quintiles_export,
+       height = 300 * (5/ 7) * 9.5,
+       width = 300 * 9.5,
+       units = "px", # Pixels
+       dpi = 300)
 
 
 ## 3c. Non-SOV Travel  -----
-
-# Get only latest data points for labeling
-nonsov_travel_latest <- nonsov_travel %>%
-  filter(YEAR == max(YEAR))  
 
 #set nonsov targets
 nonsov_travel_targets <- tribble(
@@ -175,35 +192,87 @@ nonsov_travel_targets <- tribble(
   2050,  37.3
 )
 
-#bind targets to latest year data
-nonsov_travel_targets <- bind_rows(nonsov_travel_latest, nonsov_travel_targets)
-
-# create plot Without targets
-ggplot(nonsov_travel, aes(x=YEAR, y=PCT_NONSOV_TOTAL, label=sprintf("%.1f%%", PCT_NONSOV_TOTAL))) +
+# CMAP ggplot without targets
+plot_nonsov_travel <-
+  ggplot(nonsov_travel, 
+         aes(x=YEAR, y=PCT_NONSOV_TOTAL, label=sprintf("%.1f%%", PCT_NONSOV_TOTAL))) +
+  geom_line(size=1) +
+  # Axes details (X, Y labels set in theme_cmap)
+  scale_x_continuous(minor_breaks=NULL, breaks=nonsov_travel$YEAR) +
+  scale_y_continuous(minor_breaks=NULL, labels = function(x)paste0(x,"%")) +
+  # Chart title and legend
   ggtitle("Share of trips to work via non-SOV modes",
           subtitle="among workers aged 16 and over in the CMAP region") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=nonsov_travel$YEAR) +
-  scale_y_continuous("Share of trips to work", minor_breaks=NULL) +
   labs(caption="Source: American Community Survey (table B08006)") +
-  theme_minimal() +
-  geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
-  geom_line(size=1) +
-  geom_point(data=nonsov_travel_latest) +
-  geom_text_repel(data=nonsov_travel_latest, direction="y", fontface="bold")
+  #CMAP styling
+  theme_cmap(xlab = "Year",
+             ylab = "Percentage of non-SOV trips to work",
+             axisticks= "x") +
+  cmap_color_discrete(palette = "mobility") +
+  # Add text to most recent data point
+  geom_text_lastonly(mapping = aes(label = paste0(round(PCT_NONSOV_TOTAL,1),"%")), 
+                     add_points = TRUE) +
+  coord_cartesian(clip = "off")
+#View
+plot_nonsov_travel
 
-# plot With targets
-ggplot(nonsov_travel, aes(x=YEAR, y=PCT_NONSOV_TOTAL, label=sprintf("%.1f%%", PCT_NONSOV_TOTAL))) +
-  ggtitle("Share of trips to work via non-SOV modes, with targets",
+#finalize
+plot_nonsov_travel_export <- finalize_plot(
+  plot = plot_nonsov_travel,
+  title = "Share of trips to work via non-SOV modes",
+  caption = "Source: American Community Survey (table B08006)")
+
+# Save as image to plots output subfolder
+# Ratio of height to width for pptx slide (aspect ratio) is 5 in x 7 in, so play around with needed width (9.5 inches here) to capture the full image. This makes copy and paste into slides easier.
+ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
+                         "/", "03A_nonsov_travel.png"),
+       plot = plot_nonsov_travel_export,
+       height = 300 * (5/ 7) * 9.5,
+       width = 300 * 9.5,
+       units = "px", # Pixels
+       dpi = 300)
+
+#CMAP ggplot with targets
+plot_nonsovtravel_targets <-
+  ggplot(nonsov_travel, 
+         aes(x=YEAR, y=PCT_NONSOV_TOTAL, label=sprintf("%.1f%%", PCT_NONSOV_TOTAL))) +
+  geom_line(size=1) +  geom_line(data=nonsov_travel_targets, linetype="dashed") + geom_point(data=nonsov_travel_targets) +
+  geom_text_repel(data=nonsov_travel_targets, direction="y", fontface="bold") +
+  # Axes details (X, Y labels set in theme_cmap)
+  scale_x_continuous(minor_breaks=NULL, breaks=TARGET_YEARS) +
+  scale_y_continuous(minor_breaks=NULL, labels = function(x)paste0(x,"%")) +
+  # Chart title and legend
+  ggtitle("Share of trips to work via non-SOV modes with targets",
           subtitle="among workers aged 16 and over in the CMAP region") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=TARGET_YEARS) +
-  scale_y_continuous("Share of trips to work (%)", minor_breaks=NULL) +
   labs(caption="Source: American Community Survey (table B08006)") +
-  theme_minimal() +
-  geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
-  geom_line(size=1) +
-  geom_line(data=nonsov_travel_targets, linetype="dashed") +
-  geom_point(data=nonsov_travel_targets) +
-  geom_text_repel(data=nonsov_travel_targets, direction="y", fontface="bold")
+  #CMAP styling
+  theme_cmap(xlab = "Year",
+             ylab = "Percentage of non-SOV trips to work",
+             axisticks= "x") +
+  cmap_color_discrete(palette = "mobility") +
+  # Add text to most recent data point
+  geom_text_lastonly(mapping = aes(label = paste0(round(PCT_NONSOV_TOTAL,1),"%")), 
+                     add_points = TRUE) +
+  coord_cartesian(clip = "off")
+
+#View
+plot_nonsovtravel_targets
+
+# finalize
+plot_nonsovtravel_targets_export <- finalize_plot(
+  plot = plot_nonsovtravel_targets,
+  title = "Share of trips to work via non-SOV modes with targets",
+  caption = "Source: American Community Survey (table B08006)")
+
+# Save as image to plots output subfolder
+# Ratio of height to width for pptx slide (aspect ratio) is 5 in x 7 in, so play around with needed width (9.5 inches here) to capture the full image. This makes copy and paste into slides easier.
+ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
+                         "/", "03B_nonsov_travel_targets.png"),
+       plot = plot_nonsovtravel_targets_export,
+       height = 300 * (5/ 7) * 9.5,
+       width = 300 * 9.5,
+       units = "px", # Pixels
+       dpi = 300)
 
 #reshape data to plot share of specific modes
 nonsov_travel <- nonsov_travel %>%
@@ -217,20 +286,45 @@ nonsov_travel <- nonsov_travel %>%
     mode == "PCT_NONSOV_HOME" ~ "Work at home")) %>%
   select(YEAR, mode, PCT_NONSOV, PCT_NONSOV_TOTAL)
 
-# plot share of specific modes
-ggplot(nonsov_travel, aes(x=YEAR, y=PCT_NONSOV, fill=mode)) +
+#CMAP plot with share of specific modes
+plot_nonsov_mode <-
+  ggplot(nonsov_travel, aes(x=YEAR, y=PCT_NONSOV, fill=mode)) + geom_bar(stat="identity") +
+  # Axes details (X, Y labels set in theme_cmap)
+  scale_x_continuous(minor_breaks=NULL, breaks=nonsov_travel$YEAR) +
+  scale_y_continuous(minor_breaks=NULL, labels = function(x)paste0(x,"%")) +
+  # Chart title and legend
   ggtitle("Share of trips to work via specific non-SOV modes",
           subtitle="among workers aged 16 and over in the CMAP region") +
-  scale_x_continuous("Year", minor_breaks=NULL, breaks=nonsov_travel$YEAR) +
-  scale_y_continuous("Share of trips to work (%)", minor_breaks=NULL) +
   labs(caption="Source: American Community Survey (table B08006)",
        fill="Mode") +
-  theme_minimal() +
-  scale_fill_brewer(palette="Set1") +
-  geom_hline(yintercept=0, color="#888888") +  # Emphasize y=0 for reference (if in plot)
-  geom_bar(stat="identity") +
+  #CMAP styling
+  theme_cmap(xlab = "Year",
+             ylab = "Percentage of non-SOV trips to work",
+             axisticks= "x") +
+  cmap_fill_discrete(palette = "mobility") +
+  coord_cartesian(clip = "off") +
   geom_text(aes(label=sprintf("%.1f%%", PCT_NONSOV)), position=position_stack(vjust=0.5), color="white", size=3.5) +
-  geom_text(aes(y=PCT_NONSOV_TOTAL, label=sprintf("%.1f%%", PCT_NONSOV_TOTAL)), vjust=-1, fontface="bold")
+  geom_text(aes(y=PCT_NONSOV_TOTAL, label=sprintf("%.1f%%", PCT_NONSOV_TOTAL)), vjust=-1, fontface="bold", size = 4)
+
+#View
+plot_nonsov_mode
+
+# finalize
+plot_nonsov_mode_export <- finalize_plot(
+  plot = plot_nonsov_mode,
+  title = "Share of trips to work via specific non-SOV modes",
+  caption = "Source: American Community Survey (table B08006)")
+
+# Save as image to plots output subfolder
+# Ratio of height to width for pptx slide (aspect ratio) is 5 in x 7 in, so play around with needed width (9.5 inches here) to capture the full image. This makes copy and paste into slides easier.
+ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
+                         "/", "03_nonsov_trips_bymode.png"),
+       plot = plot_nonsov_mode_export,
+       height = 300 * (5/ 7) * 9.5,
+       width = 300 * 9.5,
+       units = "px", # Pixels
+       dpi = 300)
+
 
 ## 3d. Workforce Participation -----
 
