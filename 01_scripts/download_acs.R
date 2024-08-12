@@ -28,7 +28,6 @@ library(here) # For relative file paths
 options(scipen = 1000, stringsAsFactors = FALSE, tigris_use_cache = TRUE)
 
 
-bls_set_key("91638f97841d4dbaa1042bd47fad3e4f")
 
 ## 1c. Global variables -----
 
@@ -71,7 +70,7 @@ OUT_CSV_SUFFIX <- paste0("_", min(ACS_YEARS), "_", max(ACS_YEARS), ".csv")
 # 2. BLS CPI data ---------------------------------------------------------
 
 # Download CPI data from API
-# bls_set_key("91638f97841d4dbaa1042bd47fad3e4f")
+# Set API key with bls_set_key("PASTE KEY HERE")
 # Chicago MSA series is CUUSS23ASA0, but historically this project has used the national CPI-U series of CUUR0000SA0
 cpi_raw_series <- get_n_series(series_ids = c("CUUR0000SA0"),
                                start_year = 2005,

@@ -705,9 +705,14 @@ plot_commute_time_re <- commute_time_re %>%
                   hispanic = "Hispanic",
                   asian = "Asian") +
   # Add text to most recent data point
-  geom_text_lastonly(mapping = aes(label = paste0(round(COMMUTE_MINS, 1),
-                                                  " min")), 
-                     add_points = TRUE) +
+  # geom_text_lastonly(mapping = aes(label = paste0(round(COMMUTE_MINS, 1),
+  #                                                 " min")),
+  #                    add_points = TRUE) +
+  geom_text_lastonly_new(mapping = aes(label = paste0(round(COMMUTE_MINS, 1),
+                                                  " min")),
+                         
+                     add_points = TRUE,
+                     direction = "y") +
   coord_cartesian(clip = "off")
 
 # View
@@ -722,7 +727,7 @@ plot_commute_time_re_export <- finalize_plot(
 # Save as image to plots output subfolder
 # Ratio of height to width for pptx slide (aspect ratio) is 5 in x 7 in, so play around with needed width (9.5 inches here) to capture the full image. This makes copy and paste into slides easier.
 ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
-                         "/", "010_commute_time_race_ethnicity.png"),
+                         "/", "10_commute_time_race_ethnicity.png"),
        plot = plot_commute_time_re_export,
        height = 300 * (5/ 7) * 9.5,
        width = 300 * 9.5,
