@@ -708,11 +708,12 @@ plot_commute_time_re <- commute_time_re %>%
   # geom_text_lastonly(mapping = aes(label = paste0(round(COMMUTE_MINS, 1),
   #                                                 " min")),
   #                    add_points = TRUE) +
-  geom_text_lastonly_new(mapping = aes(label = paste0(round(COMMUTE_MINS, 1),
-                                                  " min")),
-                         
-                     add_points = TRUE,
-                     direction = "y") +
+  geom_text_lastonly_repel(mapping = aes(label = paste0(round(COMMUTE_MINS, 1),
+                                                        " min")),
+                           
+                           add_points = TRUE,
+                           # Use nudge_x argument to increase space between last point and text (default is 0.4)
+                           ) +
   coord_cartesian(clip = "off")
 
 # View
