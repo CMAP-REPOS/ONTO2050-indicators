@@ -475,8 +475,8 @@ plot_unemployment_re <-
                   asian = "Asian",
                   other = "All") +
   # Add text to most recent data point
-  geom_text_lastonly(mapping = aes(label = round(PCT_UNEMPLOYED, 2)), 
-                     add_points = TRUE) +
+  geom_text_lastonly_repel(mapping = aes(label = round(PCT_UNEMPLOYED, 2)),
+                          add_points = TRUE) +
   coord_cartesian(clip = "off")
 
 # View
@@ -642,7 +642,7 @@ plot_gini <-
              axisticks = "x") +
   cmap_color_discrete(palette = "community") +
 # Add text to most recent data point
-  geom_text_lastonly(mapping = aes(label = round(GINI_COEFF, 2)), 
+  geom_text_lastonly_repel(mapping = aes(label = round(GINI_COEFF, 2)), 
                      add_points = TRUE) +
   coord_cartesian(clip = "off")
 
