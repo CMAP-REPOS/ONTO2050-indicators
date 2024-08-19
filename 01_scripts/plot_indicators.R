@@ -36,20 +36,17 @@ TARGET_YEARS <- seq(2010, 2050, 5)
 
 # 2. Ingest data ----------------------------------------------------------
 
-# Data directory
-DATA_DIR <- here("02_script_outputs", "01_data", "development")
-
 # Read in development data
-med_hh_inc_re <- read_csv(paste0(DATA_DIR, "/", "median_hh_income_by_race_eth_2012_2022.csv"))
-hh_inc_quintiles <- read_csv(paste0(DATA_DIR, "/", "mean_hh_income_by_quintile_2012_2022.csv"))
-nonsov_travel <- read_csv(paste0(DATA_DIR, "/", "nonsov_travel_2012_2022.csv"))
-workforce_participation <- read_csv(paste0(DATA_DIR, "/", "workforce_participation_2012_2022.csv"))
-workforce_participation_re <- read_csv(paste0(DATA_DIR, "/", "workforce_participation_by_race_eth_2012_2022.csv"))
-unemployment_re <- read_csv(paste0(DATA_DIR, "/", "unemployment_by_race_eth_2012_2022.csv"))
-educational_attainment <- read_csv(paste0(DATA_DIR, "/", "educational_attainment_2012_2022.csv"))
-educational_attainment_re <- read_csv(paste0(DATA_DIR, "/", "educational_attainment_by_race_eth_2012_2022.csv"))
-gini <- read_csv(paste0(DATA_DIR, "/", "gini_coefficient_2012_2022.csv"))
-commute_time_re <- read_csv(paste0(DATA_DIR, "/", "commute_time_by_race_eth_2012_2022.csv"))
+med_hh_inc_re <- read_csv(here("household-income-race-ethnicity", "household-income-race-ethnicity.csv"))
+hh_inc_quintiles <- read_csv(here("mean-household-income", "mean-household-income.csv"))
+nonsov_travel <- read_csv(here("non-single-occupancy-modes", "non-single-occupancy-modes.csv"))
+workforce_participation <- read_csv(here("workforce-participation", "workforce-participation.csv"))
+workforce_participation_re <- read_csv(here("workforce-participation", "workforce-participation-race-ethnicity.csv"))
+unemployment_re <- read_csv(here("unemployment-race-ethnicity", "unemployment-race-ethnicity.csv"))
+educational_attainment <- read_csv(here("educational-attainment", "educational-attainment.csv"))
+educational_attainment_re <- read_csv(here("educational-attainment", "educational-attainment-race-ethnicity.csv"))
+gini <- read_csv(here("income-inequality", "income-inequality.csv"))
+commute_time_re <- read_csv(here("commute-time-race-ethnicity", "commute-time-race-ethnicity.csv"))
 
 
 
@@ -144,9 +141,9 @@ plot_hh_inc_quintiles <-
          aes(x=YEAR, y=MEAN_INC_REL2006, color=quintile, label=MEAN_INC_REL2006)) + 
   geom_line(size=1) +
   # Axes details (X, Y labels set in theme_cmap)
-  scale_x_continuous(breaks=hh_inc_quintiles$YEAR) +
+  scale_x_continuous(breaks=scales::breaks_pretty()) +
   scale_y_continuous(minor_breaks = NULL,
-                     limits = c(0.8, 1.15)) +
+                     limits = c(0.8, 1.2)) +
   # Chart title and legend
   ggtitle("Real mean household income by quintile relative to 2006",
           subtitle="among households in the Chicago MSA") +
@@ -186,19 +183,16 @@ ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
 ## 3c. Non-SOV Travel  -----
 
 #set nonsov targets
-nonsov_travel_targets <- tribble(
-  ~YEAR, ~PCT_NONSOV_TOTAL,
-  2025,  32.4,
-  2050,  37.3
-)
+nonsov_travel_targets <- nonsov_travel %>%
+  subset(ACTUAL_OR_TARGET == "Target")
 
 # CMAP ggplot without targets
-plot_nonsov_travel <-
-  ggplot(nonsov_travel, 
-         aes(x=YEAR, y=PCT_NONSOV_TOTAL, label=sprintf("%.1f%%", PCT_NONSOV_TOTAL))) +
+plot_nonsov_travel <- nonsov_travel %>%
+  subset(ACTUAL_OR_TARGET == "Actual") %>%
+  ggplot(aes(x=YEAR, y=PCT_NONSOV_TOTAL, label=sprintf("%.1f%%", PCT_NONSOV_TOTAL))) +
   geom_line(size=1) +
   # Axes details (X, Y labels set in theme_cmap)
-  scale_x_continuous(minor_breaks=NULL, breaks=nonsov_travel$YEAR) +
+  scale_x_continuous(minor_breaks=NULL, breaks=scales::breaks_pretty()) +
   scale_y_continuous(minor_breaks=NULL, labels = function(x)paste0(x,"%")) +
   # Chart title and legend
   ggtitle("Share of trips to work via non-SOV modes",
@@ -233,9 +227,9 @@ ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
        dpi = 300)
 
 #CMAP ggplot with targets
-plot_nonsovtravel_targets <-
-  ggplot(nonsov_travel, 
-         aes(x=YEAR, y=PCT_NONSOV_TOTAL, label=sprintf("%.1f%%", PCT_NONSOV_TOTAL))) +
+plot_nonsov_travel <- nonsov_travel %>%
+  subset(ACTUAL_OR_TARGET == "Actual") %>%
+  ggplot(aes(x=YEAR, y=PCT_NONSOV_TOTAL, label=sprintf("%.1f%%", PCT_NONSOV_TOTAL))) +
   geom_line(size=1) +  geom_line(data=nonsov_travel_targets, linetype="dashed") + geom_point(data=nonsov_travel_targets) +
   geom_text_repel(data=nonsov_travel_targets, direction="y", fontface="bold") +
   # Axes details (X, Y labels set in theme_cmap)
@@ -276,6 +270,7 @@ ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
 
 #reshape data to plot share of specific modes
 nonsov_travel <- nonsov_travel %>%
+  subset(ACTUAL_OR_TARGET == "Actual") %>%
   gather(PCT_NONSOV_CARPOOL, PCT_NONSOV_TRANSIT, PCT_NONSOV_BIKE, PCT_NONSOV_WALK, PCT_NONSOV_HOME,
          key="mode", value="PCT_NONSOV") %>%
   mutate(mode = case_when(
@@ -290,7 +285,7 @@ nonsov_travel <- nonsov_travel %>%
 plot_nonsov_mode <-
   ggplot(nonsov_travel, aes(x=YEAR, y=PCT_NONSOV, fill=mode)) + geom_bar(stat="identity") +
   # Axes details (X, Y labels set in theme_cmap)
-  scale_x_continuous(minor_breaks=NULL, breaks=nonsov_travel$YEAR) +
+  scale_x_continuous(minor_breaks=NULL, breaks=scales::breaks_pretty()) +
   scale_y_continuous(minor_breaks=NULL, labels = function(x)paste0(x,"%")) +
   # Chart title and legend
   ggtitle("Share of trips to work via specific non-SOV modes",
@@ -329,16 +324,14 @@ ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
 ## 3d. Workforce Participation -----
 
 #set targets
-workforce_participation_targets <- tribble(
-  ~YEAR, ~WORKFORCE_PARTIC_RATE,
-  2025,  80.9,
-  2050,  83.4)
+workforce_participation_targets <- workforce_participation %>%
+  subset(ACTUAL_OR_TARGET == "Target")
 
 # CMAP ggplot object
-plot_workforce_participation <-
+plot_workforce_participation <- workforce_participation %>%
+  subset(ACTUAL_OR_TARGET  == "Actual") %>%
   # Plot basics
-  ggplot(workforce_participation, 
-         aes(x = YEAR, y = WORKFORCE_PARTIC_RATE,
+  ggplot(aes(x = YEAR, y = WORKFORCE_PARTIC_RATE,
              label = "%")) +
   geom_line(size = 1) +
   # Axes details (X, Y labels set in theme_cmap)
@@ -501,16 +494,14 @@ ggsave(filename = paste0(here("02_script_outputs", "02_plots"),
 ## 3g. Educational attainment -----
 
 #set targets
-educational_attainment_targets <- tribble(
-  ~YEAR, ~PCT_ASSOC_DEG_PLUS,
-  2025,  50.2,
-  2050,  64.9)
+educational_attainment_targets <- educational_attainment %>%
+  subset(ACTUAL_OR_TARGET = "Target")
 
 # CMAP ggplot object
-plot_educational_attainment <-
+plot_educational_attainment <- educational_attainment %>%
+  subset(ACTUAL_OR_TARGET == "Actual") %>%
   # Plot basics
-  ggplot(educational_attainment, 
-         aes(x = YEAR, y = PCT_ASSOC_DEG_PLUS)) +
+  ggplot(aes(x = YEAR, y = PCT_ASSOC_DEG_PLUS)) +
   geom_line(size = 1) +
   # Axes details (X, Y labels set in theme_cmap)
   scale_x_continuous(breaks = scales::breaks_pretty(),
