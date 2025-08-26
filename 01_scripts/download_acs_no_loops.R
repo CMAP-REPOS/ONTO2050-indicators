@@ -31,7 +31,7 @@ options(scipen = 1000, stringsAsFactors = FALSE, tigris_use_cache = TRUE)
 ### 1c1. ACS and geographic variables -----
 
 ## UPDATE YEAR TO PULL MOST RECENT ACS RELEASE
-ACS_YEAR <- 2022 
+ACS_YEAR <- 2023 
 
 #set fips/msas
 IL_FIPS <- "17"
